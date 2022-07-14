@@ -81,9 +81,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\grunge-halftone-background.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\rising-sun.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

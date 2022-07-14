@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplashScreenForm));
             this.TitleLabel = new System.Windows.Forms.Label();
             this.SplashScreenProgressBar = new System.Windows.Forms.ProgressBar();
             this.ProgressLabel = new System.Windows.Forms.Label();
@@ -40,7 +41,7 @@
             this.TitleLabel.BackColor = System.Drawing.Color.Transparent;
             this.TitleLabel.Font = new System.Drawing.Font("B Yekan", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.TitleLabel.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.TitleLabel.Location = new System.Drawing.Point(444, 355);
+            this.TitleLabel.Location = new System.Drawing.Point(388, 346);
             this.TitleLabel.Name = "TitleLabel";
             this.TitleLabel.Size = new System.Drawing.Size(332, 45);
             this.TitleLabel.TabIndex = 0;
@@ -84,6 +85,7 @@
             this.Controls.Add(this.ProgressLabel);
             this.Controls.Add(this.TitleLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SplashScreenForm";

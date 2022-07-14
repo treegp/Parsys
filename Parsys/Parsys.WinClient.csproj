@@ -80,7 +80,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Untitled-1low.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\keyboard-15.jpg" />
   </ItemGroup>

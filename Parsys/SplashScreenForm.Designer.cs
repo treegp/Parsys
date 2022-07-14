@@ -35,11 +35,12 @@
             // 
             // TitleLabel
             // 
+            this.TitleLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.TitleLabel.AutoSize = true;
             this.TitleLabel.BackColor = System.Drawing.Color.Transparent;
             this.TitleLabel.Font = new System.Drawing.Font("B Yekan", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.TitleLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.TitleLabel.Location = new System.Drawing.Point(153, 294);
+            this.TitleLabel.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.TitleLabel.Location = new System.Drawing.Point(444, 355);
             this.TitleLabel.Name = "TitleLabel";
             this.TitleLabel.Size = new System.Drawing.Size(332, 45);
             this.TitleLabel.TabIndex = 0;
@@ -50,23 +51,24 @@
             this.SplashScreenProgressBar.BackColor = System.Drawing.Color.Black;
             this.SplashScreenProgressBar.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.SplashScreenProgressBar.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.SplashScreenProgressBar.Location = new System.Drawing.Point(0, 413);
+            this.SplashScreenProgressBar.Location = new System.Drawing.Point(0, 427);
             this.SplashScreenProgressBar.Name = "SplashScreenProgressBar";
             this.SplashScreenProgressBar.RightToLeftLayout = true;
-            this.SplashScreenProgressBar.Size = new System.Drawing.Size(638, 23);
-            this.SplashScreenProgressBar.Step = 50;
+            this.SplashScreenProgressBar.Size = new System.Drawing.Size(800, 23);
+            this.SplashScreenProgressBar.Step = 500;
             this.SplashScreenProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.SplashScreenProgressBar.TabIndex = 1;
+            this.SplashScreenProgressBar.Value = 100;
             // 
             // ProgressLabel
             // 
             this.ProgressLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ProgressLabel.BackColor = System.Drawing.Color.Transparent;
-            this.ProgressLabel.Font = new System.Drawing.Font("B Yekan", 8F);
+            this.ProgressLabel.Font = new System.Drawing.Font("B Yekan", 7F);
             this.ProgressLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ProgressLabel.Location = new System.Drawing.Point(12, 386);
+            this.ProgressLabel.Location = new System.Drawing.Point(39, 400);
             this.ProgressLabel.Name = "ProgressLabel";
-            this.ProgressLabel.Size = new System.Drawing.Size(614, 24);
+            this.ProgressLabel.Size = new System.Drawing.Size(729, 24);
             this.ProgressLabel.TabIndex = 0;
             this.ProgressLabel.Text = "در حال بارگزاری سیستم";
             this.ProgressLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -75,9 +77,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::Parsys.Properties.Resources.rising_sun;
+            this.BackgroundImage = global::Parsys.Properties.Resources.keyboard_15;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(638, 436);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.SplashScreenProgressBar);
             this.Controls.Add(this.ProgressLabel);
             this.Controls.Add(this.TitleLabel);
@@ -88,6 +90,7 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Splash Screen";
+            this.Load += new System.EventHandler(this.SplashScreenForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

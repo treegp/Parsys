@@ -63,19 +63,9 @@ namespace Parsys.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap grunge_halftone_background {
+        internal static System.Drawing.Bitmap keyboard_15 {
             get {
-                object obj = ResourceManager.GetObject("grunge-halftone-background", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap rising_sun {
-            get {
-                object obj = ResourceManager.GetObject("rising-sun", resourceCulture);
+                object obj = ResourceManager.GetObject("keyboard-15", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

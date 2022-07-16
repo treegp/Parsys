@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -94,6 +95,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\SplashScreen.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Parsys.DataLayer\Parsys.DataLayer.csproj">
+      <Project>{db89d7ce-c3fa-4108-bf31-f696e565dda6}</Project>
+      <Name>Parsys.DataLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

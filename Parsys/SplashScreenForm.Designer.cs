@@ -1,4 +1,4 @@
-﻿namespace Parsys
+﻿namespace Parsys.WinClient
 {
     partial class SplashScreenForm
     {

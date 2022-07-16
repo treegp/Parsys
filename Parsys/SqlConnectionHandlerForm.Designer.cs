@@ -1,4 +1,4 @@
-﻿namespace Parsys
+﻿namespace Parsys.WinClient
 {
     partial class SqlConnectionHandlerForm
     {
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.ButtonsPanel = new System.Windows.Forms.Panel();
-            this.CancelButton = new System.Windows.Forms.Button();
+            this.IgnoreButton = new System.Windows.Forms.Button();
             this.OkButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.MainPanel = new System.Windows.Forms.Panel();
@@ -49,7 +49,7 @@
             // 
             this.ButtonsPanel.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ButtonsPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ButtonsPanel.Controls.Add(this.CancelButton);
+            this.ButtonsPanel.Controls.Add(this.IgnoreButton);
             this.ButtonsPanel.Controls.Add(this.OkButton);
             this.ButtonsPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ButtonsPanel.Location = new System.Drawing.Point(0, 214);
@@ -57,16 +57,17 @@
             this.ButtonsPanel.Size = new System.Drawing.Size(488, 49);
             this.ButtonsPanel.TabIndex = 1;
             // 
-            // CancelButton
+            // IgnoreButton
             // 
-            this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelButton.Location = new System.Drawing.Point(288, 9);
-            this.CancelButton.Margin = new System.Windows.Forms.Padding(4);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(88, 32);
-            this.CancelButton.TabIndex = 1;
-            this.CancelButton.Text = "صرف نظر";
-            this.CancelButton.UseVisualStyleBackColor = true;
+            this.IgnoreButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.IgnoreButton.Location = new System.Drawing.Point(288, 9);
+            this.IgnoreButton.Margin = new System.Windows.Forms.Padding(4);
+            this.IgnoreButton.Name = "IgnoreButton";
+            this.IgnoreButton.Size = new System.Drawing.Size(88, 32);
+            this.IgnoreButton.TabIndex = 1;
+            this.IgnoreButton.Text = "صرف نظر";
+            this.IgnoreButton.UseVisualStyleBackColor = true;
+            this.IgnoreButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // OkButton
             // 
@@ -218,6 +219,7 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SqlConnectionHandlerForm";
+            this.Load += new System.EventHandler(this.SqlConnectionHandlerForm_Load);
             this.ButtonsPanel.ResumeLayout(false);
             this.MainPanel.ResumeLayout(false);
             this.MainPanel.PerformLayout();
@@ -229,7 +231,7 @@
         #endregion
 
         private System.Windows.Forms.Panel ButtonsPanel;
-        private System.Windows.Forms.Button CancelButton;
+        private System.Windows.Forms.Button IgnoreButton;
         private System.Windows.Forms.Button OkButton;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel MainPanel;

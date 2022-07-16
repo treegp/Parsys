@@ -1,26 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
-namespace Parsys
+namespace Parsys.WinClient
 {
     public partial class SqlConnectionHandlerForm : Form
     {
-        public SqlConnectionHandlerForm()
+        public SqlConnectionStringBuilder conBuilder;
+        public SqlConnectionHandlerForm(SqlConnectionStringBuilder conBuilder)
         {
+            this.conBuilder = conBuilder;
             InitializeComponent();
         }
 
-        private void OkButton_Click(object sender, EventArgs e)
-        {
-            
-        }
+
 
         private void UserIdCheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -28,6 +21,40 @@ namespace Parsys
 
             if (UserIdCheckBox.Checked)
                 UserIdTextBox.Select();
+        }
+
+        private void SqlConnectionHandlerForm_Load(object sender, EventArgs e)
+        {
+            DataSourceTextBox.Text = conBuilder.DataSource;
+            UserIdCheckBox.Checked = !conBuilder.IntegratedSecurity;
+            if (UserIdCheckBox.Checked)
+            {
+                UserIdTextBox.Text = conBuilder.UserID;
+                PasswordTextBox.Text = conBuilder.Password;
+            }
+            InitialCatalogTextBox.Text = "parsysdb";
+        }
+
+        private void OkButton_Click(object sender, EventArgs e)
+        {
+            SqlConnectionStringBuilder conBuilder = new SqlConnectionStringBuilder() ;
+            conBuilder.DataSource = DataSourceTextBox.Text;
+            conBuilder.IntegratedSecurity = !UserIdCheckBox.Checked;
+            if (UserIdCheckBox.Checked)
+            {
+                conBuilder.UserID = UserIdTextBox.Text;
+                conBuilder.Password = PasswordTextBox.Text;
+            }
+            conBuilder.InitialCatalog = "parsysdb";
+            this.conBuilder = conBuilder;
+            return;
+
+        }
+
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            this.conBuilder = null;
+            return;
         }
     }
 }

@@ -6,11 +6,11 @@ namespace Parsys.WinClient
 {
     public partial class SqlConnectionHandlerForm : Form
     {
-        public SqlConnectionStringBuilder conBuilder;
-        public SqlConnectionHandlerForm(SqlConnectionStringBuilder conBuilder)
+        public SqlConnectionStringBuilder connectStringBuilder=new SqlConnectionStringBuilder();
+        public SqlConnectionHandlerForm(string connectStr)
         {
-            this.conBuilder = conBuilder;
             InitializeComponent();
+            connectStringBuilder.ConnectionString = connectStr;
         }
 
 
@@ -25,12 +25,12 @@ namespace Parsys.WinClient
 
         private void SqlConnectionHandlerForm_Load(object sender, EventArgs e)
         {
-            DataSourceTextBox.Text = conBuilder.DataSource;
-            UserIdCheckBox.Checked = !conBuilder.IntegratedSecurity;
+            DataSourceTextBox.Text = connectStringBuilder.DataSource;
+            UserIdCheckBox.Checked = !connectStringBuilder.IntegratedSecurity;
             if (UserIdCheckBox.Checked)
             {
-                UserIdTextBox.Text = conBuilder.UserID;
-                PasswordTextBox.Text = conBuilder.Password;
+                UserIdTextBox.Text = connectStringBuilder.UserID;
+                PasswordTextBox.Text = connectStringBuilder.Password;
             }
             InitialCatalogTextBox.Text = "parsysdb";
         }
@@ -46,14 +46,14 @@ namespace Parsys.WinClient
                 conBuilder.Password = PasswordTextBox.Text;
             }
             conBuilder.InitialCatalog = "parsysdb";
-            this.conBuilder = conBuilder;
+            connectStringBuilder = conBuilder;
             return;
 
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            this.conBuilder = null;
+            connectStringBuilder = null;
             return;
         }
     }

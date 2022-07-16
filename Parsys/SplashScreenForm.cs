@@ -18,37 +18,33 @@ namespace Parsys.WinClient
             SplashScreenProgressBar.MarqueeAnimationSpeed = 25;
             ProgressLabel.Text = "برقراری ارتباط با سرور";
 
-            SqlConnectionStringBuilder conBuilder = new SqlConnectionStringBuilder();
-            SqlConnectionHandlerForm servForm = new SqlConnectionHandlerForm(conBuilder);
-
-
-
-            conBuilder.ConnectionString = ConfigurationManager.ConnectionStrings["PARSYS"].ConnectionString;
-
+            SqlConnectionStringBuilder connectionBuilder = new SqlConnectionStringBuilder();
+            connectionBuilder.ConnectionString = ConfigurationManager.ConnectionStrings["PARSYS"].ConnectionString;
+            SqlConnectionHandlerForm configServerForm = new SqlConnectionHandlerForm(connectionBuilder.ConnectionString);
             DataLayer.ConnectTo myConnection = new DataLayer.ConnectTo();
 
-            while (await myConnection.ServerOrDatabase(conBuilder, true) == 0)
+            while (await myConnection.ServerOrDatabase(connectionBuilder.ConnectionString, true) == 0)
             {
                 ProgressLabel.Text = "ارتباط با سرور برقرار نشد";
 
-                servForm.ShowDialog();
-                if (servForm.conBuilder == null)
+                configServerForm.ShowDialog();
+                if (configServerForm.connectStringBuilder == null)
                     return;
                 else
-                    conBuilder = servForm.conBuilder;
+                    connectionBuilder = configServerForm.connectStringBuilder;
                 ProgressLabel.Text = "برقراری ارتباط با سرور";
             }
 
             var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             var conSec = (ConnectionStringsSection)config.GetSection("connectionStrings");
-            conSec.ConnectionStrings["PARSYS"].ConnectionString= servForm.conBuilder.ConnectionString;
+            conSec.ConnectionStrings["PARSYS"].ConnectionString= configServerForm.connectStringBuilder.ConnectionString;
             config.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection("connectionStrings");
 
-            conBuilder.ConnectionString = servForm.conBuilder.ConnectionString;
+            connectionBuilder.ConnectionString = configServerForm.connectStringBuilder.ConnectionString;
 
             ProgressLabel.Text = "بررسی دیتابیس";
-            while (await myConnection.ServerOrDatabase(conBuilder, false) == 0)
+            while (await myConnection.ServerOrDatabase(connectionBuilder.ConnectionString, false) == 0)
             {
                 ProgressLabel.Text = "پیکربندی دیتابیس در سرور";
 

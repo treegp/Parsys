@@ -42,10 +42,9 @@
             this.TitleLabel.BackColor = System.Drawing.Color.Transparent;
             this.TitleLabel.Font = new System.Drawing.Font("B Yekan", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.TitleLabel.ForeColor = System.Drawing.Color.White;
-            this.TitleLabel.Location = new System.Drawing.Point(174, 130);
-            this.TitleLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.TitleLabel.Location = new System.Drawing.Point(232, 160);
             this.TitleLabel.Name = "TitleLabel";
-            this.TitleLabel.Size = new System.Drawing.Size(353, 48);
+            this.TitleLabel.Size = new System.Drawing.Size(439, 60);
             this.TitleLabel.TabIndex = 0;
             this.TitleLabel.Text = "نرم افزار انبارداری پارسیس";
             // 
@@ -54,11 +53,11 @@
             this.SplashScreenProgressBar.BackColor = System.Drawing.Color.Black;
             this.SplashScreenProgressBar.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.SplashScreenProgressBar.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.SplashScreenProgressBar.Location = new System.Drawing.Point(0, 361);
-            this.SplashScreenProgressBar.Margin = new System.Windows.Forms.Padding(2);
+            this.SplashScreenProgressBar.Location = new System.Drawing.Point(0, 444);
+            this.SplashScreenProgressBar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SplashScreenProgressBar.Name = "SplashScreenProgressBar";
             this.SplashScreenProgressBar.RightToLeftLayout = true;
-            this.SplashScreenProgressBar.Size = new System.Drawing.Size(600, 5);
+            this.SplashScreenProgressBar.Size = new System.Drawing.Size(800, 6);
             this.SplashScreenProgressBar.Step = 500;
             this.SplashScreenProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.SplashScreenProgressBar.TabIndex = 1;
@@ -70,10 +69,9 @@
             this.ProgressLabel.BackColor = System.Drawing.Color.Transparent;
             this.ProgressLabel.Font = new System.Drawing.Font("B Yekan", 7F);
             this.ProgressLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ProgressLabel.Location = new System.Drawing.Point(42, 343);
-            this.ProgressLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.ProgressLabel.Location = new System.Drawing.Point(56, 422);
             this.ProgressLabel.Name = "ProgressLabel";
-            this.ProgressLabel.Size = new System.Drawing.Size(547, 14);
+            this.ProgressLabel.Size = new System.Drawing.Size(729, 17);
             this.ProgressLabel.TabIndex = 0;
             this.ProgressLabel.Text = "در حال بارگزاری سیستم";
             this.ProgressLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -85,27 +83,26 @@
             this.VersionLabel.BackColor = System.Drawing.Color.Transparent;
             this.VersionLabel.Font = new System.Drawing.Font("B Yekan", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.VersionLabel.ForeColor = System.Drawing.Color.White;
-            this.VersionLabel.Location = new System.Drawing.Point(91, 155);
-            this.VersionLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.VersionLabel.Location = new System.Drawing.Point(121, 191);
             this.VersionLabel.Name = "VersionLabel";
-            this.VersionLabel.Size = new System.Drawing.Size(79, 23);
+            this.VersionLabel.Size = new System.Drawing.Size(99, 29);
             this.VersionLabel.TabIndex = 0;
             this.VersionLabel.Text = "نسخه 1.0.0";
             // 
             // SplashScreenForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Parsys.Properties.Resources.SplashScreen;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(600, 366);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.SplashScreenProgressBar);
             this.Controls.Add(this.ProgressLabel);
             this.Controls.Add(this.VersionLabel);
             this.Controls.Add(this.TitleLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SplashScreenForm";

@@ -22,6 +22,7 @@ namespace Parsys
         {
             SplashScreenProgressBar.MarqueeAnimationSpeed = 25;
             
+            
         }
     }
 }

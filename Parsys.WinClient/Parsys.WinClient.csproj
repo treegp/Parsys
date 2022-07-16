@@ -91,9 +91,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Untitled-1low.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\SplashScreen.jpg" />
   </ItemGroup>
   <ItemGroup>

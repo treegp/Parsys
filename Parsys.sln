@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parsys.WinClient", "Parsys\Parsys.WinClient.csproj", "{9E577829-61E9-4A25-B27D-C3380D4A5AE4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parsys.WinClient", "Parsys.WinClient\Parsys.WinClient.csproj", "{9E577829-61E9-4A25-B27D-C3380D4A5AE4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parsys.DataLayer", "Parsys.DataLayer\Parsys.DataLayer.csproj", "{DB89D7CE-C3FA-4108-BF31-F696E565DDA6}"
 EndProject

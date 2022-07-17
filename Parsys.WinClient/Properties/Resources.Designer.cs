@@ -61,6 +61,39 @@ namespace Parsys.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to create table ShopDb.dbo.Users
+        ///(
+        ///	Id int not null identity,
+        ///	UserName nvarchar(200) not null unique,
+        ///
+        ///
+        ///	IsDeleted bit not null,
+        ///	DeleteDate datetime  null default(getdate()),
+        ///	DeleteByUserId int null references dbo.Users(Id),
+        ///	primary key(Id)
+        ///);
+        /// 
+        ///
+        ///
+        ///create table ShopDb.dbo.Corporations
+        ///(
+        ///	Id int not null identity,
+        ///	Title nvarchar(200) not null,
+        ///	[Address] nvarchar(1000) null,
+        ///	Telephone nvarchar(21) null,
+        ///	Fax nvarchar(21) null,
+        ///	[Description] nvarchar(1000) null,
+        ///	
+        ///
+        ///	IsDeleted bit no [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ShopDb_Query {
+            get {
+                return ResourceManager.GetString("ShopDb_Query", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap SplashScreen {

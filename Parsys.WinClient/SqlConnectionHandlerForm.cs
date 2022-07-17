@@ -32,7 +32,7 @@ namespace Parsys.WinClient
                 UserIdTextBox.Text = connectStringBuilder.UserID;
                 PasswordTextBox.Text = connectStringBuilder.Password;
             }
-            InitialCatalogTextBox.Text = "parsysdb";
+            InitialCatalogTextBox.Text = SplashScreenForm.DefaultInitialCatalogValue;
         }
 
         private void OkButton_Click(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace Parsys.WinClient
                 conBuilder.UserID = UserIdTextBox.Text;
                 conBuilder.Password = PasswordTextBox.Text;
             }
-            conBuilder.InitialCatalog = "parsysdb";
+            conBuilder.InitialCatalog = SplashScreenForm.DefaultInitialCatalogValue;
             connectStringBuilder = conBuilder;
             return;
 

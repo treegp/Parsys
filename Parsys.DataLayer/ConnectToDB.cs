@@ -53,6 +53,24 @@ namespace Parsys.DataLayer
             }
         }
 
+        public async Task InitialDatabase(string connectionStr, string dbName)
+        {
+            using (SqlConnection con = new SqlConnection(connectionStr))
+            {
+                SqlCommand com = new SqlCommand("create database " + dbName, con);
+                await com.ExecuteNonQueryAsync();
+            }
+        }
+
+
+        public async Task InitialTables(string connectionStr,string command)
+        {
+            using (SqlConnection con = new SqlConnection(connectionStr))
+            {
+                SqlCommand com = new SqlCommand(command, con);
+                await com.ExecuteNonQueryAsync();
+            }
+        }
 
 
 

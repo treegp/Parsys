@@ -5,8 +5,15 @@ using System.Windows.Forms;
 
 namespace Parsys.WinClient
 {
+
+
     public partial class SplashScreenForm : Form
     {
+
+
+
+        public static string DefaultInitialCatalogValue { get { return "parsysdb"; } }
+
         public SplashScreenForm()
         {
 
@@ -37,7 +44,7 @@ namespace Parsys.WinClient
 
             var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             var conSec = (ConnectionStringsSection)config.GetSection("connectionStrings");
-            conSec.ConnectionStrings["PARSYS"].ConnectionString= configServerForm.connectStringBuilder.ConnectionString;
+            conSec.ConnectionStrings["PARSYS"].ConnectionString = configServerForm.connectStringBuilder.ConnectionString;
             config.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection("connectionStrings");
 
@@ -47,6 +54,11 @@ namespace Parsys.WinClient
             while (await myConnection.ServerOrDatabase(connectionBuilder.ConnectionString, false) == 0)
             {
                 ProgressLabel.Text = "پیکربندی دیتابیس در سرور";
+                await myConnection.InitialDatabase(connectionBuilder.ConnectionString, DefaultInitialCatalogValue);
+
+                connectionBuilder.InitialCatalog = DefaultInitialCatalogValue;
+                ProgressLabel.Text = "ایجاد جداول در بانک اطلاعاتی";
+                await myConnection.InitialDatabase(connectionBuilder.ConnectionString, "parsysdb");
 
             }
 

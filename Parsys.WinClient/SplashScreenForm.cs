@@ -53,13 +53,14 @@ namespace Parsys.WinClient
             ProgressLabel.Text = "بررسی دیتابیس";
             while (await myConnection.ServerOrDatabase(connectionBuilder.ConnectionString, false) == 0)
             {
+                connectionBuilder.InitialCatalog = "master";
                 ProgressLabel.Text = "پیکربندی دیتابیس در سرور";
                 await myConnection.InitialDatabase(connectionBuilder.ConnectionString, DefaultInitialCatalogValue);
 
                 connectionBuilder.InitialCatalog = DefaultInitialCatalogValue;
                 ProgressLabel.Text = "ایجاد جداول در بانک اطلاعاتی";
-                await myConnection.InitialDatabase(connectionBuilder.ConnectionString, "parsysdb");
-
+                await myConnection.InitialDatabase(connectionBuilder.ConnectionString,Properties.Resources.ShopDb_Query.Replace("[ShopDb]",DefaultInitialCatalogValue));
+                MessageBox.Show("دیتابیس با موفقیت ساخته شد");
             }
 
 

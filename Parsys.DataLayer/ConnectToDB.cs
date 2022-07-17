@@ -57,6 +57,7 @@ namespace Parsys.DataLayer
         {
             using (SqlConnection con = new SqlConnection(connectionStr))
             {
+                await con.OpenAsync();
                 SqlCommand com = new SqlCommand("create database " + dbName, con);
                 await com.ExecuteNonQueryAsync();
             }
@@ -67,6 +68,7 @@ namespace Parsys.DataLayer
         {
             using (SqlConnection con = new SqlConnection(connectionStr))
             {
+                await con.OpenAsync();
                 SqlCommand com = new SqlCommand(command, con);
                 await com.ExecuteNonQueryAsync();
             }

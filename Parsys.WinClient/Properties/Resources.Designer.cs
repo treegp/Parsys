@@ -61,31 +61,22 @@ namespace Parsys.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to create table ShopDb.dbo.Users
+        ///   Looks up a localized string similar to SET ANSI_NULLS ON
+        ///SET QUOTED_IDENTIFIER ON
+        ///CREATE TABLE [ShopDb].[dbo].[Corporations](
+        ///	[Id] [int] IDENTITY(1,1) NOT NULL,
+        ///	[Title] [nvarchar](200) NOT NULL,
+        ///	[Address] [nvarchar](1000) NULL,
+        ///	[Telephone] [nvarchar](21) NULL,
+        ///	[Fax] [nvarchar](21) NULL,
+        ///	[Description] [nvarchar](1000) NULL,
+        ///	[IsDeleted] [bit] NOT NULL,
+        ///	[DeleteDate] [datetime] NULL,
+        ///	[DeleteByUserId] [int] NULL,
+        ///PRIMARY KEY CLUSTERED 
         ///(
-        ///	Id int not null identity,
-        ///	UserName nvarchar(200) not null unique,
-        ///
-        ///
-        ///	IsDeleted bit not null,
-        ///	DeleteDate datetime  null default(getdate()),
-        ///	DeleteByUserId int null references dbo.Users(Id),
-        ///	primary key(Id)
-        ///);
-        /// 
-        ///
-        ///
-        ///create table ShopDb.dbo.Corporations
-        ///(
-        ///	Id int not null identity,
-        ///	Title nvarchar(200) not null,
-        ///	[Address] nvarchar(1000) null,
-        ///	Telephone nvarchar(21) null,
-        ///	Fax nvarchar(21) null,
-        ///	[Description] nvarchar(1000) null,
-        ///	
-        ///
-        ///	IsDeleted bit no [rest of string was truncated]&quot;;.
+        ///	[Id] ASC
+        ///)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLO [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ShopDb_Query {
             get {

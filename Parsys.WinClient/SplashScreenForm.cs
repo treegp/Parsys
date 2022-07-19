@@ -54,7 +54,7 @@ namespace Parsys.WinClient
             while (await myConnection.ServerOrDatabase(connectionBuilder.ConnectionString, false) == 0)
             {
                 connectionBuilder.InitialCatalog = "master";
-                ProgressLabel.Text = "پیکربندی دیتابیس در سرور";
+                ProgressLabel.Text = "پیکربندی بانک اطلاعاتی در سرور";
                 await myConnection.InitialDatabase(connectionBuilder.ConnectionString, DefaultInitialCatalogValue);
 
                 connectionBuilder.InitialCatalog = DefaultInitialCatalogValue;

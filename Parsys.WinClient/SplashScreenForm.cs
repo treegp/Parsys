@@ -59,7 +59,8 @@ namespace Parsys.WinClient
 
                 connectionBuilder.InitialCatalog = DefaultInitialCatalogValue;
                 ProgressLabel.Text = "ایجاد جداول در بانک اطلاعاتی";
-                await myConnection.InitialDatabase(connectionBuilder.ConnectionString,Properties.Resources.ShopDb_Query.Replace("[ShopDb]","["+DefaultInitialCatalogValue+"]"));
+                string str = Properties.Resources.ShopDb_Tables.ToString().Replace("[ShopDb]", "[" + DefaultInitialCatalogValue + "]");
+                await  myConnection.InitialDatabase(connectionBuilder.ConnectionString, str);
                 MessageBox.Show("دیتابیس با موفقیت ساخته شد");
             }
 

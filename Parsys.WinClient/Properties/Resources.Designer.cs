@@ -62,8 +62,10 @@ namespace Parsys.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to SET ANSI_NULLS ON
+        ///
         ///SET QUOTED_IDENTIFIER ON
-        ///CREATE TABLE [ShopDb].[dbo].[Corporations](
+        ///
+        ///CREATE TABLE [ShopDb].[dbo][Corporations](
         ///	[Id] [int] IDENTITY(1,1) NOT NULL,
         ///	[Title] [nvarchar](200) NOT NULL,
         ///	[Address] [nvarchar](1000) NULL,
@@ -76,11 +78,11 @@ namespace Parsys.Properties {
         ///PRIMARY KEY CLUSTERED 
         ///(
         ///	[Id] ASC
-        ///)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLO [rest of string was truncated]&quot;;.
+        ///)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, A [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string ShopDb_Query {
+        internal static string ShopDb_Tables {
             get {
-                return ResourceManager.GetString("ShopDb_Query", resourceCulture);
+                return ResourceManager.GetString("ShopDb_Tables", resourceCulture);
             }
         }
         

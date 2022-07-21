@@ -61,11 +61,21 @@ namespace Parsys.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SET ANSI_NULLS ON
+        ///   Looks up a localized string similar to /****** Object:  Table [parsysdb].[dbo].[Corporations]    Script Date: 20/07/2022 7:08:27 PM ******/ SET ANSI_NULLS ON  SET QUOTED_IDENTIFIER ON  CREATE TABLE [parsysdb].[dbo].[Corporations](  [Id] [int] IDENTITY(1,1) NOT NULL,  [Title] [nvarchar](200) NOT NULL,  [Address] [nvarchar](1000) NULL,  [Telephone] [nvarchar](21) NULL,  [Fax] [nvarchar](21) NULL,  [Description] [nvarchar](1000) NULL,  [IsDeleted] [bit] NOT NULL,  [DeleteDate] [datetime] NULL,  [DeleteByUserId] [int] NULL, PRIMARY KEY CLUSTERED  (  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string script {
+            get {
+                return ResourceManager.GetString("script", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /****** Object:  Table [ShopDb].[dbo].[Corporations]    Script Date: 20/07/2022 7:08:27 PM ******/
+        ///SET ANSI_NULLS ON
         ///
         ///SET QUOTED_IDENTIFIER ON
         ///
-        ///CREATE TABLE [ShopDb].[dbo][Corporations](
+        ///CREATE TABLE [ShopDb].[dbo].[Corporations](
         ///	[Id] [int] IDENTITY(1,1) NOT NULL,
         ///	[Title] [nvarchar](200) NOT NULL,
         ///	[Address] [nvarchar](1000) NULL,
@@ -75,14 +85,11 @@ namespace Parsys.Properties {
         ///	[IsDeleted] [bit] NOT NULL,
         ///	[DeleteDate] [datetime] NULL,
         ///	[DeleteByUserId] [int] NULL,
-        ///PRIMARY KEY CLUSTERED 
-        ///(
-        ///	[Id] ASC
-        ///)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, A [rest of string was truncated]&quot;;.
+        ///PRIMARY KEY CL [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string ShopDb_Tables {
+        internal static string ShopDb {
             get {
-                return ResourceManager.GetString("ShopDb_Tables", resourceCulture);
+                return ResourceManager.GetString("ShopDb", resourceCulture);
             }
         }
         

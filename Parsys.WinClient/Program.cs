@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Parsys.WinClient.Views.WelcomeForms;
+using System;
 using System.Windows.Forms;
 
 namespace Parsys.WinClient
@@ -16,7 +14,14 @@ namespace Parsys.WinClient
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SplashScreenForm());
+
+            var container = new StructureMap.Container(new IoC.TypesRegistery());
+            var splashScreen = container.GetInstance<SplashScreenForm>();
+            var result = splashScreen.ShowDialog();
+            if (result != DialogResult.OK)
+                return;
+
+            Application.Run(new MainForm());
         }
     }
 }

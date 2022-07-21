@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
@@ -42,57 +43,75 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConnectToDB.cs" />
-    <Compile Include="EntityAbstracts\Corporations.cs" />
-    <Compile Include="EntityAbstracts\FinancialYears.cs" />
-    <Compile Include="EntityAbstracts\Inventories.cs" />
-    <Compile Include="EntityAbstracts\InventoryInsDetails.cs" />
-    <Compile Include="EntityAbstracts\InventoryInsHeaders.cs" />
-    <Compile Include="EntityAbstracts\InventoryInsType.cs" />
-    <Compile Include="EntityAbstracts\InventoryOutsDetails.cs" />
-    <Compile Include="EntityAbstracts\InventoryOutsHeaders.cs" />
-    <Compile Include="EntityAbstracts\InventoryOutsType.cs" />
-    <Compile Include="EntityAbstracts\ProductCategories.cs" />
-    <Compile Include="EntityAbstracts\ProductParameters.cs" />
-    <Compile Include="EntityAbstracts\ProductParameterValues.cs" />
-    <Compile Include="EntityAbstracts\ProductPrices.cs" />
-    <Compile Include="EntityAbstracts\Products.cs" />
-    <Compile Include="EntityAbstracts\ProductUnits.cs" />
-    <Compile Include="EntityAbstracts\Users.cs" />
-    <Compile Include="EntityMethods\Corporations.cs" />
-    <Compile Include="EntityMethods\FinancialYears.cs" />
-    <Compile Include="EntityMethods\Inventories.cs" />
-    <Compile Include="EntityMethods\InventoryInsDetails.cs" />
-    <Compile Include="EntityMethods\InventoryInsHeaders.cs" />
-    <Compile Include="EntityMethods\InventoryInsType.cs" />
-    <Compile Include="EntityMethods\InventoryOutsDetails.cs" />
-    <Compile Include="EntityMethods\InventoryOutsHeaders.cs" />
-    <Compile Include="EntityMethods\InventoryOutsType.cs" />
-    <Compile Include="EntityMethods\ProductCategories.cs" />
-    <Compile Include="EntityMethods\ProductParameters.cs" />
-    <Compile Include="EntityMethods\ProductParameterValues.cs" />
-    <Compile Include="EntityMethods\ProductPrices.cs" />
-    <Compile Include="EntityMethods\Products.cs" />
-    <Compile Include="EntityMethods\ProductUnits.cs" />
-    <Compile Include="EntityMethods\Users.cs" />
-    <Compile Include="EntityModels\Corporations.cs" />
-    <Compile Include="EntityModels\FinancialYears.cs" />
-    <Compile Include="EntityModels\Inventories.cs" />
-    <Compile Include="EntityModels\InventoryInsDetails.cs" />
-    <Compile Include="EntityModels\InventoryInsHeaders.cs" />
-    <Compile Include="EntityModels\InventoryInsType.cs" />
-    <Compile Include="EntityModels\InventoryOutsDetails.cs" />
-    <Compile Include="EntityModels\InventoryOutsHeaders.cs" />
-    <Compile Include="EntityModels\InventoryOutsType.cs" />
-    <Compile Include="EntityModels\ProductCategories.cs" />
-    <Compile Include="EntityModels\ProductParameters.cs" />
-    <Compile Include="EntityModels\ProductParameterValues.cs" />
-    <Compile Include="EntityModels\ProductPrices.cs" />
-    <Compile Include="EntityModels\Products.cs" />
-    <Compile Include="EntityModels\ProductUnits.cs" />
-    <Compile Include="EntityModels\Users.cs" />
-    <Compile Include="GenericRepository.cs" />
+    <Compile Include="Connections\ProviderMethods\ConnectSQL.cs" />
+    <Compile Include="Connections\ProviderAbstracts\IConnection.cs" />
+    <Compile Include="Entities\EntityAbstracts\ICorporations.cs" />
+    <Compile Include="Entities\EntityAbstracts\IFinancialYears.cs" />
+    <Compile Include="Entities\EntityAbstracts\IGenericRepo.cs" />
+    <Compile Include="Entities\EntityAbstracts\IInventories.cs" />
+    <Compile Include="Entities\EntityAbstracts\IInventoryInsDetails.cs" />
+    <Compile Include="Entities\EntityAbstracts\IInventoryInsHeaders.cs" />
+    <Compile Include="Entities\EntityAbstracts\IInventoryInsType.cs" />
+    <Compile Include="Entities\EntityAbstracts\IInventoryOutsDetails.cs" />
+    <Compile Include="Entities\EntityAbstracts\IInventoryOutsHeaders.cs" />
+    <Compile Include="Entities\EntityAbstracts\IInventoryOutsType.cs" />
+    <Compile Include="Entities\EntityAbstracts\IProductCategories.cs" />
+    <Compile Include="Entities\EntityAbstracts\IProductParameters.cs" />
+    <Compile Include="Entities\EntityAbstracts\IProductParameterValues.cs" />
+    <Compile Include="Entities\EntityAbstracts\IProductPrices.cs" />
+    <Compile Include="Entities\EntityAbstracts\IProducts.cs" />
+    <Compile Include="Entities\EntityAbstracts\IProductUnits.cs" />
+    <Compile Include="Entities\EntityAbstracts\IUsers.cs" />
+    <Compile Include="Entities\EntityMethods\CorporationsRepository.cs" />
+    <Compile Include="Entities\EntityMethods\FinancialYearsRepository.cs" />
+    <Compile Include="Entities\EntityMethods\GenericRepo.cs" />
+    <Compile Include="Entities\EntityMethods\InventoriesRepository.cs" />
+    <Compile Include="Entities\EntityMethods\InventoryInsDetailsRepository.cs" />
+    <Compile Include="Entities\EntityMethods\InventoryInsHeadersRepository.cs" />
+    <Compile Include="Entities\EntityMethods\InventoryInsTypeRepository.cs" />
+    <Compile Include="Entities\EntityMethods\InventoryOutsDetailsRepository.cs" />
+    <Compile Include="Entities\EntityMethods\InventoryOutsHeadersRepository.cs" />
+    <Compile Include="Entities\EntityMethods\InventoryOutsTypeRepository.cs" />
+    <Compile Include="Entities\EntityMethods\ProductCategoriesRepository.cs" />
+    <Compile Include="Entities\EntityMethods\ProductParametersRepository.cs" />
+    <Compile Include="Entities\EntityMethods\ProductParameterValuesRepository.cs" />
+    <Compile Include="Entities\EntityMethods\ProductPricesRepository.cs" />
+    <Compile Include="Entities\EntityMethods\ProductsRepository.cs" />
+    <Compile Include="Entities\EntityMethods\ProductUnitsRepository.cs" />
+    <Compile Include="Entities\EntityMethods\UsersRepository.cs" />
+    <Compile Include="Entities\EntityModels\CorporationsModel.cs" />
+    <Compile Include="Entities\EntityModels\FinancialYearsModel.cs" />
+    <Compile Include="Entities\EntityModels\GenericRepoModel.cs" />
+    <Compile Include="Entities\EntityModels\InventoriesModel.cs" />
+    <Compile Include="Entities\EntityModels\InventoryInsDetailsModel.cs" />
+    <Compile Include="Entities\EntityModels\InventoryInsHeadersModel.cs" />
+    <Compile Include="Entities\EntityModels\InventoryInsTypeModel.cs" />
+    <Compile Include="Entities\EntityModels\InventoryOutsDetailsModel.cs" />
+    <Compile Include="Entities\EntityModels\InventoryOutsHeadersModel.cs" />
+    <Compile Include="Entities\EntityModels\InventoryOutsTypeModel.cs" />
+    <Compile Include="Entities\EntityModels\ProductCategoriesModel.cs" />
+    <Compile Include="Entities\EntityModels\ProductParametersModel.cs" />
+    <Compile Include="Entities\EntityModels\ProductParameterValuesModel.cs" />
+    <Compile Include="Entities\EntityModels\ProductPricesModel.cs" />
+    <Compile Include="Entities\EntityModels\ProductsModel.cs" />
+    <Compile Include="Entities\EntityModels\ProductUnitsModel.cs" />
+    <Compile Include="Entities\EntityModels\UsersModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\script.txt" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

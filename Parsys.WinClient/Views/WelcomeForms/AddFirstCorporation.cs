@@ -1,20 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Parsys.DataLayer.Entities.EntityModels;
+using System;
 using System.Windows.Forms;
 
 namespace Parsys.WinClient.Views.WelcomeForms
 {
     public partial class AddFirstCorporation : Form
     {
-        public AddFirstCorporation()
+        public Corporations Corporation { get; set; }
+
+        public AddFirstCorporation(Corporations corporation)
         {
             InitializeComponent();
+            Corporation = corporation;
+            TitleTextBox.DataBindings.Add("Text", Corporation, "Title");
+            TelephoneTextBox.DataBindings.Add("Text", Corporation, "Telephone");
+            FaxTextBox.DataBindings.Add("Text", Corporation, "Fax");
+            AddressTextBox.DataBindings.Add("Text", Corporation, "Address");
+            DescriptionTextBox.DataBindings.Add("Text", Corporation, "Description");
+
+
+            
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

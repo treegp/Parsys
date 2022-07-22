@@ -62,6 +62,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\WelcomeForms\AddFirstCorporation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\WelcomeForms\AddFirstCorporation.Designer.cs">
+      <DependentUpon>AddFirstCorporation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WelcomeForms\AddFirstFinancialYear.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\WelcomeForms\AddFirstFinancialYear.Designer.cs">
+      <DependentUpon>AddFirstFinancialYear.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\WelcomeForms\SplashScreenForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +92,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\WelcomeForms\AddFirstCorporation.resx">
+      <DependentUpon>AddFirstCorporation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\WelcomeForms\AddFirstFinancialYear.resx">
+      <DependentUpon>AddFirstFinancialYear.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\WelcomeForms\SplashScreenForm.resx">
       <DependentUpon>SplashScreenForm.cs</DependentUpon>

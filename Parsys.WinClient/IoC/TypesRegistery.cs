@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Parsys.IoC
+namespace Parsys.WinClient.IoC
 {
     public class TypesRegistery :StructureMap.Registry
     {

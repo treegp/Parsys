@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Parsys.Views.WelcomeForms
+namespace Parsys.WinClient.Views.WelcomeForms
 {
     public partial class AddFirstCorporation : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace Parsys.Views.WelcomeForms
+﻿namespace Parsys.WinClient.Views.WelcomeForms
 {
     partial class AddFirstCorporation
     {

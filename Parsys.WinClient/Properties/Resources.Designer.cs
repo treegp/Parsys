@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Parsys.Properties {
+namespace Parsys.WinClient.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Parsys.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Parsys.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Parsys.WinClient.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace Parsys.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /****** Object:  Table [shopDb].[dbo].[Corporations]    Script Date: 20/07/2022 7:08:27 PM ******/ SET ANSI_NULLS ON  SET QUOTED_IDENTIFIER ON  CREATE TABLE [shopDb].[dbo].[Corporations](  [Id] [int] IDENTITY(1,1) NOT NULL,  [Title] [nvarchar](200) NOT NULL,  [Address] [nvarchar](1000) NULL,  [Telephone] [nvarchar](21) NULL,  [Fax] [nvarchar](21) NULL,  [Description] [nvarchar](1000) NULL,  [IsDeleted] [bit] NOT NULL,  [DeleteDate] [datetime] NULL,  [DeleteByUserId] [int] NULL, PRIMARY KEY CLUSTERED  (  [Id [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to /****** Object:  Table [ShopDb].[dbo].[Corporations]    Script Date: 20/07/2022 7:08:27 PM ******/ SET ANSI_NULLS ON  SET QUOTED_IDENTIFIER ON  CREATE TABLE [ShopDb].[dbo].[Corporations](  [Id] [int] IDENTITY(1,1) NOT NULL,  [Title] [nvarchar](200) NOT NULL,  [Address] [nvarchar](1000) NULL,  [Telephone] [nvarchar](21) NULL,  [Fax] [nvarchar](21) NULL,  [Description] [nvarchar](1000) NULL,  [IsDeleted] [bit] NOT NULL,  [DeleteDate] [datetime] NULL,  [DeleteByUserId] [int] NULL, PRIMARY KEY CLUSTERED  (  [Id [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string script {
             get {

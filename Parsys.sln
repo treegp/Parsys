@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parsys.WinClient", "Parsys.WinClient\Parsys.WinClient.csproj", "{9E577829-61E9-4A25-B27D-C3380D4A5AE4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parsys.DataLayer", "Parsys.DataLayer\Parsys.DataLayer.csproj", "{DB89D7CE-C3FA-4108-BF31-F696E565DDA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parsys.WinClient", "Parsys.WinClient\Parsys.WinClient.csproj", "{B1A48E9D-04F3-4461-8843-BE05679D4374}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9E577829-61E9-4A25-B27D-C3380D4A5AE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E577829-61E9-4A25-B27D-C3380D4A5AE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E577829-61E9-4A25-B27D-C3380D4A5AE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E577829-61E9-4A25-B27D-C3380D4A5AE4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DB89D7CE-C3FA-4108-BF31-F696E565DDA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DB89D7CE-C3FA-4108-BF31-F696E565DDA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB89D7CE-C3FA-4108-BF31-F696E565DDA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB89D7CE-C3FA-4108-BF31-F696E565DDA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1A48E9D-04F3-4461-8843-BE05679D4374}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1A48E9D-04F3-4461-8843-BE05679D4374}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1A48E9D-04F3-4461-8843-BE05679D4374}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1A48E9D-04F3-4461-8843-BE05679D4374}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

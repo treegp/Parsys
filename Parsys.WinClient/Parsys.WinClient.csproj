@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationMethods\DateTimeConverter.cs" />
+    <Compile Include="ApplicationMethods\PersianCulture.cs" />
     <Compile Include="IoC\TypesRegistery.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

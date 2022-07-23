@@ -67,8 +67,8 @@ namespace Parsys.WinClient
                 firstFinancialYear.CorporationId = corpoId;
                 firstFinancialYear.Title = financeForm.FinancialYear.Title;
                 firstFinancialYear.Description= financeForm.FinancialYear.Description;
-                firstFinancialYear.StartDate = (DateTime) DateTimeConverter.ShamsiStringToMiladiDateTime(financeForm.FinancialYear.StartDate);
-                firstFinancialYear.FinishDate = (DateTime)DateTimeConverter.ShamsiStringToMiladiDateTime(financeForm.FinancialYear.FinishDate);
+                firstFinancialYear.StartDate = (DateTime)financeForm.FinancialYear.StartDate.ShamsiStringToMiladiDateTime();
+                firstFinancialYear.FinishDate = (DateTime)financeForm.FinancialYear.FinishDate.ShamsiStringToMiladiDateTime();
 
                 finance.Insert(firstFinancialYear);
 

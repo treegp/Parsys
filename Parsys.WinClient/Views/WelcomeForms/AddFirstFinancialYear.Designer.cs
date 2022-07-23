@@ -58,7 +58,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(308, 15);
+            this.label1.Location = new System.Drawing.Point(328, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(98, 13);
             this.label1.TabIndex = 1;
@@ -67,12 +67,13 @@
             // StartDateMaskedTextBox
             // 
             this.StartDateMaskedTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.StartDateMaskedTextBox.Location = new System.Drawing.Point(215, 179);
+            this.StartDateMaskedTextBox.Location = new System.Drawing.Point(231, 182);
             this.StartDateMaskedTextBox.Mask = "0000/00/00";
             this.StartDateMaskedTextBox.Name = "StartDateMaskedTextBox";
             this.StartDateMaskedTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.StartDateMaskedTextBox.Size = new System.Drawing.Size(64, 20);
             this.StartDateMaskedTextBox.TabIndex = 3;
+            this.StartDateMaskedTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panel1
             // 
@@ -103,14 +104,14 @@
             this.CorporationTitleTextBox.Location = new System.Drawing.Point(12, 12);
             this.CorporationTitleTextBox.MaxLength = 100;
             this.CorporationTitleTextBox.Name = "CorporationTitleTextBox";
-            this.CorporationTitleTextBox.Size = new System.Drawing.Size(267, 20);
+            this.CorporationTitleTextBox.Size = new System.Drawing.Size(283, 20);
             this.CorporationTitleTextBox.TabIndex = 0;
             // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(327, 44);
+            this.label2.Location = new System.Drawing.Point(343, 44);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(83, 13);
             this.label2.TabIndex = 1;
@@ -123,14 +124,14 @@
             this.TitleTextBox.Location = new System.Drawing.Point(12, 41);
             this.TitleTextBox.MaxLength = 100;
             this.TitleTextBox.Name = "TitleTextBox";
-            this.TitleTextBox.Size = new System.Drawing.Size(267, 20);
+            this.TitleTextBox.Size = new System.Drawing.Size(283, 20);
             this.TitleTextBox.TabIndex = 1;
             // 
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(370, 73);
+            this.label3.Location = new System.Drawing.Point(379, 73);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 1;
@@ -145,14 +146,14 @@
             this.DescriptionTextBox.MaxLength = 1000;
             this.DescriptionTextBox.Multiline = true;
             this.DescriptionTextBox.Name = "DescriptionTextBox";
-            this.DescriptionTextBox.Size = new System.Drawing.Size(267, 103);
+            this.DescriptionTextBox.Size = new System.Drawing.Size(283, 103);
             this.DescriptionTextBox.TabIndex = 2;
             // 
             // label4
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(298, 179);
+            this.label4.Location = new System.Drawing.Point(319, 185);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(107, 13);
             this.label4.TabIndex = 1;
@@ -161,18 +162,19 @@
             // FinishDateMaskedTextBox
             // 
             this.FinishDateMaskedTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.FinishDateMaskedTextBox.Location = new System.Drawing.Point(215, 208);
+            this.FinishDateMaskedTextBox.Location = new System.Drawing.Point(231, 211);
             this.FinishDateMaskedTextBox.Mask = "0000/00/00";
             this.FinishDateMaskedTextBox.Name = "FinishDateMaskedTextBox";
             this.FinishDateMaskedTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.FinishDateMaskedTextBox.Size = new System.Drawing.Size(64, 20);
             this.FinishDateMaskedTextBox.TabIndex = 4;
+            this.FinishDateMaskedTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(294, 208);
+            this.label5.Location = new System.Drawing.Point(317, 214);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(109, 13);
             this.label5.TabIndex = 1;

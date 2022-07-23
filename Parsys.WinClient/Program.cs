@@ -19,6 +19,8 @@ namespace Parsys.WinClient
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            PersianCulture.InitializePersianCulture();
+
 
             var container = new StructureMap.Container(new IoC.TypesRegistery());
             var splashScreenForm = container.GetInstance<SplashScreenForm>();

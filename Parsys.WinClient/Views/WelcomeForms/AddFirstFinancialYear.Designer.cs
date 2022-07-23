@@ -60,7 +60,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(308, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 16);
+            this.label1.Size = new System.Drawing.Size(98, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "نام شرکت / سازمان";
             // 
@@ -69,7 +69,7 @@
             this.StartDateMaskedTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.StartDateMaskedTextBox.Location = new System.Drawing.Point(188, 179);
             this.StartDateMaskedTextBox.Name = "StartDateMaskedTextBox";
-            this.StartDateMaskedTextBox.Size = new System.Drawing.Size(91, 23);
+            this.StartDateMaskedTextBox.Size = new System.Drawing.Size(91, 20);
             this.StartDateMaskedTextBox.TabIndex = 2;
             // 
             // panel1
@@ -78,9 +78,9 @@
             this.panel1.Controls.Add(this.CancelButton);
             this.panel1.Controls.Add(this.OkButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 246);
+            this.panel1.Location = new System.Drawing.Point(0, 254);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(436, 43);
+            this.panel1.Size = new System.Drawing.Size(438, 43);
             this.panel1.TabIndex = 3;
             // 
             // CancelButton
@@ -95,12 +95,12 @@
             // 
             // CorporationTitleTextBox
             // 
-            this.CorporationTitleTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.CorporationTitleTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CorporationTitleTextBox.Enabled = false;
             this.CorporationTitleTextBox.Location = new System.Drawing.Point(12, 12);
             this.CorporationTitleTextBox.Name = "CorporationTitleTextBox";
-            this.CorporationTitleTextBox.Size = new System.Drawing.Size(267, 23);
+            this.CorporationTitleTextBox.Size = new System.Drawing.Size(267, 20);
             this.CorporationTitleTextBox.TabIndex = 0;
             // 
             // label2
@@ -109,17 +109,17 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(327, 44);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(99, 16);
+            this.label2.Size = new System.Drawing.Size(83, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "عنوان سال مالی";
             // 
             // TitleTextBox
             // 
-            this.TitleTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.TitleTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TitleTextBox.Location = new System.Drawing.Point(12, 41);
             this.TitleTextBox.Name = "TitleTextBox";
-            this.TitleTextBox.Size = new System.Drawing.Size(267, 23);
+            this.TitleTextBox.Size = new System.Drawing.Size(267, 20);
             this.TitleTextBox.TabIndex = 0;
             // 
             // label3
@@ -128,14 +128,14 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(370, 73);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 16);
+            this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 1;
             this.label3.Text = "توضیحات";
             // 
             // DescriptionTextBox
             // 
-            this.DescriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.DescriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DescriptionTextBox.Location = new System.Drawing.Point(12, 70);
             this.DescriptionTextBox.Multiline = true;
@@ -149,7 +149,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(298, 179);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(128, 16);
+            this.label4.Size = new System.Drawing.Size(107, 13);
             this.label4.TabIndex = 1;
             this.label4.Text = "تاریخ افتتاح سال مالی";
             // 
@@ -158,7 +158,7 @@
             this.FinishDateMaskedTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.FinishDateMaskedTextBox.Location = new System.Drawing.Point(188, 208);
             this.FinishDateMaskedTextBox.Name = "FinishDateMaskedTextBox";
-            this.FinishDateMaskedTextBox.Size = new System.Drawing.Size(91, 23);
+            this.FinishDateMaskedTextBox.Size = new System.Drawing.Size(91, 20);
             this.FinishDateMaskedTextBox.TabIndex = 2;
             // 
             // label5
@@ -167,16 +167,16 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(294, 208);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(132, 16);
+            this.label5.Size = new System.Drawing.Size(109, 13);
             this.label5.TabIndex = 1;
             this.label5.Text = "تاریخ اختتام سال مالی";
             // 
             // AddFirstFinancialYear
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(436, 289);
+            this.ClientSize = new System.Drawing.Size(438, 297);
             this.Controls.Add(this.DescriptionTextBox);
             this.Controls.Add(this.TitleTextBox);
             this.Controls.Add(this.CorporationTitleTextBox);

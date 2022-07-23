@@ -6,7 +6,7 @@ namespace Parsys.WinClient.ApplicationMethods
 {
     public static class DateTimeConverter
     {
-        public static DateTime? MiladiDateTimeValidation(DateTime? dateTime)
+        public static DateTime? MiladiDateTimeValidation(this DateTime? dateTime)
         {
             try
             {
@@ -20,7 +20,7 @@ namespace Parsys.WinClient.ApplicationMethods
 
 
 
-        public static string MiladiDateTimeToShamsiString(DateTime? dateTime)
+        public static string MiladiDateTimeToShamsiString(this DateTime? dateTime)
         {
             PersianCalendar pc = new PersianCalendar();
             try
@@ -36,7 +36,7 @@ namespace Parsys.WinClient.ApplicationMethods
 
 
 
-        public static string MiladiDateTimeToMiladiString(DateTime? dateTime)
+        public static string MiladiDateTimeToMiladiString(this DateTime? dateTime)
         {
             try
             {
@@ -49,7 +49,7 @@ namespace Parsys.WinClient.ApplicationMethods
         }
 
 
-        public static DateTime? ShamsiStringToMiladiDateTime(string dateString)
+        public static DateTime? ShamsiStringToMiladiDateTime(this string dateString)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace Parsys.WinClient.ApplicationMethods
 
         }
 
-        public static string ShamsiStringToMiladiString(string dateString)
+        public static string ShamsiStringToMiladiString(this string dateString)
         {
             try
             {
@@ -77,7 +77,7 @@ namespace Parsys.WinClient.ApplicationMethods
 
         }
 
-        public static string ShamsiStringValidation(string dateString)
+        public static string ShamsiStringValidation(this string dateString)
         {
             try
             {

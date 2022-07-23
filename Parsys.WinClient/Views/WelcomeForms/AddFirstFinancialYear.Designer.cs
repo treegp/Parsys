@@ -67,10 +67,12 @@
             // StartDateMaskedTextBox
             // 
             this.StartDateMaskedTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.StartDateMaskedTextBox.Location = new System.Drawing.Point(188, 179);
+            this.StartDateMaskedTextBox.Location = new System.Drawing.Point(215, 179);
+            this.StartDateMaskedTextBox.Mask = "0000/00/00";
             this.StartDateMaskedTextBox.Name = "StartDateMaskedTextBox";
-            this.StartDateMaskedTextBox.Size = new System.Drawing.Size(91, 20);
-            this.StartDateMaskedTextBox.TabIndex = 2;
+            this.StartDateMaskedTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.StartDateMaskedTextBox.Size = new System.Drawing.Size(64, 20);
+            this.StartDateMaskedTextBox.TabIndex = 3;
             // 
             // panel1
             // 
@@ -81,14 +83,14 @@
             this.panel1.Location = new System.Drawing.Point(0, 254);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(438, 43);
-            this.panel1.TabIndex = 3;
+            this.panel1.TabIndex = 5;
             // 
             // CancelButton
             // 
             this.CancelButton.Location = new System.Drawing.Point(109, 8);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(91, 25);
-            this.CancelButton.TabIndex = 0;
+            this.CancelButton.TabIndex = 1;
             this.CancelButton.Text = "صرف نظر";
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
@@ -99,6 +101,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CorporationTitleTextBox.Enabled = false;
             this.CorporationTitleTextBox.Location = new System.Drawing.Point(12, 12);
+            this.CorporationTitleTextBox.MaxLength = 100;
             this.CorporationTitleTextBox.Name = "CorporationTitleTextBox";
             this.CorporationTitleTextBox.Size = new System.Drawing.Size(267, 20);
             this.CorporationTitleTextBox.TabIndex = 0;
@@ -118,9 +121,10 @@
             this.TitleTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TitleTextBox.Location = new System.Drawing.Point(12, 41);
+            this.TitleTextBox.MaxLength = 100;
             this.TitleTextBox.Name = "TitleTextBox";
             this.TitleTextBox.Size = new System.Drawing.Size(267, 20);
-            this.TitleTextBox.TabIndex = 0;
+            this.TitleTextBox.TabIndex = 1;
             // 
             // label3
             // 
@@ -138,10 +142,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DescriptionTextBox.Location = new System.Drawing.Point(12, 70);
+            this.DescriptionTextBox.MaxLength = 1000;
             this.DescriptionTextBox.Multiline = true;
             this.DescriptionTextBox.Name = "DescriptionTextBox";
             this.DescriptionTextBox.Size = new System.Drawing.Size(267, 103);
-            this.DescriptionTextBox.TabIndex = 0;
+            this.DescriptionTextBox.TabIndex = 2;
             // 
             // label4
             // 
@@ -156,10 +161,12 @@
             // FinishDateMaskedTextBox
             // 
             this.FinishDateMaskedTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.FinishDateMaskedTextBox.Location = new System.Drawing.Point(188, 208);
+            this.FinishDateMaskedTextBox.Location = new System.Drawing.Point(215, 208);
+            this.FinishDateMaskedTextBox.Mask = "0000/00/00";
             this.FinishDateMaskedTextBox.Name = "FinishDateMaskedTextBox";
-            this.FinishDateMaskedTextBox.Size = new System.Drawing.Size(91, 20);
-            this.FinishDateMaskedTextBox.TabIndex = 2;
+            this.FinishDateMaskedTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.FinishDateMaskedTextBox.Size = new System.Drawing.Size(64, 20);
+            this.FinishDateMaskedTextBox.TabIndex = 4;
             // 
             // label5
             // 

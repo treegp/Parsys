@@ -71,7 +71,6 @@ namespace Parsys.WinClient
                 firstFinancialYear.FinishDate = (DateTime)financeForm.FinancialYear.FinishDate.ShamsiStringToMiladiDateTime();
 
                 finance.Insert(firstFinancialYear);
-
             }
 
 

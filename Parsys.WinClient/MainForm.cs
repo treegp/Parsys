@@ -1,4 +1,4 @@
-﻿using Parsys.WinClient.Views.Bases;
+﻿using Parsys.WinClient.Views.Framework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

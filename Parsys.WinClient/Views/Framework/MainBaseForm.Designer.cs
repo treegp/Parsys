@@ -1,4 +1,4 @@
-﻿namespace Parsys.WinClient.Views.Bases
+﻿namespace Parsys.WinClient.Views.Framework
 {
     partial class MainBaseForm
     {

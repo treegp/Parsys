@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Parsys.WinClient.Views.Bases
+namespace Parsys.WinClient.Views.Framework
 {
     public partial class MainBaseForm : Form
     {

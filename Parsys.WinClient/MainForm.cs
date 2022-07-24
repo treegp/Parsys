@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Parsys.WinClient.Views.Bases;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Parsys.WinClient
 {
-    public partial class MainForm : Form
+    public partial class MainForm : MainBaseForm
     {
         public MainForm()
         {

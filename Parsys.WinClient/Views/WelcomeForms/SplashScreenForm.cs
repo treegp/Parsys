@@ -34,17 +34,17 @@ namespace Parsys.WinClient.Views.WelcomeForms
                 myConnection.GetConnection();
                 
             }
-            await Task.Delay(2340);
+            await Task.Delay(1340);
             ProgressLabel.Text = "درحال بررسی ارتباط با بانک اطلاعاتی";
             if(!await myConnection.CheckDatabase())
             {
                 await Task.Delay(1690);
                 ProgressLabel.Text = "پیکربندی بانک اطلاعاتی";
                 await myConnection.CreateDatabase(Properties.Resources.script);
-                await Task.Delay(3320);
+                await Task.Delay(1320);
             }
             ProgressLabel.Text = "ارتباط با بانک اطلاعاتی با موفقیت برقرار شد";
-            await Task.Delay(3105);
+            await Task.Delay(1105);
             DialogResult = DialogResult.OK;
         }
 

@@ -16,6 +16,15 @@ namespace Parsys.WinClient
         public MainForm()
         {
             InitializeComponent();
+
+            var menuStrip = new MenuStripHandler(MainMenuStrip.Items);
+
+            var opMenu = menuStrip.AddMenuItem("عملیات");
+            opMenu.AddMenuItem("ورود");
+            //opMenu.AddMenuItem("-");
+            opMenu.AddMenuItem("خروج");
+
+
         }
     }
 }

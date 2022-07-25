@@ -76,6 +76,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Framework\Handlers.cs" />
     <Compile Include="Views\Framework\MainBaseForm.cs">
       <SubType>Form</SubType>
     </Compile>

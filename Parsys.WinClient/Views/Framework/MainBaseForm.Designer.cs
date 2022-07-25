@@ -56,10 +56,10 @@
             // 
             // MainTabPage
             // 
-            this.MainTabPage.Location = new System.Drawing.Point(4, 27);
+            this.MainTabPage.Location = new System.Drawing.Point(4, 23);
             this.MainTabPage.Name = "MainTabPage";
             this.MainTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.MainTabPage.Size = new System.Drawing.Size(855, 521);
+            this.MainTabPage.Size = new System.Drawing.Size(855, 525);
             this.MainTabPage.TabIndex = 0;
             this.MainTabPage.Text = "صفحه اصلی";
             this.MainTabPage.UseVisualStyleBackColor = true;
@@ -77,7 +77,7 @@
             // 
             // MainBaseForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(863, 598);
             this.Controls.Add(this.MainTabControl);

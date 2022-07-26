@@ -80,7 +80,21 @@ namespace Parsys.WinClient.Views.Framework
             }
         }
 
+
+        public void RemoveTab(string caption)
+        {
+            var Tab = openTabList.Where(k => k.Key == caption).FirstOrDefault().Value;
+            if (Tab != null)
+            {
+                tabControler.TabPages.Remove(Tab);
+                openTabList.Remove(caption);
+            }
+        }
+
     }
+
+
+
 
 
 

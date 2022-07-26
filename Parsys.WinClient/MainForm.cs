@@ -18,7 +18,10 @@ namespace Parsys.WinClient
             InitializeComponent();
 
             var opMenu = AddMenu("عملیات");
-            opMenu.AddMenuItem("ورود");
+            opMenu.AddMenuItem("ورود", (o, e) =>
+            {
+                AddTab("ورود");
+            });
             opMenu.AddMenuSeperator();
             opMenu.AddMenuItem("خروج", (obj, e) =>
             {

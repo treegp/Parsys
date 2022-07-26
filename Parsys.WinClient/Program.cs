@@ -76,7 +76,6 @@ namespace Parsys.WinClient
             }
 
 
-
             Application.Run(new MainForm());
         }
     }

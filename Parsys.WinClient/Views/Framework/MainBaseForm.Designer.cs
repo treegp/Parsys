@@ -34,6 +34,7 @@
             this.MainTabPage = new System.Windows.Forms.TabPage();
             this.MainTabControl = new System.Windows.Forms.TabControl();
             this.DateTimeTimer = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.MainTabControl.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,11 +84,25 @@
             // 
             this.DateTimeTimer.Interval = 1000;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Firebrick;
+            this.button1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.button1.Location = new System.Drawing.Point(5, 24);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(23, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "X";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainBaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(863, 598);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.MainTabControl);
             this.Controls.Add(this.MainStatusStrip);
             this.Controls.Add(this.MainMenuStrip);
@@ -110,5 +125,6 @@
         private System.Windows.Forms.TabControl MainTabControl;
         private System.Windows.Forms.Timer DateTimeTimer;
         private System.Windows.Forms.StatusStrip MainStatusStrip;
+        private System.Windows.Forms.Button button1;
     }
 }

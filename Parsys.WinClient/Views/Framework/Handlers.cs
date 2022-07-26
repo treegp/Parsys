@@ -16,21 +16,30 @@ namespace Parsys.WinClient.Views.Framework
 
         public MenuStripHandler AddMenuItem(string caption)
         {
-            var menu = (ToolStripMenuItem)itemsHierarchy.Add(caption, null, null);
-            return new MenuStripHandler(menu.DropDownItems);
+            return AddMenuItem(caption, null, null);
         }
 
         public MenuStripHandler AddMenuItem(string caption, EventHandler e)
         {
-            var menu = (ToolStripMenuItem)itemsHierarchy.Add(caption, null, e);
-            return new MenuStripHandler(menu.DropDownItems);
+            return AddMenuItem(caption,null,e);
         }
 
 
         public MenuStripHandler AddMenuItem(string caption, Image thumbnail, EventHandler e)
         {
+            if (caption == "-")
+            {
+                AddMenuSeperator();
+                return null;
+            }
+
             var menu = (ToolStripMenuItem)itemsHierarchy.Add(caption, thumbnail, e);
             return new MenuStripHandler(menu.DropDownItems);
+        }
+
+        public void AddMenuSeperator()
+        {
+            var menu = itemsHierarchy.Add("-");
         }
     }
 }

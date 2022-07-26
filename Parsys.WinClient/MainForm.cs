@@ -17,11 +17,9 @@ namespace Parsys.WinClient
         {
             InitializeComponent();
 
-            
-
             var opMenu = AddMenu("عملیات");
             opMenu.AddMenuItem("ورود");
-            //opMenu.AddMenuItem("-");
+            opMenu.AddMenuSeperator();
             opMenu.AddMenuItem("خروج", (obj, e) =>
             {
             if (MessageBox.Show("آیا مایل به خروج از برنامه هستید؟","پیام سیستم", MessageBoxButtons.YesNo) == DialogResult.Yes) 

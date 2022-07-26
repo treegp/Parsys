@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.MainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.MainStatusStrip = new System.Windows.Forms.StatusStrip();
             this.MainTabPage = new System.Windows.Forms.TabPage();
             this.MainTabControl = new System.Windows.Forms.TabControl();
+            this.DateTimeTimer = new System.Windows.Forms.Timer(this.components);
             this.MainTabControl.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,10 +49,12 @@
             // 
             // MainStatusStrip
             // 
+            this.MainStatusStrip.Font = new System.Drawing.Font("Tahoma", 9F);
             this.MainStatusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.MainStatusStrip.Location = new System.Drawing.Point(0, 576);
             this.MainStatusStrip.Name = "MainStatusStrip";
             this.MainStatusStrip.Size = new System.Drawing.Size(863, 22);
+            this.MainStatusStrip.SizingGrip = false;
             this.MainStatusStrip.TabIndex = 1;
             this.MainStatusStrip.Text = "statusStrip1";
             // 
@@ -75,6 +79,10 @@
             this.MainTabControl.Size = new System.Drawing.Size(863, 552);
             this.MainTabControl.TabIndex = 2;
             // 
+            // DateTimeTimer
+            // 
+            this.DateTimeTimer.Interval = 1000;
+            // 
             // MainBaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -98,8 +106,9 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip MainMenuStrip;
-        private System.Windows.Forms.StatusStrip MainStatusStrip;
         private System.Windows.Forms.TabPage MainTabPage;
         private System.Windows.Forms.TabControl MainTabControl;
+        private System.Windows.Forms.Timer DateTimeTimer;
+        private System.Windows.Forms.StatusStrip MainStatusStrip;
     }
 }

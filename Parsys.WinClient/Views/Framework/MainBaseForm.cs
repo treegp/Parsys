@@ -7,10 +7,15 @@ namespace Parsys.WinClient.Views.Framework
     public partial class MainBaseForm : Form
     {
         private MenuStripHandler menuManager;
+        private TabControlHandler tabManager;
+
+
         public MainBaseForm()
         {
             InitializeComponent();
             menuManager = new MenuStripHandler(MainMenuStrip.Items);
+            tabManager = new TabControlHandler(MainTabControl);
+
 
             var dt = MainStatusStrip.Items.Add(DateTime.Now.ToString("dd MMM yyyy  |  HH:mm:ss"));
 
@@ -20,10 +25,16 @@ namespace Parsys.WinClient.Views.Framework
                 dt.Text = DateTime.Now.ToString("dd MMM yyyy  |  HH:mm:ss");
             };
 
-            MainStatusStrip.Items.Add("خوش آمدید");
-
-
+            
         }
+
+
+        public void AddTab(string caption)
+        {
+            tabManager.AddTab(caption);
+        }
+
+
 
 
         public MenuStripHandler AddMenu(string caption)

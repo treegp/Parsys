@@ -61,6 +61,16 @@ namespace Parsys.WinClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon parsysicon {
+            get {
+                object obj = ResourceManager.GetObject("parsysicon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to /****** Object:  Table [ShopDb].[dbo].[Corporations]    Script Date: 20/07/2022 7:08:27 PM ******/ SET ANSI_NULLS ON  SET QUOTED_IDENTIFIER ON  CREATE TABLE [ShopDb].[dbo].[Corporations](  [Id] [int] IDENTITY(1,1) NOT NULL,  [Title] [nvarchar](200) NOT NULL,  [Address] [nvarchar](1000) NULL,  [Telephone] [nvarchar](21) NULL,  [Fax] [nvarchar](21) NULL,  [Description] [nvarchar](1000) NULL,  [IsDeleted] [bit] NOT NULL,  [DeleteDate] [datetime] NULL,  [DeleteByUserId] [int] NULL, PRIMARY KEY CLUSTERED  (  [Id [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string script {

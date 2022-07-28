@@ -10,6 +10,12 @@ namespace Parsys.WinClient.Views.WelcomeForms
 
         public FinancialYearFormModel FinancialYear = new FinancialYearFormModel();
 
+        private string startDateBinder;
+        private string finishDateBinder;
+       
+        
+
+
         public AddFirstFinancialYear(string corporationTitle)
         {
             InitializeComponent();
@@ -19,6 +25,9 @@ namespace Parsys.WinClient.Views.WelcomeForms
             DescriptionTextBox.DataBindings.Add("Text", FinancialYear, "Description");
             StartDateMaskedTextBox.DataBindings.Add("Text", FinancialYear, "StartDate");
             FinishDateMaskedTextBox.DataBindings.Add("Text", FinancialYear, "FinishDate");
+
+
+            
         }
 
         private void OkButton_Click(object sender, EventArgs e)

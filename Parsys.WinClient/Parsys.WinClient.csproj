@@ -89,6 +89,12 @@
     <Compile Include="Views\Framework\MainBaseForm.Designer.cs">
       <DependentUpon>MainBaseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Framework\TabBaseControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Framework\TabBaseControl.Designer.cs">
+      <DependentUpon>TabBaseControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\WelcomeForms\AddFirstCorporation.cs">
       <SubType>Form</SubType>
     </Compile>

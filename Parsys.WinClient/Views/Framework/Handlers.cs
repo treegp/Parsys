@@ -47,25 +47,149 @@ namespace Parsys.WinClient.Views.Framework
 
 
 
+
+
     public class ViewHandler
     {
+        private Dictionary<string, object> openedSingleViews = new Dictionary<string, object>();
         private TabControl instanceTabControl;
 
 
-        public ViewHandler(){}
-        public ViewHandler(TabControl t) => instanceTabControl = t;
-
-
-        public UserControl Tab<T>() where T : UserControl
+        public ViewHandler() { }
+        public ViewHandler(TabControl t)
         {
-            var Instance = Activator.CreateInstance(typeof(T));
+            instanceTabControl = t;
 
-
-
-
-            return (UserControl) Instance;
         }
 
+
+        public T OpenTab<T>() where T : ViewBaseControl
+        {
+            var instance = Activator.CreateInstance<T>();
+            if (!instance.MultipleInstance & openedSingleViews.ContainsKey(instance.Id))
+            {
+                TabPage tab = (TabPage)openedSingleViews[instance.Id];
+                instanceTabControl.SelectedTab = tab;
+            }
+            else
+            {
+
+                TabPage tab = new TabPage(instance.Title);
+                tab.Controls.Add(instance);
+                instance.Dock = DockStyle.Fill;
+                instanceTabControl.TabPages.Add(tab);
+                instanceTabControl.SelectedTab = tab;
+                if (!instance.MultipleInstance)
+                    openedSingleViews.Add(instance.Id, tab);
+                else
+                {
+                    int i = openedSingleViews.Select(k => k.Key.Substring(0, k.Key.Length - 3)).Count();
+                    instance.Id += (i + 1).ToString("000");
+                    openedSingleViews.Add(instance.Id, tab);
+                }
+            }
+
+            return instance;
+        }
+
+
+        public T ShowForm<T>() where T : ViewBaseControl
+        {
+            var instance = Activator.CreateInstance<T>();
+            if (!instance.MultipleInstance & openedSingleViews.ContainsKey(instance.Id))
+            {
+                Form form = (Form)openedSingleViews[instance.Id];
+                form.Activate();
+            }
+            else
+            {
+
+                Form form = new Form();
+                form.Text = instance.Title;
+                form.Controls.Add(instance);
+                instance.Dock = DockStyle.Fill;
+                form.Width = 800;
+                form.Height = 600;
+                form.StartPosition = FormStartPosition.CenterParent;
+                form.RightToLeft = RightToLeft.Yes;
+                form.Font = new Font("Tahoma", 8);
+
+
+                if (!instance.MultipleInstance)
+                    openedSingleViews.Add(instance.Id, form);
+                else
+                {
+                    int i = openedSingleViews.Select(k => k.Key.Substring(0, k.Key.Length - 3)).Count();
+                    openedSingleViews.Add(instance.Id + (i + 1).ToString("000"), form);
+                }
+
+                form.Show();
+            }
+
+
+            return instance;
+
+
+        }
+
+        public T ShowDialogForm<T>() where T : ViewBaseControl
+        {
+            var instance = Activator.CreateInstance<T>();
+            if (!instance.MultipleInstance & openedSingleViews.ContainsKey(instance.Id))
+            {
+                Form form = (Form)openedSingleViews[instance.Id];
+                form.Activate();
+            }
+            else
+            {
+
+                Form form = new Form();
+                form.Text = instance.Title;
+                form.Controls.Add(instance);
+                instance.Dock = DockStyle.Fill;
+                form.Width = 800;
+                form.Height = 600;
+                form.StartPosition = FormStartPosition.CenterParent;
+                form.RightToLeft = RightToLeft.Yes;
+                form.Font = new Font("Tahoma", 8);
+
+
+                if (!instance.MultipleInstance)
+                    openedSingleViews.Add(instance.Id, form);
+                else
+                {
+                    int i = openedSingleViews.Select(k => k.Key.Substring(0, k.Key.Length - 3)).Count();
+                    openedSingleViews.Add(instance.Id + (i + 1).ToString("000"), form);
+                }
+
+                form.ShowDialog();
+            }
+
+
+            return instance;
+
+
+        }
+
+
+
+
+
+        public void CloseTab(TabPage tab)
+        {
+            try
+            {
+                string id = tab.Controls.OfType<ViewBaseControl>().First().Id;
+                if (openedSingleViews.ContainsKey(id))
+                    openedSingleViews.Remove(id);
+                instanceTabControl.Controls.Remove(tab);
+            }
+            catch
+            {
+            }
+          
+
+        }
 
 
 

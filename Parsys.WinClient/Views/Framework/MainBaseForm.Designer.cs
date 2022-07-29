@@ -34,7 +34,7 @@
             this.MainTabPage = new System.Windows.Forms.TabPage();
             this.MainTabControl = new System.Windows.Forms.TabControl();
             this.DateTimeTimer = new System.Windows.Forms.Timer(this.components);
-            this.button1 = new System.Windows.Forms.Button();
+            this.CloseCurrentTabButton = new System.Windows.Forms.Button();
             this.MainTabControl.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,10 +61,10 @@
             // 
             // MainTabPage
             // 
-            this.MainTabPage.Location = new System.Drawing.Point(4, 23);
+            this.MainTabPage.Location = new System.Drawing.Point(4, 27);
             this.MainTabPage.Name = "MainTabPage";
             this.MainTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.MainTabPage.Size = new System.Drawing.Size(855, 525);
+            this.MainTabPage.Size = new System.Drawing.Size(855, 521);
             this.MainTabPage.TabIndex = 0;
             this.MainTabPage.Text = "صفحه اصلی";
             this.MainTabPage.UseVisualStyleBackColor = true;
@@ -84,25 +84,25 @@
             // 
             this.DateTimeTimer.Interval = 1000;
             // 
-            // button1
+            // CloseCurrentTabButton
             // 
-            this.button1.BackColor = System.Drawing.Color.Firebrick;
-            this.button1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.button1.Location = new System.Drawing.Point(5, 24);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(23, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "X";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.CloseCurrentTabButton.BackColor = System.Drawing.Color.Firebrick;
+            this.CloseCurrentTabButton.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.CloseCurrentTabButton.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.CloseCurrentTabButton.Location = new System.Drawing.Point(5, 24);
+            this.CloseCurrentTabButton.Name = "CloseCurrentTabButton";
+            this.CloseCurrentTabButton.Size = new System.Drawing.Size(23, 23);
+            this.CloseCurrentTabButton.TabIndex = 0;
+            this.CloseCurrentTabButton.Text = "X";
+            this.CloseCurrentTabButton.UseVisualStyleBackColor = false;
+            this.CloseCurrentTabButton.Click += new System.EventHandler(this.CloseCurrentTabButton_Click);
             // 
             // MainBaseForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(863, 598);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.CloseCurrentTabButton);
             this.Controls.Add(this.MainTabControl);
             this.Controls.Add(this.MainStatusStrip);
             this.Controls.Add(this.MainMenuStrip);
@@ -125,6 +125,6 @@
         private System.Windows.Forms.TabControl MainTabControl;
         private System.Windows.Forms.Timer DateTimeTimer;
         private System.Windows.Forms.StatusStrip MainStatusStrip;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button CloseCurrentTabButton;
     }
 }

@@ -7,6 +7,7 @@ namespace Parsys.WinClient.Views.Framework
     public partial class MainBaseForm : Form
     {
         private MenuStripHandler menuManager;
+        private ViewHandler viewManager; 
         private TabControlHandler tabManager;
 
 
@@ -14,6 +15,7 @@ namespace Parsys.WinClient.Views.Framework
         {
             InitializeComponent();
             menuManager = new MenuStripHandler(MainMenuStrip.Items);
+            viewManager = new ViewHandler(MainTabControl);
             tabManager = new TabControlHandler(MainTabControl);
 
 
@@ -29,6 +31,22 @@ namespace Parsys.WinClient.Views.Framework
         }
 
 
+        //-----------------------------------------------------------------------
+        public ViewHandler MainViewHandler()
+        {
+            return viewManager;
+        }
+
+
+
+
+
+
+
+
+
+        //-----------------------------------------------------------------------
+
         public void AddTab(string caption)
         {
             tabManager.AddTab(caption);
@@ -37,29 +55,28 @@ namespace Parsys.WinClient.Views.Framework
 
 
 
-        public MenuStripHandler AddMenu(string caption)
+
+
+
+
+
+
+
+
+
+
+
+        //-----------------------------------------------------------------------
+        public MenuStripHandler MainMenuStripHandler()
         {
-            return menuManager.AddMenuItem(caption, null, null);
+            return menuManager;
         }
 
-        public MenuStripHandler AddMenu(string caption, EventHandler e)
-        {
-            return menuManager.AddMenuItem(caption, null, e);
-        }
 
-        public MenuStripHandler AddMenu(string caption, Image thumbnail, EventHandler e)
-        {
-            return menuManager.AddMenuItem(caption, thumbnail, e);
-        }
 
-        public void AddSeperator()
+        //-----------------------------------------------------------------------
+        private void CloseCurrentTabButton_Click(object sender, EventArgs e)
         {
-            menuManager.AddMenuSeperator();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
             tabManager.RemoveTab(MainTabControl.SelectedTab.Text);
         }
     }

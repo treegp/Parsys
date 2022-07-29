@@ -19,7 +19,7 @@ namespace Parsys.WinClient.Views.WelcomeForms
             DescriptionTextBox.DataBindings.Add("Text", Corporation, "Description");
 
 
-            
+
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -29,7 +29,10 @@ namespace Parsys.WinClient.Views.WelcomeForms
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.OK;
+            if (TitleTextBox.Text == "")
+                FormErrorProvider.SetError(TitleTextBox, "عنوان شرکت/سازمان نمی تواند خالی باشد");
+            else
+                DialogResult = DialogResult.OK;
         }
     }
 }

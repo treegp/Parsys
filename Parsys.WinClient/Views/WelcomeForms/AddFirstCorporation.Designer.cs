@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.OkButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.TitleTextBox = new System.Windows.Forms.TextBox();
@@ -41,7 +42,9 @@
             this.AddressTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.DescriptionTextBox = new System.Windows.Forms.TextBox();
+            this.FormErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FormErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // OkButton
@@ -60,7 +63,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(368, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(33, 13);
+            this.label1.Size = new System.Drawing.Size(38, 16);
             this.label1.TabIndex = 1;
             this.label1.Text = "عنوان";
             // 
@@ -71,7 +74,7 @@
             this.TitleTextBox.Location = new System.Drawing.Point(12, 14);
             this.TitleTextBox.MaxLength = 100;
             this.TitleTextBox.Name = "TitleTextBox";
-            this.TitleTextBox.Size = new System.Drawing.Size(330, 20);
+            this.TitleTextBox.Size = new System.Drawing.Size(330, 23);
             this.TitleTextBox.TabIndex = 0;
             // 
             // panel1
@@ -101,7 +104,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(373, 44);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(28, 13);
+            this.label2.Size = new System.Drawing.Size(33, 16);
             this.label2.TabIndex = 1;
             this.label2.Text = "تلفن";
             // 
@@ -113,7 +116,7 @@
             this.TelephoneTextBox.MaxLength = 21;
             this.TelephoneTextBox.Name = "TelephoneTextBox";
             this.TelephoneTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.TelephoneTextBox.Size = new System.Drawing.Size(330, 20);
+            this.TelephoneTextBox.Size = new System.Drawing.Size(330, 23);
             this.TelephoneTextBox.TabIndex = 1;
             // 
             // label3
@@ -122,7 +125,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(370, 73);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(32, 13);
+            this.label3.Size = new System.Drawing.Size(36, 16);
             this.label3.TabIndex = 1;
             this.label3.Text = "فکس";
             // 
@@ -134,7 +137,7 @@
             this.FaxTextBox.MaxLength = 21;
             this.FaxTextBox.Name = "FaxTextBox";
             this.FaxTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.FaxTextBox.Size = new System.Drawing.Size(330, 20);
+            this.FaxTextBox.Size = new System.Drawing.Size(330, 23);
             this.FaxTextBox.TabIndex = 2;
             // 
             // label4
@@ -144,7 +147,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(370, 106);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(32, 13);
+            this.label4.Size = new System.Drawing.Size(37, 16);
             this.label4.TabIndex = 1;
             this.label4.Text = "آدرس";
             // 
@@ -166,7 +169,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(351, 182);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(47, 13);
+            this.label5.Size = new System.Drawing.Size(56, 16);
             this.label5.TabIndex = 1;
             this.label5.Text = "توضیحات";
             // 
@@ -181,9 +184,13 @@
             this.DescriptionTextBox.Size = new System.Drawing.Size(330, 77);
             this.DescriptionTextBox.TabIndex = 4;
             // 
+            // FormErrorProvider
+            // 
+            this.FormErrorProvider.ContainerControl = this;
+            // 
             // AddFirstCorporation
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(417, 332);
@@ -205,6 +212,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "افزودن شرکت/سازمان";
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.FormErrorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -225,5 +233,6 @@
         private System.Windows.Forms.TextBox AddressTextBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox DescriptionTextBox;
+        private System.Windows.Forms.ErrorProvider FormErrorProvider;
     }
 }

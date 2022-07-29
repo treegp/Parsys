@@ -46,6 +46,62 @@ namespace Parsys.WinClient.Views.Framework
     }
 
 
+
+    public class ViewHandler
+    {
+        private TabControl instanceTabControl;
+
+
+        public ViewHandler(){}
+        public ViewHandler(TabControl t) => instanceTabControl = t;
+
+
+        public UserControl Tab<T>() where T : UserControl
+        {
+            var Instance = Activator.CreateInstance(typeof(T));
+
+
+
+
+            return (UserControl) Instance;
+        }
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public class TabControlHandler
     {
         private TabControl tabControler;

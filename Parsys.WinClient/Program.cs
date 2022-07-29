@@ -3,6 +3,7 @@ using Parsys.DataLayer.Entities.EntityModels;
 using Parsys.WinClient.Views.WelcomeForms;
 using System;
 using System.Configuration;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using Parsys.WinClient.ApplicationMethods;
@@ -69,8 +70,8 @@ namespace Parsys.WinClient
                 firstFinancialYear.CorporationId = corpoId;
                 firstFinancialYear.Title = financeForm.FinancialYear.Title;
                 firstFinancialYear.Description= financeForm.FinancialYear.Description;
-                firstFinancialYear.StartDate = (DateTime)financeForm.FinancialYear.StartDate.ShamsiStringToMiladiDateTime();
-                firstFinancialYear.FinishDate = (DateTime)financeForm.FinancialYear.FinishDate.ShamsiStringToMiladiDateTime();
+                firstFinancialYear.StartDate = financeForm.FinancialYear.StartDate;
+                firstFinancialYear.FinishDate = financeForm.FinancialYear.FinishDate;
 
                 finance.Insert(firstFinancialYear);
             }

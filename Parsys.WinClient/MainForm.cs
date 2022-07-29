@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Parsys.WinClient.Views.CorporationForms;
 
 namespace Parsys.WinClient
 {
@@ -24,6 +25,12 @@ namespace Parsys.WinClient
                 AddTab("ورود");
             });
             opMenu.AddMenuSeperator();
+            opMenu.AddMenuItem("شرکت ها", (o, b) =>
+            {
+                MainViewHandler().OpenTab<List>();
+            });
+
+
             opMenu.AddMenuItem("خروج", (o, e) =>
             {
                 if (MessageBox.Show("آیا مایل به خروج از برنامه هستید؟", "پیام سیستم", MessageBoxButtons.YesNo) == DialogResult.Yes)

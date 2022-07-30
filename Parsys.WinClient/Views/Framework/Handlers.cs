@@ -41,7 +41,7 @@ namespace Parsys.WinClient.Views.Framework
 
         public void AddMenuSeperator()
         {
-            var menu = itemsHierarchy.Add("-");
+            itemsHierarchy.Add("-");
         }
     }
 
@@ -63,9 +63,13 @@ namespace Parsys.WinClient.Views.Framework
         }
 
 
-        public T OpenTab<T>() where T : ViewBaseControl
+        public T OpenTab<T>(Action<T> initializer = null) where T : ViewBaseControl
         {
             var instance = Activator.CreateInstance<T>();
+
+            if (initializer!=null)
+                initializer(instance);
+           
             if (!instance.MultipleInstance & openedSingleViews.ContainsKey(instance.Id))
             {
                 TabPage tab = (TabPage)openedSingleViews[instance.Id];
@@ -73,7 +77,7 @@ namespace Parsys.WinClient.Views.Framework
             }
             else
             {
-
+                instance.ViewManagement = this;
                 TabPage tab = new TabPage(instance.Title);
                 tab.Controls.Add(instance);
                 instance.Dock = DockStyle.Fill;
@@ -93,9 +97,14 @@ namespace Parsys.WinClient.Views.Framework
         }
 
 
-        public T ShowForm<T>() where T : ViewBaseControl
+        public T ShowForm<T>(Action<T> initializer = null,bool isDialog=false) where T : ViewBaseControl
         {
             var instance = Activator.CreateInstance<T>();
+
+            if (initializer != null)
+                initializer(instance);
+
+
             if (!instance.MultipleInstance & openedSingleViews.ContainsKey(instance.Id))
             {
                 Form form = (Form)openedSingleViews[instance.Id];
@@ -103,7 +112,7 @@ namespace Parsys.WinClient.Views.Framework
             }
             else
             {
-
+                instance.ViewManagement = this;
                 Form form = new Form();
                 form.Text = instance.Title;
                 form.Controls.Add(instance);
@@ -123,46 +132,10 @@ namespace Parsys.WinClient.Views.Framework
                     openedSingleViews.Add(instance.Id + (i + 1).ToString("000"), form);
                 }
 
-                form.Show();
-            }
-
-
-            return instance;
-
-
-        }
-
-        public T ShowDialogForm<T>() where T : ViewBaseControl
-        {
-            var instance = Activator.CreateInstance<T>();
-            if (!instance.MultipleInstance & openedSingleViews.ContainsKey(instance.Id))
-            {
-                Form form = (Form)openedSingleViews[instance.Id];
-                form.Activate();
-            }
-            else
-            {
-
-                Form form = new Form();
-                form.Text = instance.Title;
-                form.Controls.Add(instance);
-                instance.Dock = DockStyle.Fill;
-                form.Width = 800;
-                form.Height = 600;
-                form.StartPosition = FormStartPosition.CenterParent;
-                form.RightToLeft = RightToLeft.Yes;
-                form.Font = new Font("Tahoma", 8);
-
-
-                if (!instance.MultipleInstance)
-                    openedSingleViews.Add(instance.Id, form);
+                if (isDialog)
+                    form.ShowDialog();
                 else
-                {
-                    int i = openedSingleViews.Select(k => k.Key.Substring(0, k.Key.Length - 3)).Count();
-                    openedSingleViews.Add(instance.Id + (i + 1).ToString("000"), form);
-                }
-
-                form.ShowDialog();
+                    form.Show();
             }
 
 
@@ -170,6 +143,8 @@ namespace Parsys.WinClient.Views.Framework
 
 
         }
+
+
 
 
 
@@ -187,7 +162,7 @@ namespace Parsys.WinClient.Views.Framework
             catch
             {
             }
-          
+
 
         }
 
@@ -195,86 +170,6 @@ namespace Parsys.WinClient.Views.Framework
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public class TabControlHandler
-    {
-        private TabControl tabControler;
-        private string TabID;
-        private Dictionary<string, TabPage> openTabList = new Dictionary<string, TabPage>();
-
-        public TabControlHandler(TabControl tabControl)
-        {
-            tabControler = tabControl;
-
-            foreach (TabPage tab in tabControler.TabPages)
-            {
-                openTabList.Add(tab.Text, tab);
-            }
-
-
-        }
-
-
-        public void AddTab(string caption)
-        {
-            var Tab = openTabList.Where(k => k.Key == caption).FirstOrDefault().Value;
-            if (Tab == null)
-            {
-                tabControler.TabPages.Add(caption);
-                openTabList.Add(caption, tabControler.TabPages[tabControler.TabPages.Count - 1]);
-                tabControler.SelectedTab = tabControler.TabPages[tabControler.TabPages.Count - 1];
-            }
-            else
-            {
-                tabControler.SelectedTab = Tab;
-            }
-        }
-
-
-        public void RemoveTab(string caption)
-        {
-            var Tab = openTabList.Where(k => k.Key == caption).FirstOrDefault().Value;
-            if (Tab != null)
-            {
-                tabControler.TabPages.Remove(Tab);
-                openTabList.Remove(caption);
-            }
-        }
-
-    }
-
-
-
 
 
 

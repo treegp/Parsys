@@ -8,7 +8,7 @@ namespace Parsys.WinClient.Views.Framework
     {
         private MenuStripHandler menuManager;
         private ViewHandler viewManager; 
-        private TabControlHandler tabManager;
+
 
 
         public MainBaseForm()
@@ -16,7 +16,7 @@ namespace Parsys.WinClient.Views.Framework
             InitializeComponent();
             menuManager = new MenuStripHandler(MainMenuStrip.Items);
             viewManager = new ViewHandler(MainTabControl);
-            tabManager = new TabControlHandler(MainTabControl);
+
 
 
             var dt = MainStatusStrip.Items.Add(DateTime.Now.ToString("dd MMM yyyy  |  HH:mm:ss"));
@@ -38,40 +38,11 @@ namespace Parsys.WinClient.Views.Framework
         }
 
 
-
-
-
-
-
-
-
-        //-----------------------------------------------------------------------
-
-        public void AddTab(string caption)
-        {
-            tabManager.AddTab(caption);
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         //-----------------------------------------------------------------------
         public MenuStripHandler MainMenuStripHandler()
         {
             return menuManager;
         }
-
 
 
         //-----------------------------------------------------------------------

@@ -20,10 +20,7 @@ namespace Parsys.WinClient
 
 
             var opMenu = MainMenuStripHandler().AddMenuItem("عملیات");
-            opMenu.AddMenuItem("ورود", (o, e) =>
-            {
-                AddTab("ورود");
-            });
+            opMenu.AddMenuItem("ورود");
             opMenu.AddMenuSeperator();
             opMenu.AddMenuItem("شرکت ها", (o, b) =>
             {

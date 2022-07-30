@@ -76,6 +76,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\CorporationForms\Add.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\CorporationForms\Add.Designer.cs">
+      <DependentUpon>Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CorporationForms\Editor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\CorporationForms\Editor.Designer.cs">
+      <DependentUpon>Editor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\CorporationForms\List.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -129,11 +141,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Views\CorporationForms\Editor.resx">
+      <DependentUpon>Editor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\CorporationForms\List.resx">
       <DependentUpon>List.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Framework\MainBaseForm.resx">
       <DependentUpon>MainBaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Framework\ViewBaseControl.resx">
+      <DependentUpon>ViewBaseControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\WelcomeForms\AddFirstCorporation.resx">
       <DependentUpon>AddFirstCorporation.cs</DependentUpon>

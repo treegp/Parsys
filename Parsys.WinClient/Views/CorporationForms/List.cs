@@ -12,5 +12,10 @@ namespace Parsys.WinClient.Views.CorporationForms
             Title = "لیست شرکت ها";
             MultipleInstance = true;
         }
+
+        private void button1_Click(object sender, System.EventArgs e)
+        {
+            ViewManagement.OpenTab<Editor>(c=>c.caption="آی دی 12");
+        }
     }
 }

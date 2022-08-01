@@ -112,6 +112,8 @@ namespace Parsys.WinClient.Views.Framework
             }
             else
             {
+
+
                 instance.ViewManagement = this;
                 Form form = new Form();
                 form.Text = instance.Title;

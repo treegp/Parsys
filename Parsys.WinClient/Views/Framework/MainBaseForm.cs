@@ -19,6 +19,8 @@ namespace Parsys.WinClient.Views.Framework
 
 
 
+
+
             var dt = MainStatusStrip.Items.Add(DateTime.Now.ToString("dd MMM yyyy  |  HH:mm:ss"));
 
             DateTimeTimer.Enabled = true;

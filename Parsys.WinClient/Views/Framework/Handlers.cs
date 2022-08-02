@@ -53,19 +53,21 @@ namespace Parsys.WinClient.Views.Framework
     {
         private Dictionary<string, object> openedSingleViews = new Dictionary<string, object>();
         private TabControl instanceTabControl;
-
+        private StructureMap.Registry Registeries;
 
         public ViewHandler() { }
-        public ViewHandler(TabControl t)
+        public ViewHandler(TabControl t,StructureMap.Registry r)
         {
             instanceTabControl = t;
+            Registeries = r;
 
         }
 
 
         public T OpenTab<T>(Action<T> initializer = null) where T : ViewBaseControl
         {
-            var instance = Activator.CreateInstance<T>();
+            var container = new StructureMap.Container(Registeries);
+            var instance = container.GetInstance<T>();
 
             if (initializer!=null)
                 initializer(instance);
@@ -99,7 +101,8 @@ namespace Parsys.WinClient.Views.Framework
 
         public T ShowForm<T>(Action<T> initializer = null,bool isDialog=false) where T : ViewBaseControl
         {
-            var instance = Activator.CreateInstance<T>();
+            var container = new StructureMap.Container(Registeries);
+            var instance = container.GetInstance<T>();
 
             if (initializer != null)
                 initializer(instance);

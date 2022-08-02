@@ -17,13 +17,18 @@ namespace Parsys.WinClient.Views.CorporationForms
     {
         
 
+
         public Add()
         {
             InitializeComponent();
             
+            
             Id = "AddCorporation";
-            Title = "افزودن شرکت / سازمان";
-            MultipleInstance=true;
+            Title = "افزودن شرکت / سازمان با کد ";
+            MultipleInstance=false;
+
+            
+                
         }
     }
 }

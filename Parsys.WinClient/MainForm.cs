@@ -10,7 +10,7 @@ namespace Parsys.WinClient
 
         
 
-        public MainForm() : base(new IoC.TypesRegistery())
+        public MainForm()
         {
             InitializeComponent();
             var opMenu = MainMenuStripHandler().AddMenuItem("عملیات");

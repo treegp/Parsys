@@ -8,15 +8,14 @@ namespace Parsys.WinClient.Views.Framework
     {
         private MenuStripHandler menuManager;
         private ViewHandler viewManager; 
-        protected StructureMap.Registry TypeRegistries { get; set; }
+        
 
 
-        public MainBaseForm(StructureMap.Registry registery)
+        public MainBaseForm()
         {
             InitializeComponent();
-            TypeRegistries=registery;
             menuManager = new MenuStripHandler(MainMenuStrip.Items);
-            viewManager = new ViewHandler(MainTabControl,TypeRegistries);
+            viewManager = new ViewHandler(MainTabControl);
 
 
 

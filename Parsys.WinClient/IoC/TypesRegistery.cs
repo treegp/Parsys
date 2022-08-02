@@ -17,6 +17,7 @@ namespace Parsys.WinClient.IoC
         {
             For<IConnection>().Use<ConnectToSQL>();
             For<ICorporationsRepository>().Use<CorporationsRepository>();
+            For<IUsersRepository>().Use<UsersRepository>();
         }
     }
 }

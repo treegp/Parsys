@@ -165,7 +165,7 @@ namespace Parsys.WinClient.Views.Framework
 
 
 
-        public void CloseTab(ViewBaseControl view)
+        public void CloseView(ViewBaseControl view, DialogResult? dresult = null)
         {
             if (view != null)
             {
@@ -177,7 +177,10 @@ namespace Parsys.WinClient.Views.Framework
                     instanceTabControl.SelectedTab = instanceTabControl.TabPages[instanceTabControl.TabCount - 1];
                 }
                 else if (openedSingleViews[id].GetType().Name == "Form")
-                    ((Form)openedSingleViews[id]).Close();
+                    if (dresult != null & ((Form)openedSingleViews[id]).Modal==true)
+                        ((Form)openedSingleViews[id]).DialogResult = dresult.Value;
+                    else
+                        ((Form)openedSingleViews[id]).Close();
 
 
                 openedSingleViews.Remove(id);

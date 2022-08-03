@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Parsys.WinClient.Views.Framework;
+using System;
 using System.Windows.Forms;
-using Parsys.WinClient.Views.Framework;
 
 namespace Parsys.WinClient.Views.CorporationForms
 {
@@ -16,10 +9,16 @@ namespace Parsys.WinClient.Views.CorporationForms
         public Editor()
         {
             InitializeComponent();
-            
             Id = "EditorCorporation";
             Title = "ویرایش شرکت/سازمان";
-            MultipleInstance=false;
+            MultipleInstance = false;
+
+            AddButtun("ویرایش شرکت", b => { MessageBox.Show("منوی ویرایش"); });
+            AddButtun("حذف شرکت", b => { MessageBox.Show("آیا حذف شود؟"); });
+            AddButtun("افزودن شرکت", b => { MessageBox.Show("مشتری جدید"); });
+
+
+
         }
 
         public string caption;

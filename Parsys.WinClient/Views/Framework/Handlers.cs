@@ -53,25 +53,25 @@ namespace Parsys.WinClient.Views.Framework
     {
         private Dictionary<string, object> openedSingleViews = new Dictionary<string, object>();
         private TabControl instanceTabControl;
-        
+
 
         public ViewHandler() { }
         public ViewHandler(TabControl t)
         {
             instanceTabControl = t;
-            
+
 
         }
 
 
         public T OpenTab<T>(Action<T> initializer = null) where T : ViewBaseControl
         {
-            
+
             var instance = Activator.CreateInstance<T>();
 
-            if (initializer!=null)
+            if (initializer != null)
                 initializer(instance);
-           
+
             if (!instance.MultipleInstance & openedSingleViews.ContainsKey(instance.Id))
             {
                 TabPage tab = (TabPage)openedSingleViews[instance.Id];
@@ -89,7 +89,14 @@ namespace Parsys.WinClient.Views.Framework
                     openedSingleViews.Add(instance.Id, tab);
                 else
                 {
-                    int i = openedSingleViews.Select(k => k.Key.Substring(0, k.Key.Length - 3)).Count();
+                    int i = 0;
+                    var w = openedSingleViews.Where(k => k.Key.Substring(0, k.Key.Length - 3) == instance.Id);
+                    if (w.Count() != 0)
+                    {
+                        var s = w.Select(k => int.Parse(k.Key.Substring(k.Key.Length - 3)));
+                        i = s.Max();
+                    }
+                    
                     instance.Id += (i + 1).ToString("000");
                     openedSingleViews.Add(instance.Id, tab);
                 }
@@ -99,7 +106,7 @@ namespace Parsys.WinClient.Views.Framework
         }
 
 
-        public T ShowForm<T>(Action<T> initializer = null,bool isDialog=false) where T : ViewBaseControl
+        public T ShowForm<T>(Action<T> initializer = null, bool isDialog = false) where T : ViewBaseControl
         {
             var instance = Activator.CreateInstance<T>();
 
@@ -154,20 +161,26 @@ namespace Parsys.WinClient.Views.Framework
 
 
 
-        public void CloseTab(TabPage tab)
+
+
+
+
+        public void CloseTab(ViewBaseControl view)
         {
-            try
+            string id = view.Id;
+
+            if (openedSingleViews[id].GetType().Name == "TabPage")
             {
-                string id = tab.Controls.OfType<ViewBaseControl>().First().Id;
-                if (openedSingleViews.ContainsKey(id))
-                    openedSingleViews.Remove(id);
-                instanceTabControl.Controls.Remove(tab);
-            }
-            catch
-            {
+                instanceTabControl.TabPages.Remove((TabPage)openedSingleViews[id]);
+                instanceTabControl.SelectedTab = instanceTabControl.TabPages[instanceTabControl.TabCount - 1];
             }
 
+            else if (openedSingleViews[id].GetType().Name == "Form")
+                ((Form)openedSingleViews[id]).Close();
 
+
+
+            openedSingleViews.Remove(id);
         }
 
 

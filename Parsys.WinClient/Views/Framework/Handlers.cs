@@ -96,7 +96,7 @@ namespace Parsys.WinClient.Views.Framework
                         var s = w.Select(k => int.Parse(k.Key.Substring(k.Key.Length - 3)));
                         i = s.Max();
                     }
-                    
+
                     instance.Id += (i + 1).ToString("000");
                     openedSingleViews.Add(instance.Id, tab);
                 }
@@ -167,20 +167,21 @@ namespace Parsys.WinClient.Views.Framework
 
         public void CloseTab(ViewBaseControl view)
         {
-            string id = view.Id;
-
-            if (openedSingleViews[id].GetType().Name == "TabPage")
+            if (view != null)
             {
-                instanceTabControl.TabPages.Remove((TabPage)openedSingleViews[id]);
-                instanceTabControl.SelectedTab = instanceTabControl.TabPages[instanceTabControl.TabCount - 1];
+                string id = view.Id;
+
+                if (openedSingleViews[id].GetType().Name == "TabPage")
+                {
+                    instanceTabControl.TabPages.Remove((TabPage)openedSingleViews[id]);
+                    instanceTabControl.SelectedTab = instanceTabControl.TabPages[instanceTabControl.TabCount - 1];
+                }
+                else if (openedSingleViews[id].GetType().Name == "Form")
+                    ((Form)openedSingleViews[id]).Close();
+
+
+                openedSingleViews.Remove(id);
             }
-
-            else if (openedSingleViews[id].GetType().Name == "Form")
-                ((Form)openedSingleViews[id]).Close();
-
-
-
-            openedSingleViews.Remove(id);
         }
 
 

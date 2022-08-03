@@ -11,6 +11,10 @@ namespace Parsys.WinClient.Views.CorporationForms
             Id = "CorporationList";
             Title = "لیست شرکت ها";
             MultipleInstance = true;
+
+            AddButtun("ویرایش مشتری", b => { ViewManagement.OpenTab<Editor>(); });
+
+
         }
 
         private void button1_Click(object sender, System.EventArgs e)

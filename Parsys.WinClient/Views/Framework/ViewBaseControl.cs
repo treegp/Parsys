@@ -13,6 +13,12 @@ namespace Parsys.WinClient.Views.Framework
 
 
 
+        protected void CloseThis(DialogResult? result=null)
+        {
+            ViewManagement.CloseView(this,result);
+        }
+
+
         protected Button AddButtun(string title,Action<Button> onPress)
         {
             ButtonsPanel.Visible=true;

@@ -52,7 +52,7 @@ namespace Parsys.WinClient.Views.Framework
         private void CloseCurrentTabButton_Click(object sender, EventArgs e)
         {
 
-            viewManager.CloseTab(MainTabControl.SelectedTab.Controls.OfType<ViewBaseControl>().FirstOrDefault());
+            viewManager.CloseView(MainTabControl.SelectedTab.Controls.OfType<ViewBaseControl>().FirstOrDefault());
 
             //tabManager.RemoveTab(MainTabControl.SelectedTab.Text);
         }

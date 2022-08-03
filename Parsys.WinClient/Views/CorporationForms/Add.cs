@@ -27,8 +27,8 @@ namespace Parsys.WinClient.Views.CorporationForms
             Title = "افزودن شرکت / سازمان با کد ";
             MultipleInstance=false;
 
-            
-                
+            AddButtun("تایید", b => { CloseThis(DialogResult.OK); });
+            AddButtun("صرف نظر", b => { CloseThis(DialogResult.Cancel); });
         }
     }
 }

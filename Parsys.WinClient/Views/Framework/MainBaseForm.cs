@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace Parsys.WinClient.Views.Framework
 {
@@ -51,7 +52,7 @@ namespace Parsys.WinClient.Views.Framework
         private void CloseCurrentTabButton_Click(object sender, EventArgs e)
         {
 
-            viewManager.CloseTab(MainTabControl.SelectedTab);
+            viewManager.CloseTab(MainTabControl.SelectedTab.Controls.OfType<ViewBaseControl>().First());
 
             //tabManager.RemoveTab(MainTabControl.SelectedTab.Text);
         }

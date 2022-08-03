@@ -61,10 +61,10 @@
             // 
             // MainTabPage
             // 
-            this.MainTabPage.Location = new System.Drawing.Point(4, 27);
+            this.MainTabPage.Location = new System.Drawing.Point(4, 23);
             this.MainTabPage.Name = "MainTabPage";
             this.MainTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.MainTabPage.Size = new System.Drawing.Size(855, 521);
+            this.MainTabPage.Size = new System.Drawing.Size(855, 525);
             this.MainTabPage.TabIndex = 0;
             this.MainTabPage.Text = "صفحه اصلی";
             this.MainTabPage.UseVisualStyleBackColor = true;
@@ -86,20 +86,21 @@
             // 
             // CloseCurrentTabButton
             // 
-            this.CloseCurrentTabButton.BackColor = System.Drawing.Color.Firebrick;
+            this.CloseCurrentTabButton.BackColor = System.Drawing.Color.SandyBrown;
             this.CloseCurrentTabButton.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.CloseCurrentTabButton.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.CloseCurrentTabButton.Location = new System.Drawing.Point(5, 24);
+            this.CloseCurrentTabButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.CloseCurrentTabButton.Location = new System.Drawing.Point(12, 1);
             this.CloseCurrentTabButton.Name = "CloseCurrentTabButton";
             this.CloseCurrentTabButton.Size = new System.Drawing.Size(23, 23);
             this.CloseCurrentTabButton.TabIndex = 0;
+            this.CloseCurrentTabButton.Tag = "بستن تب جاری";
             this.CloseCurrentTabButton.Text = "X";
             this.CloseCurrentTabButton.UseVisualStyleBackColor = false;
             this.CloseCurrentTabButton.Click += new System.EventHandler(this.CloseCurrentTabButton_Click);
             // 
             // MainBaseForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(863, 598);
             this.Controls.Add(this.CloseCurrentTabButton);

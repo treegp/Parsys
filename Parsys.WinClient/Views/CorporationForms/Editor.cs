@@ -25,7 +25,7 @@ namespace Parsys.WinClient.Views.CorporationForms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ViewManagement.OpenTab<Add>(i =>
+            ViewManagement.ShowForm<Add>(i =>
             {
                 i.Id += textBox1.Text;
                 i.Title += textBox1.Text;

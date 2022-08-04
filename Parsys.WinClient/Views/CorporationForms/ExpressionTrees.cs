@@ -16,15 +16,17 @@ namespace Parsys.WinClient.Views.CorporationForms
             var n2 = System.Linq.Expressions.Expression.Parameter(typeof(int), "num2");
 
             var addExpression = System.Linq.Expressions.Expression.Add(n1, n2);
+            var divExpression = System.Linq.Expressions.Expression.Divide(n1, n2);
 
-            var lambdaExpression = System.Linq.Expressions.Expression.Lambda<Func<int, int, int>>(addExpression, n1, n2);
+            var finalExpression = System.Linq.Expressions.Expression.Multiply(addExpression, divExpression);
+            var lambdaExpression = System.Linq.Expressions.Expression.Lambda<Func<int, int, int>>(finalExpression, n1, n2);
 
 
 
 
             Func<int, int, int> add = lambdaExpression.Compile();
 
-            MessageBox.Show(add(2, 6).ToString());
+            MessageBox.Show(add(12, 6).ToString());
 
         }
     }

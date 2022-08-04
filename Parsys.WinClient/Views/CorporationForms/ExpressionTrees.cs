@@ -17,9 +17,12 @@ namespace Parsys.WinClient.Views.CorporationForms
 
             var exp = System.Linq.Expressions.Expression.Multiply(n, cons);
 
-            var lambda = System.Linq.Expressions.Expression.Lambda<Func<int, int>>(exp,n);
 
-            MessageBox.Show(lambda.Compile()(5).ToString());
+            var toString = System.Linq.Expressions.Expression.Call(exp, typeof(object).GetMethod("ToString"));
+
+            var lambda = System.Linq.Expressions.Expression.Lambda<Func<int, string>>(toString, n);
+
+            MessageBox.Show(lambda.Compile()(5));
 
         }
     }

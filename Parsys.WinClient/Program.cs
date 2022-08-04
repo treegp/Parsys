@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using Parsys.WinClient.ApplicationMethods;
+using Parsys.WinClient.Views.CorporationForms;
 
 namespace Parsys.WinClient
 {
@@ -21,6 +22,12 @@ namespace Parsys.WinClient
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             PersianCulture.InitializePersianCulture();
+
+            var form = new ExpressionTrees();
+            form.ShowDialog();
+
+
+
 
 
             var container = new StructureMap.Container(new IoC.TypesRegistery());

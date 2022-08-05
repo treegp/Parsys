@@ -20,7 +20,10 @@ namespace Parsys.WinClient
             {
                 MainViewHandler().OpenTab<List>();
             });
-
+            opMenu.AddMenuItem("انبار ها", (o, b) =>
+            {
+                MainViewHandler().OpenTab< Parsys.WinClient.Views.InventoryForms.List> ();
+            });
 
             opMenu.AddMenuItem("خروج", (o, e) =>
             {

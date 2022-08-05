@@ -13,7 +13,7 @@ namespace Parsys.WinClient.Views.CorporationForms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Expression<Func<int, int>> function = n => n * 2;
+            Expression<Func<int, string>> function = n => (n * 2).ToString();
 
             ExpressionVisitor visitor = new ExpVisitor();
             visitor.Visit(function);

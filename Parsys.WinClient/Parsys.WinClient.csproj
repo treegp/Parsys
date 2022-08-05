@@ -109,6 +109,12 @@
     <Compile Include="Views\Framework\ViewBaseControl.Designer.cs">
       <DependentUpon>ViewBaseControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\InventoryForms\List.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\InventoryForms\List.Designer.cs">
+      <DependentUpon>List.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\WelcomeForms\AddFirstCorporation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -209,5 +215,6 @@
   <ItemGroup>
     <None Include="Resources\parsysicon.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

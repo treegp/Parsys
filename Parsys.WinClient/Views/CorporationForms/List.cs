@@ -39,7 +39,10 @@ namespace Parsys.WinClient.Views.CorporationForms
             grid.EditMode = DataGridViewEditMode.EditProgrammatically;
             grid.AutoGenerateColumns=false;
             grid.MultiSelect=false;
-            grid.DataSource=products;
+
+            BindingSource bs = new BindingSource();
+            bs.DataSource = products;
+            grid.DataSource = bs;
 
             
 

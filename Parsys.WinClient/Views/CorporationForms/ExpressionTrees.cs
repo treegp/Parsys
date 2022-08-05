@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Net.Sockets;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 
 namespace Parsys.WinClient.Views.CorporationForms
@@ -31,7 +33,9 @@ namespace Parsys.WinClient.Views.CorporationForms
         private void BindTextBox(TextBox textBox,Expression<Func<Employee,string>> exp)
         {
             var visitor = new MemberReader();
-            visitor.GetNameOfMember(exp);
+            var nameOfMember = visitor.GetNameOfMember(exp);
+            textBox.DataBindings.Add("Text", Emp, nameOfMember);
+
         }
     }
 
@@ -39,15 +43,22 @@ namespace Parsys.WinClient.Views.CorporationForms
 
     public class MemberReader : ExpressionVisitor
     {
+        public List<string> membersName = new List<string>();
+
+
+
         public string GetNameOfMember(Expression exp)
         {
+            
             Visit(exp);
-            return null;
+            membersName.Reverse();
+            return string.Join(".", membersName);
 
         }
 
         protected override Expression VisitMember(MemberExpression node)
         {
+            membersName.Add(node.Member.Name.ToString());
             return base.VisitMember(node);
         }
     }

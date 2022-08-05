@@ -30,49 +30,12 @@ namespace Parsys.WinClient.Views.CorporationForms
 
 
 
-            var grid = new DataGridView();
-            grid.Dock = DockStyle.Fill;
-            grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            grid.AllowUserToAddRows = false;
-            grid.AllowUserToDeleteRows = false;
-            grid.EditMode = DataGridViewEditMode.EditProgrammatically;
-            grid.AutoGenerateColumns=false;
-            grid.MultiSelect=false;
+            var gridManager = new GridHandler<Products>(this, products);
 
-            BindingSource bs = new BindingSource();
-            bs.DataSource = products;
-            grid.DataSource = bs;
-
-            
-
-            grid.Columns.Add(new DataGridViewTextBoxColumn()
-            {
-                HeaderText = "آی دی",
-                DataPropertyName = "Id"
-            });
-
-            grid.Columns.Add(new DataGridViewTextBoxColumn()
-            {
-                HeaderText = "عنوان",
-                DataPropertyName = "Title"
-            });
-
-            grid.Columns.Add(new DataGridViewTextBoxColumn()
-            {
-                HeaderText = "کد محصول",
-                DataPropertyName = "Code"
-            });
-
-            grid.Columns.Add(new DataGridViewTextBoxColumn()
-            {
-                HeaderText = "توضیحات",
-                DataPropertyName = "Description"
-            });
-
-
-            this.Controls.Add(grid);
-
+            gridManager.AddStringColumn(c => c.Id,"شناسه");
+            gridManager.AddStringColumn(c => c.Title, "عنوان");
+            gridManager.AddStringColumn(c => c.Code);
+            gridManager.AddStringColumn(c => c.Description, "توضیحات");
 
         }
 

@@ -1,46 +1,49 @@
 ﻿using System;
 using System.Linq.Expressions;
+using System.Net.Sockets;
 using System.Windows.Forms;
 
 namespace Parsys.WinClient.Views.CorporationForms
 {
     public partial class ExpressionTrees : Form
     {
+        public Employee Emp { get; set; }
+
+
         public ExpressionTrees()
         {
             InitializeComponent();
+
+            
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Expression<Func<int, string>> function = n => (n * 2).ToString();
+            return;
+            
+        }
 
-            ExpressionVisitor visitor = new ExpVisitor();
-            visitor.Visit(function);
-
+        private void ExpressionTrees_Load(object sender, EventArgs e)
+        {
+            NameTextBox.DataBindings.Add("Text", Emp, "Name");
+            CountryTextBox.DataBindings.Add("Text", Emp, "Address.Country");
         }
     }
 
-    public class ExpVisitor : System.Linq.Expressions.ExpressionVisitor
+
+    public class Employee
     {
-        protected override Expression VisitMethodCall(MethodCallExpression node)
-        {
-            return base.VisitMethodCall(node);
-        }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public Address Address { get; set; }
+    }
 
-        protected override Expression VisitParameter(ParameterExpression node)
-        {
-            return base.VisitParameter(node);
-        }
 
-        protected override Expression VisitConstant(ConstantExpression node)
-        {
-            return base.VisitConstant(node);
-        }
-
-        protected override Expression VisitBinary(BinaryExpression node)
-        {
-            return base.VisitBinary(node);
-        }
+    public class Address
+    {
+        public string Country { get; set; }
+        public string City { get; set; }
     }
 }

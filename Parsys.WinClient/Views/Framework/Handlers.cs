@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Windows.Forms;
 
 namespace Parsys.WinClient.Views.Framework
@@ -157,14 +158,6 @@ namespace Parsys.WinClient.Views.Framework
 
 
 
-
-
-
-
-
-
-
-
         public void CloseView(ViewBaseControl view, DialogResult? dresult = null)
         {
             if (view != null)
@@ -194,7 +187,38 @@ namespace Parsys.WinClient.Views.Framework
 
 
 
+    public class GridHandler<TModel>
+    {
+        private DataGridView grid;
 
+        public GridHandler(Control container)
+        {
+            grid = new DataGridView();
+            grid.AllowUserToDeleteRows = false;
+            grid.AllowUserToAddRows = false;
+            grid.AutoSizeColumnsMode=DataGridViewAutoSizeColumnsMode.Fill;
+            grid.AutoGenerateColumns = false;
+            grid.MultiSelect = false;
+            grid.EditMode = DataGridViewEditMode.EditProgrammatically;
+            grid.SelectionMode=DataGridViewSelectionMode.FullRowSelect;
+            grid.AllowUserToResizeColumns = true;
+            grid.AllowUserToOrderColumns = false;
+            grid.Dock = DockStyle.Fill;
+
+            container.Controls.Add(grid);
+        }
+
+
+        public GridHandler<TModel> AddColumn<TItem> ( Expression<Func<TModel,TItem>> item,string header=null)
+        {
+
+
+            return this;
+        }
+
+
+
+    }
 
 
 }

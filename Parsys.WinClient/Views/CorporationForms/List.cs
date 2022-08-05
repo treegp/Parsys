@@ -16,6 +16,7 @@ namespace Parsys.WinClient.Views.CorporationForms
             MultipleInstance = true;
 
             AddButtun("ویرایش مشتری", b => { ViewManagement.OpenTab<Editor>(); });
+            AddButtun("مشاهده انبار ها", b => { ViewManagement.OpenTab<InventoryForms.List>(); });
 
         }
 

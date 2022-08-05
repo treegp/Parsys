@@ -13,24 +13,48 @@ namespace Parsys.WinClient.Views.CorporationForms
         public ExpressionTrees()
         {
             InitializeComponent();
-
-            
-
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             return;
-            
         }
+
 
         private void ExpressionTrees_Load(object sender, EventArgs e)
         {
-            NameTextBox.DataBindings.Add("Text", Emp, "Name");
-            CountryTextBox.DataBindings.Add("Text", Emp, "Address.Country");
+            BindTextBox(NameTextBox,exp=>exp.Name);
+            BindTextBox(CountryTextBox,exp=>exp.Address.Country);
+
+        }
+        
+        private void BindTextBox(TextBox textBox,Expression<Func<Employee,string>> exp)
+        {
+            var visitor = new MemberReader();
+            visitor.GetNameOfMember(exp);
         }
     }
+
+
+
+    public class MemberReader : ExpressionVisitor
+    {
+        public string GetNameOfMember(Expression exp)
+        {
+            Visit(exp);
+            return null;
+
+        }
+
+        protected override Expression VisitMember(MemberExpression node)
+        {
+            return base.VisitMember(node);
+        }
+    }
+
+
+
+
 
 
     public class Employee

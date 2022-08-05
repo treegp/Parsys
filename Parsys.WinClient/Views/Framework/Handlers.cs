@@ -192,6 +192,8 @@ namespace Parsys.WinClient.Views.Framework
     {
         private DataGridView grid;
         private BindingSource source;
+        public TModel GetItem { get => (TModel)source?.Current; }
+
 
         public GridHandler(Control container, IEnumerable<TModel> dataSource)
         {
@@ -215,9 +217,6 @@ namespace Parsys.WinClient.Views.Framework
         }
 
 
-
-
-
         public GridHandler<TModel> AddStringColumn<TItem>(Expression<Func<TModel, TItem>> item, string header = null)
         {
             var columnName = new ExpressionHandler().GetNameOfProperty(item);
@@ -229,6 +228,17 @@ namespace Parsys.WinClient.Views.Framework
                 HeaderText = header,
                 DataPropertyName = columnName
             });
+
+            return this;
+        }
+
+
+        public GridHandler<TModel> RefreshDataSource(IEnumerable<TModel> dataSource = null)
+        {
+            if (dataSource != null)
+                source.DataSource = dataSource;
+
+            source.ResetBindings(true);
 
             return this;
         }

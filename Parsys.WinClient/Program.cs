@@ -23,7 +23,15 @@ namespace Parsys.WinClient
             Application.SetCompatibleTextRenderingDefault(false);
             PersianCulture.InitializePersianCulture();
 
-            var form = new ExpressionTrees();
+            var form = new ExpressionTrees()
+            {
+                Emp = new Employee()
+                {
+                    Address = new Address()
+                    
+                }
+            };
+            
             form.ShowDialog();
 
 

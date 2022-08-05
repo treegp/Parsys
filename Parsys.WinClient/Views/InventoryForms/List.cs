@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Parsys.DataLayer.Entities.EntityAbstracts;
+using Parsys.DataLayer.Entities.EntityMethods;
 using Parsys.WinClient.Views.Framework;
 
 namespace Parsys.WinClient.Views.InventoryForms
@@ -16,16 +17,20 @@ namespace Parsys.WinClient.Views.InventoryForms
 
     public partial class List : ViewBaseControl
     {
-        private IInventoriesRepository invRepo;
-        public List(IInventoriesRepository repo)
+        private DataLayer.Connections.ProviderMethods.ConnectToSQL con;
+        public InventoriesRepository invRepo;
+
+        public List()
         {
             InitializeComponent();
-            invRepo = repo;
+            
         }
 
 
         protected override void OnLoad(EventArgs e)
         {
+            invRepo = new InventoriesRepository(con.GetConnection());
+
             var grid = new GridHandler<DataLayer.Entities.EntityModels.Inventories>(this, invRepo.GetAll());
 
             grid.AddStringColumn(i => i.Id,"شناسع");

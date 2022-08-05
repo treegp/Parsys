@@ -23,6 +23,16 @@ namespace Parsys.WinClient.Views.CorporationForms
 
     public class ExpVisitor : System.Linq.Expressions.ExpressionVisitor
     {
+        protected override Expression VisitMethodCall(MethodCallExpression node)
+        {
+            return base.VisitMethodCall(node);
+        }
+
+        protected override Expression VisitParameter(ParameterExpression node)
+        {
+            return base.VisitParameter(node);
+        }
+
         protected override Expression VisitConstant(ConstantExpression node)
         {
             return base.VisitConstant(node);

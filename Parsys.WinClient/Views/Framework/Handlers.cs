@@ -206,7 +206,7 @@ namespace Parsys.WinClient.Views.Framework
             grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             grid.AutoGenerateColumns = false;
             grid.MultiSelect = false;
-            grid.EditMode = DataGridViewEditMode.EditOnEnter;
+            grid.EditMode = DataGridViewEditMode.EditProgrammatically;
             grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             grid.AllowUserToResizeColumns = true;
             grid.AllowUserToOrderColumns = true;

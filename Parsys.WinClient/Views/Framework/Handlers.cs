@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace Parsys.WinClient.Views.Framework
@@ -170,7 +171,7 @@ namespace Parsys.WinClient.Views.Framework
                     instanceTabControl.SelectedTab = instanceTabControl.TabPages[instanceTabControl.TabCount - 1];
                 }
                 else if (openedSingleViews[id].GetType().Name == "Form")
-                    if (dresult != null & ((Form)openedSingleViews[id]).Modal==true)
+                    if (dresult != null & ((Form)openedSingleViews[id]).Modal == true)
                         ((Form)openedSingleViews[id]).DialogResult = dresult.Value;
                     else
                         ((Form)openedSingleViews[id]).Close();
@@ -190,34 +191,70 @@ namespace Parsys.WinClient.Views.Framework
     public class GridHandler<TModel>
     {
         private DataGridView grid;
+        private BindingSource source;
 
-        public GridHandler(Control container)
+        public GridHandler(Control container, IEnumerable<TModel> dataSource)
         {
+            source = new BindingSource();
+            source.DataSource = dataSource;
+
             grid = new DataGridView();
             grid.AllowUserToDeleteRows = false;
             grid.AllowUserToAddRows = false;
-            grid.AutoSizeColumnsMode=DataGridViewAutoSizeColumnsMode.Fill;
+            grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             grid.AutoGenerateColumns = false;
             grid.MultiSelect = false;
             grid.EditMode = DataGridViewEditMode.EditProgrammatically;
-            grid.SelectionMode=DataGridViewSelectionMode.FullRowSelect;
+            grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             grid.AllowUserToResizeColumns = true;
             grid.AllowUserToOrderColumns = false;
             grid.Dock = DockStyle.Fill;
+            grid.DataSource = source;
 
             container.Controls.Add(grid);
         }
 
 
-        public GridHandler<TModel> AddColumn<TItem> ( Expression<Func<TModel,TItem>> item,string header=null)
-        {
 
+
+
+        public GridHandler<TModel> AddStringColumn<TItem>(Expression<Func<TModel, TItem>> item, string header = null)
+        {
+            var columnName = new ExpressionHandler().GetNameOfProperty(item);
+            if (header == null)
+                header = columnName;
+
+            grid.Columns.Add(new DataGridViewTextBoxColumn()
+            {
+                HeaderText = header,
+                DataPropertyName = columnName
+            });
 
             return this;
         }
 
 
 
+    }
+
+
+    public class ExpressionHandler : ExpressionVisitor
+    {
+        private List<string> memberNames = new List<string>();
+
+        public string GetNameOfProperty(Expression exp)
+        {
+            Visit(exp);
+            memberNames.Reverse();
+            return string.Join(".", memberNames);
+        }
+
+        protected override Expression VisitMember(MemberExpression node)
+        {
+            if (node.Member is MemberInfo)
+                memberNames.Add(node.Member.Name);
+            return base.VisitMember(node);
+        }
     }
 
 

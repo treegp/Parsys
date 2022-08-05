@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using System.Windows.Forms;
 
 namespace Parsys.WinClient.Views.CorporationForms
@@ -12,13 +13,24 @@ namespace Parsys.WinClient.Views.CorporationForms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Func<int, int> function = n => n * 2;
+            Expression<Func<int, int>> function = n => n * 2;
+
+            ExpressionVisitor visitor = new ExpVisitor();
+            visitor.Visit(function);
 
         }
     }
 
-    public class MyExpressionVisitor : System.Linq.Expressions.ExpressionVisitor
+    public class ExpVisitor : System.Linq.Expressions.ExpressionVisitor
     {
-        override  
+        protected override Expression VisitConstant(ConstantExpression node)
+        {
+            return base.VisitConstant(node);
+        }
+
+        protected override Expression VisitBinary(BinaryExpression node)
+        {
+            return base.VisitBinary(node);
+        }
     }
 }

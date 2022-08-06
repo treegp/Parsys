@@ -192,7 +192,7 @@ namespace Parsys.WinClient.Views.Framework
     {
         private DataGridView grid;
         private BindingSource source;
-        public TModel GetItem { get => (TModel)source?.Current; }
+        public TModel CurrentItem { get => (TModel)source?.Current; }
 
 
         public GridHandler(Control container, IEnumerable<TModel> dataSource)
@@ -244,9 +244,11 @@ namespace Parsys.WinClient.Views.Framework
         }
 
 
-        public TModel CurrentItem()
+        public void RemoveItem(TModel entity)
         {
-            return (TModel)source.Current;
+
+            source.Remove(entity);
+            RefreshDataSource();
         }
 
 

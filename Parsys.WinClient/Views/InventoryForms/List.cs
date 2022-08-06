@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Parsys.DataLayer.Entities.EntityAbstracts;
 using Parsys.DataLayer.Entities.EntityMethods;
+using Parsys.DataLayer.Entities.EntityModels;
 using Parsys.WinClient.Views.Framework;
 
 namespace Parsys.WinClient.Views.InventoryForms
@@ -19,13 +20,23 @@ namespace Parsys.WinClient.Views.InventoryForms
     {
         private DataLayer.Connections.ProviderMethods.ConnectToSQL con=new DataLayer.Connections.ProviderMethods.ConnectToSQL();
         public InventoriesRepository invRepo;
+        GridHandler<Inventories> grid;
+
 
         public List()
         {
+            
+
             InitializeComponent();
             Id = "ListInventories";
             Title = "لیست انبار ها";
             MultipleInstance = false;
+
+            AddButtun("جدید", b =>
+            {
+                MessageBox.Show(grid.CurrentItem().Title);
+            });
+
         }
 
 
@@ -33,7 +44,7 @@ namespace Parsys.WinClient.Views.InventoryForms
         {
             invRepo = new InventoriesRepository(con.GetConnection());
 
-            var grid = new GridHandler<DataLayer.Entities.EntityModels.Inventories>(this, invRepo.GetAll());
+            grid = new GridHandler<DataLayer.Entities.EntityModels.Inventories>(this, invRepo.GetAll());
 
             grid.AddStringColumn(i => i.Id,"شناسه انبار");
             grid.AddStringColumn(i => i.CorporationId,"شناسه شرکت");
@@ -41,7 +52,7 @@ namespace Parsys.WinClient.Views.InventoryForms
             grid.AddStringColumn(i => i.Description,"توضیحات");
             grid.AddStringColumn(i => i.IsDeleted,"غیر فعال");
             
-
+            
 
             base.OnLoad(e);
         }

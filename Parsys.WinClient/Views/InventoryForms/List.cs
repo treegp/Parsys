@@ -35,11 +35,11 @@ namespace Parsys.WinClient.Views.InventoryForms
 
             var grid = new GridHandler<DataLayer.Entities.EntityModels.Inventories>(this, invRepo.GetAll());
 
-            grid.AddStringColumn(i => i.Id,"شناسع");
+            grid.AddStringColumn(i => i.Id,"شناسه انبار");
             grid.AddStringColumn(i => i.CorporationId,"شناسه شرکت");
             grid.AddStringColumn(i => i.Title,"عنوان");
-            grid.AddStringColumn(i => i.Description);
-            grid.AddStringColumn(i => i.IsDeleted);
+            grid.AddStringColumn(i => i.Description,"توضیحات");
+            grid.AddStringColumn(i => i.IsDeleted,"غیر فعال");
             
 
 

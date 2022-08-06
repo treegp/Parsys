@@ -244,6 +244,11 @@ namespace Parsys.WinClient.Views.Framework
         }
 
 
+        public TModel CurrentItem()
+        {
+            return (TModel)source.Current;
+        }
+
 
     }
 

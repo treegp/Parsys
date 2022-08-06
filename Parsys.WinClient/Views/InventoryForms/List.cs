@@ -17,13 +17,15 @@ namespace Parsys.WinClient.Views.InventoryForms
 
     public partial class List : ViewBaseControl
     {
-        private DataLayer.Connections.ProviderMethods.ConnectToSQL con;
+        private DataLayer.Connections.ProviderMethods.ConnectToSQL con=new DataLayer.Connections.ProviderMethods.ConnectToSQL();
         public InventoriesRepository invRepo;
 
         public List()
         {
             InitializeComponent();
-            
+            Id = "ListInventories";
+            Title = "لیست انبار ها";
+            MultipleInstance = false;
         }
 
 

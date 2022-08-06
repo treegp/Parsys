@@ -1,31 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Parsys.DataLayer.Entities.EntityAbstracts;
-using Parsys.DataLayer.Entities.EntityMethods;
+﻿using Parsys.DataLayer.Entities.EntityMethods;
 using Parsys.DataLayer.Entities.EntityModels;
 using Parsys.WinClient.Views.Framework;
+using System;
+using System.Windows.Forms;
 
 namespace Parsys.WinClient.Views.InventoryForms
 {
-    
+
 
     public partial class List : ViewBaseControl
     {
-        private DataLayer.Connections.ProviderMethods.ConnectToSQL con=new DataLayer.Connections.ProviderMethods.ConnectToSQL();
+        private DataLayer.Connections.ProviderMethods.ConnectToSQL con = new DataLayer.Connections.ProviderMethods.ConnectToSQL();
         public InventoriesRepository invRepo;
         GridHandler<Inventories> grid;
 
 
         public List()
         {
-            
+
 
             InitializeComponent();
             Id = "ListInventories";
@@ -34,7 +26,22 @@ namespace Parsys.WinClient.Views.InventoryForms
 
             AddButtun("جدید", b =>
             {
-                MessageBox.Show(grid.CurrentItem().Title);
+                MessageBox.Show(grid.CurrentItem.Title);
+            });
+
+            AddButtun("حذف", b =>
+            {
+                if (grid.CurrentItem == null)
+                {
+                    MessageBox.Show("سطری انتخاب نشده است", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (MessageBox.Show("آیا مایل به حذف " + grid.CurrentItem.Title + " هستید؟", "حذف انبار", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    invRepo.Delete(grid.CurrentItem);
+                    grid.RemoveItem(grid.CurrentItem);
+                }
             });
 
         }
@@ -46,13 +53,13 @@ namespace Parsys.WinClient.Views.InventoryForms
 
             grid = new GridHandler<DataLayer.Entities.EntityModels.Inventories>(this, invRepo.GetAll());
 
-            grid.AddStringColumn(i => i.Id,"شناسه انبار");
-            grid.AddStringColumn(i => i.CorporationId,"شناسه شرکت");
-            grid.AddStringColumn(i => i.Title,"عنوان");
-            grid.AddStringColumn(i => i.Description,"توضیحات");
-            grid.AddStringColumn(i => i.IsDeleted,"غیر فعال");
-            
-            
+            grid.AddStringColumn(i => i.Id, "شناسه انبار");
+            grid.AddStringColumn(i => i.CorporationId, "شناسه شرکت");
+            grid.AddStringColumn(i => i.Title, "عنوان");
+            grid.AddStringColumn(i => i.Description, "توضیحات");
+            grid.AddStringColumn(i => i.IsDeleted, "غیر فعال");
+
+
 
             base.OnLoad(e);
         }

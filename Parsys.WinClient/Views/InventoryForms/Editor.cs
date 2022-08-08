@@ -27,7 +27,6 @@ namespace Parsys.WinClient.Views.InventoryForms
             NewTextBox(entity => entity.Description, "توضیحات", true);
 
             ArrangementControls();
-            firstControl.Select();
             base.OnLoad(e);
         }
     }

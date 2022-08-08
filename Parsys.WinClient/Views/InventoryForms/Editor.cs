@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Parsys.DataLayer.Entities.EntityMethods;
+﻿using Parsys.DataLayer.Entities.EntityMethods;
 using Parsys.DataLayer.Entities.EntityModels;
 using Parsys.WinClient.Views.Framework;
+using System;
 
 namespace Parsys.WinClient.Views.InventoryForms
 {
@@ -26,10 +22,11 @@ namespace Parsys.WinClient.Views.InventoryForms
 
         protected override void OnLoad(EventArgs e)
         {
-            NewTextBox(entity => entity.Title, "عنوان انبار");
             NewComboBox(entity => entity.CorporationId, "شرکت/سازمان", corpRepo.GetAll(), s => s.Title, i => i.Id);
-            NewTextBox(entity => entity.Description, "توضیحات");
+            NewTextBox(entity => entity.Title, "عنوان انبار");
 
+            NewTextBox(entity => entity.Description, "توضیحات");
+            ArrangementControls();
             base.OnLoad(e);
         }
     }

@@ -26,9 +26,9 @@ namespace Parsys.WinClient.Views.InventoryForms
 
             AddButtun("جدید", b =>
             {
-                var addForm = ViewManagement.ShowForm<Editor>(edt => edt.Title = "تعریف انبار جدید", true);
-                if (((Form)addForm.Parent).DialogResult == DialogResult.OK)
-                    invRepo.Insert(addForm.Entity);
+                var form = ViewManagement.ShowForm<Editor>(edt => edt.Title = "تعریف انبار جدید", true);
+                if (((Form)form.Parent).DialogResult == DialogResult.OK)
+                    invRepo.Insert(form.Entity);
 
                 grid.RefreshDataSource(invRepo.GetAll());
 
@@ -41,14 +41,14 @@ namespace Parsys.WinClient.Views.InventoryForms
                     MessageBox.Show("سطری انتخاب نشده است", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                var editForm = ViewManagement.ShowForm<Editor>(edt =>
+                var form = ViewManagement.ShowForm<Editor>(edt =>
                 {
                     edt.Entity = grid.CurrentItem;
                     edt.Title = "ویرایش انبار";
                 },true);
 
-                if (((Form)editForm.Parent).DialogResult == DialogResult.OK)
-                    invRepo.Update(editForm.Entity);
+                if (((Form)form.Parent).DialogResult == DialogResult.OK)
+                    invRepo.Update(form.Entity);
 
                 grid.RefreshDataSource(invRepo.GetAll());
             });

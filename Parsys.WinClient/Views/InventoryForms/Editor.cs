@@ -15,8 +15,8 @@ namespace Parsys.WinClient.Views.InventoryForms
         {
 
             Id = "EditInventories";
-            Title = "";
             MultipleInstance = false;
+            Title = "";
         }
 
     }

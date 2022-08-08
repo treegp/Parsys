@@ -22,11 +22,11 @@ namespace Parsys.WinClient.Views.InventoryForms
 
         protected override void OnLoad(EventArgs e)
         {
-            NewComboBox(entity => entity.CorporationId, "شرکت/سازمان", corpRepo.GetAll(), s => s.Title, i => i.Id);
+            var firstControl = NewComboBox(entity => entity.CorporationId, "شرکت/سازمان", corpRepo.GetAll(), s => s.Title, i => i.Id);
             NewTextBox(entity => entity.Title, "عنوان انبار");
-
             NewTextBox(entity => entity.Description, "توضیحات");
             ArrangementControls();
+            firstControl.Select();
             base.OnLoad(e);
         }
     }

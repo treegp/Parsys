@@ -33,12 +33,16 @@ namespace Parsys.WinClient.Views.InventoryForms
                     MessageBox.Show("سطری انتخاب نشده است", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                ViewManagement.ShowForm<Editor>(edt =>
+                var editForm = ViewManagement.ShowForm<Editor>(edt =>
                 {
                     edt.Entity = grid.CurrentItem;
                     edt.Title = "ویرایش انبار";
                 },true);
 
+                if (((Form)editForm.Parent).DialogResult == DialogResult.OK)
+                    invRepo.Update(grid.CurrentItem);
+
+                grid.RefreshDataSource();
             });
 
             AddButtun("حذف", b =>

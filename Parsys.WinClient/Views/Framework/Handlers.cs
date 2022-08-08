@@ -67,7 +67,7 @@ namespace Parsys.WinClient.Views.Framework
         }
 
 
-        public T OpenTab<T>(Action<T> initializer = null) where T : ViewBaseControl
+        public T OpenTab<T>(Action<T> initializer = null,bool notUsed = false) where T : ViewBaseControl
         {
 
             var instance = Activator.CreateInstance<T>();

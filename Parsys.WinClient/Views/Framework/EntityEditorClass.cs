@@ -13,14 +13,30 @@ namespace Parsys.WinClient.Views.Framework
         public TEntity Entity { get; set; }
         public List<EntityEditorControl> PriorityList = new List<EntityEditorControl>();
 
+        private TEntity defaultEntity = new TEntity();
 
         public EntityEditorClass()
         {
 
             Entity = new TEntity();
             AddButtun("تائید", b => CloseThis(DialogResult.OK));
-            AddButtun("صرف نظر", b => CloseThis(DialogResult.Cancel));
+            AddButtun("صرف نظر", b =>
+            {
+                CloseThis(DialogResult.Cancel);
+                CopyEntity(defaultEntity,Entity);
+            });
+            Load += (s, e) => CopyEntity(Entity, defaultEntity);
         }
+
+        private void CopyEntity(TEntity copy, TEntity paste)
+        {
+            var properties = copy.GetType().GetProperties();
+            foreach (var property in properties)
+            {
+                property.SetValue(paste, property.GetValue(copy));
+            }
+        }
+
 
 
         protected void ArrangementControls()

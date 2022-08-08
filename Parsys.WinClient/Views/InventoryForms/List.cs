@@ -24,9 +24,21 @@ namespace Parsys.WinClient.Views.InventoryForms
             Title = "لیست انبار ها";
             MultipleInstance = false;
 
-            AddButtun("جدید", b =>
+            AddButtun("جدید", b => ViewManagement.ShowForm<Editor>(edt=>edt.Title = "تعریف انبار جدید",true));
+
+            AddButtun("ویرایش", b =>
             {
-                ViewManagement.ShowForm<Editor>(null,true);
+                if (grid.CurrentItem == null)
+                {
+                    MessageBox.Show("سطری انتخاب نشده است", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                ViewManagement.ShowForm<Editor>(edt =>
+                {
+                    edt.Entity = grid.CurrentItem;
+                    edt.Title = "ویرایش انبار";
+                },true);
+
             });
 
             AddButtun("حذف", b =>

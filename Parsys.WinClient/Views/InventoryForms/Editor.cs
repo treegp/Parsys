@@ -22,12 +22,12 @@ namespace Parsys.WinClient.Views.InventoryForms
 
         protected override void OnLoad(EventArgs e)
         {
-            var firstControl = NewComboBox(entity => entity.CorporationId, "شرکت/سازمان", corpRepo.GetAll(), s => s.Title, i => i.Id);
+            base.OnLoad(e);
+            NewComboBox(entity => entity.CorporationId, "شرکت/سازمان", corpRepo.GetAll(), s => s.Title, i => i.Id);
             NewTextBox(entity => entity.Title, "عنوان انبار");
             NewTextBox(entity => entity.Description, "توضیحات", true);
-
+            NewBinaryBox(entity => entity.IsDeleted, "پاک شده");
             ArrangementControls();
-            base.OnLoad(e);
         }
     }
 }

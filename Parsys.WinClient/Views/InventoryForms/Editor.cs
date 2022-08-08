@@ -26,9 +26,9 @@ namespace Parsys.WinClient.Views.InventoryForms
 
         protected override void OnLoad(EventArgs e)
         {
-            newTextBox(entity => entity.Title, "عنوان انبار");
-            newComboBox(entity => entity.CorporationId, "شرکت/سازمان", corpRepo.GetAll(), s => s.Title, i => i.Id);
-            newTextBox(entity => entity.Description, "توضیحات");
+            NewTextBox(entity => entity.Title, "عنوان انبار");
+            NewComboBox(entity => entity.CorporationId, "شرکت/سازمان", corpRepo.GetAll(), s => s.Title, i => i.Id);
+            NewTextBox(entity => entity.Description, "توضیحات");
 
             base.OnLoad(e);
         }

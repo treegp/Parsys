@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace Parsys.WinClient.Views.Framework
@@ -23,7 +25,9 @@ namespace Parsys.WinClient.Views.Framework
 
         protected void ArrangementControls()
         {
-            int count = PriorityList.Count;
+            if (this.Parent.GetType() == typeof(Form))
+                this.Parent.Width = 600;
+
             int gap = PriorityList.Select(i => i.label.Width).Max();
             int top = 25;
 
@@ -38,7 +42,22 @@ namespace Parsys.WinClient.Views.Framework
                 item.label.Top = top;
                 item.label.Anchor = (AnchorStyles.Right | AnchorStyles.Top);
 
+
                 top += item.control.Height + 7;
+            }
+
+            
+
+            PriorityList.OrderBy(p => p.priority).First().control.Select();
+
+
+            if (this.Parent.GetType() == typeof(Form))
+            {
+                this.Parent.Height = top + this.Controls.OfType<Panel>().First().Height +
+                                     SystemInformation.CaptionHeight + 30; //i dont understand what cause this 30 pixel
+                ((Form)this.Parent).MaximizeBox = false;
+                ((Form)this.Parent).MaximumSize = new Size(3000, this.Parent.Height);
+                ((Form)this.Parent).MinimumSize = new Size(600, this.Parent.Height);
             }
         }
 

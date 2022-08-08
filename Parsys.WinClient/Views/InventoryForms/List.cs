@@ -26,7 +26,7 @@ namespace Parsys.WinClient.Views.InventoryForms
 
             AddButtun("جدید", b =>
             {
-                MessageBox.Show(grid.CurrentItem.Title);
+                ViewManagement.ShowForm<Editor>(null,true);
             });
 
             AddButtun("حذف", b =>

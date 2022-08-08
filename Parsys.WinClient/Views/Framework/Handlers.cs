@@ -136,6 +136,7 @@ namespace Parsys.WinClient.Views.Framework
                 form.StartPosition = FormStartPosition.CenterParent;
                 form.RightToLeft = RightToLeft.Yes;
                 form.Font = new Font("Tahoma", 8);
+                form.Closing += (o, e) => CloseView(instance, DialogResult.Cancel);
 
 
                 if (!instance.MultipleInstance)

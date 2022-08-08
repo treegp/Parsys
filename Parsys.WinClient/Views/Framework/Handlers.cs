@@ -172,6 +172,7 @@ namespace Parsys.WinClient.Views.Framework
                     instanceTabControl.SelectedTab = instanceTabControl.TabPages[instanceTabControl.TabCount - 1];
                 }
                 else if (openedSingleViews[id].GetType().Name == "Form")
+
                     if (dresult != null & ((Form)openedSingleViews[id]).Modal == true)
                         ((Form)openedSingleViews[id]).DialogResult = dresult.Value;
                     else

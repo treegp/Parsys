@@ -25,11 +25,14 @@ namespace Parsys.WinClient.Views.Framework
 
         protected TextBox newTextBox<TReturn>(Expression<Func<TEntity,TReturn>> item,string caption)
         {
+            var exp = new ExpressionHandler();
+
             Label label = new Label();
             label.Text = caption;
+            label.AutoSize = true;
 
             TextBox textBox = new TextBox();
-
+            textBox.DataBindings.Add("Text", Entity, exp.GetNameOfProperty(item));
 
 
 
@@ -39,16 +42,26 @@ namespace Parsys.WinClient.Views.Framework
         }
 
 
-        protected ComboBox newComboBox<TReturn,TComboItem>(Expression<Func<TEntity,TReturn>> item, string caption,List<TComboItem> comboList,Expression<Func<TComboItem,string>> comboTitle,Expression<Func<TComboItem,TReturn>> comboItem)
+        protected ComboBox newComboBox<TReturn,TComboItem>(Expression<Func<TEntity,TReturn>> item, string caption,List<TComboItem> comboList,Expression<Func<TComboItem,string>> comboTitles,Expression<Func<TComboItem,TReturn>> comboItems)
         {
+            var exp = new ExpressionHandler();
+
             Label label = new Label();
             label.Text = caption;
+            label.AutoSize = true;
 
             ComboBox comboBox = new ComboBox();
+            comboBox.DataSource = comboList;
+            comboBox.DataBindings.Add("SelectedValue", Entity, exp.GetNameOfProperty(item));
+            comboBox.DisplayMember = exp.GetNameOfProperty(comboTitles);
+            comboBox.ValueMember = exp.GetNameOfProperty(comboItems);
 
 
 
-            return null;
+
+            this.Controls.Add(label);
+            this.Controls.Add(comboBox);
+            return comboBox;
         }
 
 

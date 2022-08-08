@@ -39,7 +39,8 @@ namespace Parsys.WinClient.Views.Framework
         }
 
 
-        protected TextBox NewTextBox<TReturn>(Expression<Func<TEntity, TReturn>> item, string caption)
+        protected TextBox NewTextBox<TReturn>(Expression<Func<TEntity, TReturn>> item, string caption,
+            bool multiLine = false)
         {
             var exp = new ExpressionHandler();
 
@@ -49,7 +50,9 @@ namespace Parsys.WinClient.Views.Framework
 
             TextBox textBox = new TextBox();
 
+            textBox.Multiline=multiLine;
             textBox.Width = 80;
+            textBox.Height = 150;
 
             textBox.DataBindings.Add("Text", Entity, exp.GetNameOfProperty(item));
 

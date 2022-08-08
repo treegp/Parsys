@@ -46,8 +46,6 @@ namespace Parsys.WinClient.Views.Framework
                 top += item.control.Height + 7;
             }
 
-            
-
             PriorityList.OrderBy(p => p.priority).First().control.Select();
 
 
@@ -74,7 +72,6 @@ namespace Parsys.WinClient.Views.Framework
             TextBox textBox = new TextBox();
 
             textBox.Multiline = multiLine;
-            textBox.Width = 80;
 
             if (multiLine)
             {
@@ -82,11 +79,7 @@ namespace Parsys.WinClient.Views.Framework
                 textBox.ScrollBars = ScrollBars.Vertical;
             }
 
-
             textBox.DataBindings.Add("Text", Entity, exp.GetNameOfProperty(item));
-
-
-
 
             this.Controls.Add(label);
             this.Controls.Add(textBox);
@@ -112,16 +105,12 @@ namespace Parsys.WinClient.Views.Framework
 
             ComboBox comboBox = new ComboBox();
 
-            comboBox.Width = 80;
             comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
 
             comboBox.DataBindings.Add("SelectedValue", Entity, exp.GetNameOfProperty(item));
             comboBox.DataSource = comboList;
             comboBox.DisplayMember = exp.GetNameOfProperty(comboTitles);
             comboBox.ValueMember = exp.GetNameOfProperty(comboItems);
-
-
-
 
             this.Controls.Add(label);
             this.Controls.Add(comboBox);
@@ -136,6 +125,15 @@ namespace Parsys.WinClient.Views.Framework
         }
 
 
+        protected ComboBox NewBinaryBox(Expression<Func<TEntity, bool>> item, string caption)
+        {
+            List<ComboItem<bool>> comboList = new List<ComboItem<bool>>();
+            comboList.Add(new ComboItem<bool>() { DisplayMember = "بلی", ValueMember = true });
+            comboList.Add(new ComboItem<bool>() { DisplayMember = "خیر", ValueMember = false });
+
+            return NewComboBox(item, caption, comboList, c => c.DisplayMember, c => c.ValueMember);
+        }
+
 
 
     }
@@ -145,5 +143,11 @@ namespace Parsys.WinClient.Views.Framework
         public Label label { get; set; }
         public Control control { get; set; }
         public int priority { get; set; }
+    }
+
+    public class ComboItem<TValue>
+    {
+        public string DisplayMember { get; set; }
+        public TValue ValueMember { get; set; }
     }
 }

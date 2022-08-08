@@ -23,9 +23,18 @@ namespace Parsys.WinClient.Views.Framework
 
         protected void ArrangementControls()
         {
+            int count = PriorityList.Count;
+            int gap = PriorityList.Select(i => i.label.Width).Max();
+            int top = 25;
+
             foreach (var item in PriorityList.OrderBy(p => p.priority))
             {
+                item.label.Left = this.Width  - gap-10;
+                item.label.Top = top += item.control.Height +10;
 
+                item.control.Left = 10;
+                item.control.Width = this.Width - gap - 30;
+                item.control.Top = top-3;
             }
         }
 
@@ -72,6 +81,7 @@ namespace Parsys.WinClient.Views.Framework
             ComboBox comboBox = new ComboBox();
 
             comboBox.Width = 80;
+            comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
 
             comboBox.DataBindings.Add("SelectedValue", Entity, exp.GetNameOfProperty(item));
             comboBox.DataSource = comboList;

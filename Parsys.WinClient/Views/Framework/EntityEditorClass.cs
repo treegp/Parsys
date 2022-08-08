@@ -22,8 +22,13 @@ namespace Parsys.WinClient.Views.Framework
         }
 
 
+        protected void ArrangementControls()
+        {
 
-        protected TextBox newTextBox<TReturn>(Expression<Func<TEntity,TReturn>> item,string caption)
+        }
+
+
+        protected TextBox NewTextBox<TReturn>(Expression<Func<TEntity,TReturn>> item,string caption)
         {
             var exp = new ExpressionHandler();
 
@@ -42,7 +47,7 @@ namespace Parsys.WinClient.Views.Framework
         }
 
 
-        protected ComboBox newComboBox<TReturn,TComboItem>(Expression<Func<TEntity,TReturn>> item, string caption,List<TComboItem> comboList,Expression<Func<TComboItem,string>> comboTitles,Expression<Func<TComboItem,TReturn>> comboItems)
+        protected ComboBox NewComboBox<TReturn,TComboItem>(Expression<Func<TEntity,TReturn>> item, string caption,List<TComboItem> comboList,Expression<Func<TComboItem,string>> comboTitles,Expression<Func<TComboItem,TReturn>> comboItems)
         {
             var exp = new ExpressionHandler();
 
@@ -65,5 +70,7 @@ namespace Parsys.WinClient.Views.Framework
         }
 
 
+
+        
     }
 }

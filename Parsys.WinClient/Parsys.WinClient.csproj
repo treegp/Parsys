@@ -112,6 +112,9 @@
     <Compile Include="Views\Framework\ViewBaseControl.Designer.cs">
       <DependentUpon>ViewBaseControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\InventoryForms\Editor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Views\InventoryForms\List.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -55,7 +55,7 @@ namespace Parsys.WinClient.Views.Framework
     {
         private Dictionary<string, object> openedSingleViews = new Dictionary<string, object>();
         private TabControl instanceTabControl;
-        
+
 
 
         public ViewHandler() { }
@@ -264,6 +264,7 @@ namespace Parsys.WinClient.Views.Framework
 
         public string GetNameOfProperty(Expression exp)
         {
+            memberNames.Clear();
             Visit(exp);
             memberNames.Reverse();
             return string.Join(".", memberNames);
@@ -271,7 +272,6 @@ namespace Parsys.WinClient.Views.Framework
 
         protected override Expression VisitMember(MemberExpression node)
         {
-            memberNames.Clear();
             if (node.Member is MemberInfo)
                 memberNames.Add(node.Member.Name);
             return base.VisitMember(node);

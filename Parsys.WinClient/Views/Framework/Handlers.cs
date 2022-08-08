@@ -55,6 +55,7 @@ namespace Parsys.WinClient.Views.Framework
     {
         private Dictionary<string, object> openedSingleViews = new Dictionary<string, object>();
         private TabControl instanceTabControl;
+        
 
 
         public ViewHandler() { }

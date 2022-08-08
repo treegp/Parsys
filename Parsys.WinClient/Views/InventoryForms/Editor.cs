@@ -19,5 +19,13 @@ namespace Parsys.WinClient.Views.InventoryForms
             Title = "";
         }
 
+        protected override void OnLoad(EventArgs e)
+        {
+            newTextBox(entity => entity.Title, "عنوان انبار");
+
+            newTextBox(entity => entity.Description, "توضیحات");
+
+            base.OnLoad(e);
+        }
     }
 }

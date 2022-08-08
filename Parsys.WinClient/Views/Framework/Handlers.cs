@@ -270,6 +270,7 @@ namespace Parsys.WinClient.Views.Framework
 
         protected override Expression VisitMember(MemberExpression node)
         {
+            memberNames.Clear();
             if (node.Member is MemberInfo)
                 memberNames.Add(node.Member.Name);
             return base.VisitMember(node);

@@ -38,7 +38,7 @@ namespace Parsys.WinClient.Views.Framework
                 item.label.Top = top;
                 item.label.Anchor = (AnchorStyles.Right | AnchorStyles.Top);
 
-                top += item.control.Height + 10;
+                top += item.control.Height + 7;
             }
         }
 

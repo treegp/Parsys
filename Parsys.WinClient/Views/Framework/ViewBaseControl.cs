@@ -12,7 +12,6 @@ namespace Parsys.WinClient.Views.Framework
         public ViewHandler ViewManagement { get; internal set; }
 
 
-
         protected void CloseThis(DialogResult? result=null)
         {
             ViewManagement.CloseView(this,result);

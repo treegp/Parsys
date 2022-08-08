@@ -67,7 +67,7 @@ namespace Parsys.WinClient.Views.Framework
         }
 
 
-        public T OpenTab<T>(Action<T> initializer = null,bool notUsed = false) where T : ViewBaseControl
+        public T OpenTab<T>(Action<T> initializer = null, bool notUsed = false) where T : ViewBaseControl
         {
 
             var instance = Activator.CreateInstance<T>();
@@ -136,7 +136,8 @@ namespace Parsys.WinClient.Views.Framework
                 form.StartPosition = FormStartPosition.CenterParent;
                 form.RightToLeft = RightToLeft.Yes;
                 form.Font = new Font("Tahoma", 8);
-                form.Closing += (o, e) => CloseView(instance, DialogResult.Cancel);
+                form.FormClosing += (openedSingleViews, e) => CloseView(instance, form.DialogResult);
+
 
 
                 if (!instance.MultipleInstance)
@@ -163,26 +164,32 @@ namespace Parsys.WinClient.Views.Framework
 
         public void CloseView(ViewBaseControl view, DialogResult? dresult = null)
         {
-            if (view != null)
+            if (view == null)
+                return;
+
+            string id = view.Id;
+
+            if(!openedSingleViews.ContainsKey(id))
+                return;
+
+
+
+            if (openedSingleViews[id].GetType().Name == "TabPage")
             {
-                string id = view.Id;
-
-                if (openedSingleViews[id].GetType().Name == "TabPage")
-                {
-                    instanceTabControl.TabPages.Remove((TabPage)openedSingleViews[id]);
-                    instanceTabControl.SelectedTab = instanceTabControl.TabPages[instanceTabControl.TabCount - 1];
-                }
-                else if (openedSingleViews[id].GetType().Name == "Form")
-
-                    if (dresult != null & ((Form)openedSingleViews[id]).Modal == true)
-                        ((Form)openedSingleViews[id]).DialogResult = dresult.Value;
-                    else
-                        ((Form)openedSingleViews[id]).Close();
-
-
-                openedSingleViews.Remove(id);
+                instanceTabControl.TabPages.Remove((TabPage)openedSingleViews[id]);
+                instanceTabControl.SelectedTab = instanceTabControl.TabPages[instanceTabControl.TabCount - 1];
             }
+            else if (openedSingleViews[id].GetType().Name == "Form")
+
+                if (dresult != null & ((Form)openedSingleViews[id]).Modal == true)
+                    ((Form)openedSingleViews[id]).DialogResult = dresult.Value;
+                else
+                    ((Form)openedSingleViews[id]).Close();
+
+
+            openedSingleViews.Remove(id);
         }
+
 
 
 

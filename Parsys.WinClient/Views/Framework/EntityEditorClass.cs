@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Parsys.WinClient.Views.Framework
 {
-    public class EntityEditorClass<TEntity> : ViewBaseControl where TEntity : class
+    public class EntityEditorClass<TEntity> : ViewBaseControl where TEntity : class, new()
     {
         public TEntity Entity { get; set; }
 
@@ -15,7 +15,7 @@ namespace Parsys.WinClient.Views.Framework
         public EntityEditorClass()
         {
 
-
+            Entity = new TEntity();
             AddButtun("تائید", b => CloseThis(DialogResult.OK));
             AddButtun("صرف نظر", b => CloseThis(DialogResult.Cancel));
         }

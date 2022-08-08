@@ -29,12 +29,16 @@ namespace Parsys.WinClient.Views.Framework
 
             foreach (var item in PriorityList.OrderBy(p => p.priority))
             {
-                item.label.Left = this.Width  - gap-10;
-                item.label.Top = top += item.control.Height +10;
-
                 item.control.Left = 10;
                 item.control.Width = this.Width - gap - 30;
-                item.control.Top = top-3;
+                item.control.Top = top - 3;
+                item.control.Anchor = (AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right);
+
+                item.label.Left = this.Width - gap - 10;
+                item.label.Top = top;
+                item.label.Anchor = (AnchorStyles.Right | AnchorStyles.Top);
+
+                top += item.control.Height + 10;
             }
         }
 
@@ -50,9 +54,15 @@ namespace Parsys.WinClient.Views.Framework
 
             TextBox textBox = new TextBox();
 
-            textBox.Multiline=multiLine;
+            textBox.Multiline = multiLine;
             textBox.Width = 80;
-            textBox.Height = 150;
+
+            if (multiLine)
+            {
+                textBox.Height = 90;
+                textBox.ScrollBars = ScrollBars.Vertical;
+            }
+
 
             textBox.DataBindings.Add("Text", Entity, exp.GetNameOfProperty(item));
 

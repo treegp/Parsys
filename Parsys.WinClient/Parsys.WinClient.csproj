@@ -96,6 +96,7 @@
     <Compile Include="Views\CorporationForms\List.Designer.cs">
       <DependentUpon>List.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Framework\EntityEditorClass.cs" />
     <Compile Include="Views\Framework\Handlers.cs" />
     <Compile Include="Views\Framework\MainBaseForm.cs">
       <SubType>Form</SubType>

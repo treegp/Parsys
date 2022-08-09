@@ -58,34 +58,39 @@ namespace Parsys.DataLayer.Entities.EntityMethods
         }
 
         //INSERT INTO [dbo].[****] (Id,...) VALUES (@param1,...)
-        public int Insert(TEntity entity)
+        public TEntity Insert(TEntity entity)
         {
             List<string> columnList = new List<string>();
+            List<string> outputList = new List<string>();
             List<string> paramList = new List<string>();
             List<SqlParameter> parametersList = new List<SqlParameter>();
 
             int i = 1;
             foreach (var spec in ColumnsSpecifics)
             {
-                if (spec.Computed | spec.ColumnType.GetValue(entity) == null)
+                if (spec.ColumnType.GetValue(entity) == null)
                     continue;
+                else if (!spec.Computed)
+                {
+                    columnList.Add(spec.ColumnName);
+                    paramList.Add("param" + i);
+                    var val = spec.ColumnType.GetValue(entity);
+                    if (val == null)
+                        val = DBNull.Value;
 
-                columnList.Add(spec.ColumnName);
-                paramList.Add("param" + i);
-
-                var val = spec.ColumnType.GetValue(entity);
-                if (val == null)
-                    val = DBNull.Value;
-
-                parametersList.Add(new SqlParameter("param" + i, val));
-                i++;
+                    parametersList.Add(new SqlParameter("param" + i, val));
+                    i++;
+                }
+                outputList.Add(spec.ColumnName);
             }
 
             string insertPart = "INSERT INTO [" + tblSchema + "].[" + tblName + "]";
-            string columnPart = "(" + string.Join(",", columnList) + ")";
+            string columnPart = "(" + string.Join(",", columnList.Select(c => "[" + c + "]")) + ")";
+            string outputPart = "OUTPUT " + string.Join(",", outputList.Select(c => "inserted.[" + c + "]"));
             string paramPart = "VALUES (" + string.Join(",", paramList.Select(c => "@" + c)) + ")";
 
-            string command = string.Join(" ", insertPart, columnPart, paramPart);
+            string command = string.Join(" ", insertPart, columnPart, outputPart, paramPart);
+
 
 
             using (SqlConnection con = new SqlConnection(conStr))
@@ -95,7 +100,20 @@ namespace Parsys.DataLayer.Entities.EntityMethods
                 foreach (SqlParameter p in parametersList)
                     com.Parameters.Add(p);
 
-                return com.ExecuteNonQuery();
+
+                var reader = com.ExecuteReader();
+                TEntity returnEntity = Activator.CreateInstance<TEntity>();
+                if (reader.Read())
+                {
+                    foreach (var spec in outputList)
+                    {
+                        if (reader[spec] == DBNull.Value)
+                            entity.GetType().GetProperty(spec).SetValue(returnEntity, null);
+                        else
+                            entity.GetType().GetProperty(spec).SetValue(returnEntity, reader[spec]);
+                    }
+                }
+                return returnEntity;
             }
 
         }
@@ -143,38 +161,41 @@ namespace Parsys.DataLayer.Entities.EntityMethods
 
 
         //UPDATE [dbo].[****] SET [Name]=@param1 , ... WHERE [Id]=1
-        public int Update(TEntity entity)
+        public TEntity Update(TEntity entity)
         {
             List<string> conditionList = new List<string>();
+            List<string> outputList = new List<string>();
             List<string> setList = new List<string>();
             List<SqlParameter> parametersList = new List<SqlParameter>();
+
 
             int i = 1;
             foreach (var spec in ColumnsSpecifics)
             {
-
-                if (spec.PrimaryKey)
+                if (spec.ColumnType.GetValue(entity) == null)
+                    continue;
+                else if (spec.PrimaryKey)
                     conditionList.Add("[" + spec.ColumnName + "] = @param" + i);
                 else if (!spec.Computed)
                     setList.Add("[" + spec.ColumnName + "] = @param" + i);
-                else
-                    continue;
-
 
                 var val = spec.ColumnType.GetValue(entity);
                 if (val == null)
                     val = DBNull.Value;
 
-                parametersList.Add(new SqlParameter("param" + i,val));
+                parametersList.Add(new SqlParameter("param" + i, val));
                 i++;
+
+                outputList.Add(spec.ColumnName);
             }
 
 
             string updatePart = "UPDATE [" + tblSchema + "].[" + tblName + "]";
             string setPart = "SET " + string.Join(",", setList);
+            string outputPart = "OUTPUT " + string.Join(",", outputList.Select(c => "inserted.[" + c + "]"));
             string wherePart = "WHERE " + string.Join(",", conditionList);
 
-            string command = string.Join(" ", updatePart, setPart, wherePart);
+            string command = string.Join(" ", updatePart, setPart,outputPart, wherePart);
 
 
             using (SqlConnection con = new SqlConnection(conStr))
@@ -184,7 +205,19 @@ namespace Parsys.DataLayer.Entities.EntityMethods
                 foreach (SqlParameter p in parametersList)
                     com.Parameters.Add(p);
 
-                return com.ExecuteNonQuery();
+                var reader = com.ExecuteReader();
+                TEntity returnEntity = Activator.CreateInstance<TEntity>();
+                if (reader.Read())
+                {
+                    foreach (var spec in outputList)
+                    {
+                        if (reader[spec] == DBNull.Value)
+                            entity.GetType().GetProperty(spec).SetValue(returnEntity, null);
+                        else
+                            entity.GetType().GetProperty(spec).SetValue(returnEntity, reader[spec]);
+                    }
+                }
+                return returnEntity;
             }
 
 

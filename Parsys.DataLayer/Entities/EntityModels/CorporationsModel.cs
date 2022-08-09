@@ -1,10 +1,8 @@
 using System;
-using Parsys.DataLayer.Entities.EntityAbstracts;
-
 namespace Parsys.DataLayer.Entities.EntityModels
 {
     [GenericRepoModel.Table("dbo")]
-    public class Corporations 
+    public class Corporations
     {
         [GenericRepoModel.Column(true,true, true)]
         public int Id { get; set; }

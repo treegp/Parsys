@@ -6,7 +6,7 @@ namespace Parsys.DataLayer.Entities.EntityAbstracts
 
     {
         TEntity Insert(TEntity entity);
-        int Delete(TEntity entity);
+        TEntity Delete(TEntity entity);
         TEntity Update(TEntity entity);
         List<TEntity> GetAll();
         TEntity Top();

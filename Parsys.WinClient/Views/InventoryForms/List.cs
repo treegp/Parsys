@@ -29,7 +29,7 @@ namespace Parsys.WinClient.Views.InventoryForms
                 var form = ViewManagement.ShowForm<Editor>(edt => edt.Title = "تعریف انبار جدید", true);
                 var t = new Inventories();
                 if (((Form)form.Parent).DialogResult == DialogResult.OK)
-                   t= invRepo.Insert(form.Entity);
+                    t = invRepo.Insert(form.Entity);
 
                 grid.AddItem(t);
                 //grid.RefreshDataSource(invRepo.GetAll());
@@ -47,7 +47,7 @@ namespace Parsys.WinClient.Views.InventoryForms
                 {
                     edt.Entity = grid.CurrentItem;
                     edt.Title = "ویرایش انبار";
-                },true);
+                }, true);
 
                 var t = new Inventories();
                 if (((Form)form.Parent).DialogResult == DialogResult.OK)
@@ -65,11 +65,13 @@ namespace Parsys.WinClient.Views.InventoryForms
                     return;
                 }
 
+                var t = new Inventories();
                 if (MessageBox.Show("آیا مایل به حذف " + grid.CurrentItem.Title + " هستید؟", "حذف انبار", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    invRepo.Delete(grid.CurrentItem);
+                    t = invRepo.Delete(grid.CurrentItem);
 
-                    grid.RefreshDataSource(invRepo.GetAll());
+                    grid.RemoveItem(t);
+                    //grid.RefreshDataSource(invRepo.GetAll());
                 }
             });
 

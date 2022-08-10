@@ -169,7 +169,7 @@ namespace Parsys.WinClient.Views.Framework
 
             string id = view.Id;
 
-            if(!openedSingleViews.ContainsKey(id))
+            if (!openedSingleViews.ContainsKey(id))
                 return;
 
 
@@ -200,30 +200,30 @@ namespace Parsys.WinClient.Views.Framework
 
     public class GridHandler<TModel>
     {
-        private DataGridView grid;
-        private BindingSource source;
-        public TModel CurrentItem { get => (TModel)source?.Current; }
-
+        private DataGridView dataGrid;
+        private BindingSource bindingSource;
+        public TModel CurrentItem { get => (TModel)bindingSource?.Current; }
+        public int? CurrentIndex { get => bindingSource?.IndexOf(bindingSource?.Current); }
 
         public GridHandler(Control container, IEnumerable<TModel> dataSource)
         {
-            source = new BindingSource();
-            source.DataSource = dataSource;
+            bindingSource = new BindingSource();
+            bindingSource.DataSource = dataSource;
 
-            grid = new DataGridView();
-            grid.AllowUserToDeleteRows = false;
-            grid.AllowUserToAddRows = false;
-            grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            grid.AutoGenerateColumns = false;
-            grid.MultiSelect = false;
-            grid.EditMode = DataGridViewEditMode.EditProgrammatically;
-            grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            grid.AllowUserToResizeColumns = true;
-            grid.AllowUserToOrderColumns = true;
-            grid.Dock = DockStyle.Fill;
-            grid.DataSource = source;
+            dataGrid = new DataGridView();
+            dataGrid.AllowUserToDeleteRows = false;
+            dataGrid.AllowUserToAddRows = false;
+            dataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGrid.AutoGenerateColumns = false;
+            dataGrid.MultiSelect = false;
+            dataGrid.EditMode = DataGridViewEditMode.EditProgrammatically;
+            dataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGrid.AllowUserToResizeColumns = true;
+            dataGrid.AllowUserToOrderColumns = true;
+            dataGrid.Dock = DockStyle.Fill;
+            dataGrid.DataSource = bindingSource;
 
-            container.Controls.Add(grid);
+            container.Controls.Add(dataGrid);
         }
 
 
@@ -233,7 +233,7 @@ namespace Parsys.WinClient.Views.Framework
             if (header == null)
                 header = columnName;
 
-            grid.Columns.Add(new DataGridViewTextBoxColumn()
+            dataGrid.Columns.Add(new DataGridViewTextBoxColumn()
             {
                 HeaderText = header,
                 DataPropertyName = columnName
@@ -246,17 +246,16 @@ namespace Parsys.WinClient.Views.Framework
         public GridHandler<TModel> RefreshDataSource(IEnumerable<TModel> dataSource = null)
         {
             if (dataSource != null)
-                source.DataSource = dataSource;
+                bindingSource.DataSource = dataSource;
 
-            source.ResetBindings(true);
-
+            bindingSource.ResetBindings(true);
             return this;
         }
 
 
         public void UpdateItem(TModel entity)
         {
-            source[source.IndexOf(source.Current)] = entity;
+            bindingSource[bindingSource.IndexOf(bindingSource.Current)] = entity;
             RefreshDataSource();
         }
 
@@ -264,15 +263,20 @@ namespace Parsys.WinClient.Views.Framework
 
         public void AddItem(TModel entity)
         {
-            source.Add(entity);
+            bindingSource.Add(entity);
             RefreshDataSource();
         }
 
 
-        public void RemoveItem(TModel entity)
+        public void RemoveItem(int? index)
         {
-            source.Remove(entity);
-            RefreshDataSource();
+            if (index != null)
+            {
+                
+                bindingSource.Remove(dataGrid.Rows[(int)index]);
+                dataGrid.Rows.RemoveAt((int)index);
+                RefreshDataSource();
+            }
         }
 
 

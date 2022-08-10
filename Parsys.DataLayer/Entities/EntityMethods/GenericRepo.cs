@@ -80,6 +80,7 @@ namespace Parsys.DataLayer.Entities.EntityMethods
                     parametersList.Add(new SqlParameter("param" + i, val));
                     i++;
                 }
+
             }
 
             string insertPart = "INSERT INTO [" + tblSchema + "].[" + tblName + "]";
@@ -103,12 +104,12 @@ namespace Parsys.DataLayer.Entities.EntityMethods
                 TEntity returnEntity = Activator.CreateInstance<TEntity>();
                 if (reader.Read())
                 {
-                    foreach (var specName in returnEntity.GetType().GetProperties().Select(p=>p.Name))
+                    foreach (var spec in returnEntity.GetType().GetProperties())
                     {
-                        if (reader[specName] == DBNull.Value)
-                            entity.GetType().GetProperty(specName).SetValue(returnEntity, null);
+                        if (reader[spec.Name] == DBNull.Value)
+                            spec.SetValue(returnEntity, null);
                         else
-                            entity.GetType().GetProperty(specName).SetValue(returnEntity, reader[specName]);
+                            spec.SetValue(returnEntity, reader[spec.Name]);
                     }
                 }
                 return returnEntity;
@@ -139,6 +140,7 @@ namespace Parsys.DataLayer.Entities.EntityMethods
                     parametersList.Add(new SqlParameter("param" + i, val));
                     i++;
                 }
+
             }
 
             string deletePart = "DELETE FROM [" + tblSchema + "].[" + tblName + "]";
@@ -159,12 +161,12 @@ namespace Parsys.DataLayer.Entities.EntityMethods
                 TEntity returnEntity = Activator.CreateInstance<TEntity>();
                 if (reader.Read())
                 {
-                    foreach (var specName in returnEntity.GetType().GetProperties().Select(p => p.Name))
+                    foreach (var spec in returnEntity.GetType().GetProperties())
                     {
-                        if (reader[specName] == DBNull.Value)
-                            entity.GetType().GetProperty(specName).SetValue(returnEntity, null);
+                        if (reader[spec.Name] == DBNull.Value)
+                            spec.SetValue(returnEntity, null);
                         else
-                            entity.GetType().GetProperty(specName).SetValue(returnEntity, reader[specName]);
+                            spec.SetValue(returnEntity, reader[spec.Name]);
                     }
                 }
                 return returnEntity;
@@ -191,13 +193,14 @@ namespace Parsys.DataLayer.Entities.EntityMethods
                 else if (!spec.Computed)
                     setList.Add("[" + spec.ColumnName + "] = @param" + i);
 
+
+
                 var val = spec.ColumnType.GetValue(entity);
                 if (val == null)
                     val = DBNull.Value;
 
                 parametersList.Add(new SqlParameter("param" + i, val));
                 i++;
-
             }
 
 
@@ -220,12 +223,12 @@ namespace Parsys.DataLayer.Entities.EntityMethods
                 TEntity returnEntity = Activator.CreateInstance<TEntity>();
                 if (reader.Read())
                 {
-                    foreach (var specName in returnEntity.GetType().GetProperties().Select(p => p.Name))
+                    foreach (var spec in returnEntity.GetType().GetProperties())
                     {
-                        if (reader[specName] == DBNull.Value)
-                            entity.GetType().GetProperty(specName).SetValue(returnEntity, null);
+                        if (reader[spec.Name] == DBNull.Value)
+                            spec.SetValue(returnEntity, null);
                         else
-                            entity.GetType().GetProperty(specName).SetValue(returnEntity, reader[specName]);
+                            spec.SetValue(returnEntity, reader[spec.Name]);
                     }
                 }
                 return returnEntity;
@@ -269,6 +272,7 @@ namespace Parsys.DataLayer.Entities.EntityMethods
         }
 
 
+
         public List<TEntity> GetAll()
         {
             using (SqlConnection con = new SqlConnection(conStr))
@@ -294,6 +298,8 @@ namespace Parsys.DataLayer.Entities.EntityMethods
             }
         }
 
+
+
         public TEntity Top()
         {
             using (SqlConnection con = new SqlConnection(conStr))
@@ -313,6 +319,8 @@ namespace Parsys.DataLayer.Entities.EntityMethods
                 return entity;
             }
         }
+
+
 
         public int Count()
         {

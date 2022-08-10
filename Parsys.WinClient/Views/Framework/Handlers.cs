@@ -254,9 +254,23 @@ namespace Parsys.WinClient.Views.Framework
         }
 
 
+        public void UpdateItem(TModel entity)
+        {
+            source[source.IndexOf(source.Current)] = entity;
+            RefreshDataSource();
+        }
+
+
+
+        public void AddItem(TModel entity)
+        {
+            source.Add(entity);
+            RefreshDataSource();
+        }
+
+
         public void RemoveItem(TModel entity)
         {
-
             source.Remove(entity);
             RefreshDataSource();
         }

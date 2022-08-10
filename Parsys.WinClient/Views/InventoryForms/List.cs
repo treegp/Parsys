@@ -27,10 +27,12 @@ namespace Parsys.WinClient.Views.InventoryForms
             AddButtun("جدید", b =>
             {
                 var form = ViewManagement.ShowForm<Editor>(edt => edt.Title = "تعریف انبار جدید", true);
+                var t = new Inventories();
                 if (((Form)form.Parent).DialogResult == DialogResult.OK)
-                    invRepo.Insert(form.Entity);
+                   t= invRepo.Insert(form.Entity);
 
-                grid.RefreshDataSource(invRepo.GetAll());
+                grid.AddItem(t);
+                //grid.RefreshDataSource(invRepo.GetAll());
 
             });
 
@@ -47,10 +49,12 @@ namespace Parsys.WinClient.Views.InventoryForms
                     edt.Title = "ویرایش انبار";
                 },true);
 
+                var t = new Inventories();
                 if (((Form)form.Parent).DialogResult == DialogResult.OK)
-                    invRepo.Update(form.Entity);
+                    t = invRepo.Update(form.Entity);
 
-                grid.RefreshDataSource(invRepo.GetAll());
+                grid.UpdateItem(t);
+                //grid.RefreshDataSource(invRepo.GetAll());
             });
 
             AddButtun("حذف", b =>

@@ -72,7 +72,7 @@ namespace Parsys.WinClient.Views.InventoryForms
                 var t = new Inventories();
                 if (MessageBox.Show("آیا مایل به حذف " + grid.CurrentItem.Title + " هستید؟", "حذف انبار", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    t = invRepo.Delete(grid.CurrentItem);
+                    invRepo.Delete(grid.CurrentItem);
                     grid.RemoveItem(grid.CurrentIndex);
                     //grid.RefreshDataSource(invRepo.GetAll());
                 }

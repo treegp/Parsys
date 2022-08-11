@@ -168,6 +168,10 @@
     <EmbeddedResource Include="Views\CorporationForms\List.resx">
       <DependentUpon>List.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Framework\DatePickerControl.resx">
+      <DependentUpon>DatePickerControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Framework\MainBaseForm.resx">
       <DependentUpon>MainBaseForm.cs</DependentUpon>
     </EmbeddedResource>

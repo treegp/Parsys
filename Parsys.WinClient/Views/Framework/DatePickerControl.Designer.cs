@@ -37,7 +37,11 @@
             this.YearTextBox = new System.Windows.Forms.TextBox();
             this.MonthComboBox = new System.Windows.Forms.ComboBox();
             this.DaysDataGridView = new System.Windows.Forms.DataGridView();
+            this.SelectedDateLabel = new System.Windows.Forms.Label();
+            this.TodayButton = new System.Windows.Forms.Button();
+            this.CurrentDayButton = new System.Windows.Forms.Button();
             this.TopPanel.SuspendLayout();
+            this.BottomPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DaysDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,6 +71,9 @@
             // 
             // BottomPanel
             // 
+            this.BottomPanel.Controls.Add(this.SelectedDateLabel);
+            this.BottomPanel.Controls.Add(this.CurrentDayButton);
+            this.BottomPanel.Controls.Add(this.TodayButton);
             this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.BottomPanel.Location = new System.Drawing.Point(0, 323);
             this.BottomPanel.Name = "BottomPanel";
@@ -144,8 +151,40 @@
             this.DaysDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DaysDataGridView.Location = new System.Drawing.Point(0, 74);
             this.DaysDataGridView.Name = "DaysDataGridView";
+            this.DaysDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.DaysDataGridView.Size = new System.Drawing.Size(388, 249);
             this.DaysDataGridView.TabIndex = 4;
+            // 
+            // SelectedDateLabel
+            // 
+            this.SelectedDateLabel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.SelectedDateLabel.Location = new System.Drawing.Point(102, 8);
+            this.SelectedDateLabel.Name = "SelectedDateLabel";
+            this.SelectedDateLabel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.SelectedDateLabel.Size = new System.Drawing.Size(184, 27);
+            this.SelectedDateLabel.TabIndex = 4;
+            this.SelectedDateLabel.Text = "23 مرداد 1401";
+            this.SelectedDateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // TodayButton
+            // 
+            this.TodayButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.TodayButton.Location = new System.Drawing.Point(296, 0);
+            this.TodayButton.Name = "TodayButton";
+            this.TodayButton.Size = new System.Drawing.Size(92, 42);
+            this.TodayButton.TabIndex = 5;
+            this.TodayButton.Text = "امروز";
+            this.TodayButton.UseVisualStyleBackColor = true;
+            // 
+            // CurrentDayButton
+            // 
+            this.CurrentDayButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.CurrentDayButton.Location = new System.Drawing.Point(0, 0);
+            this.CurrentDayButton.Name = "CurrentDayButton";
+            this.CurrentDayButton.Size = new System.Drawing.Size(92, 42);
+            this.CurrentDayButton.TabIndex = 5;
+            this.CurrentDayButton.Text = "روز انتخابی";
+            this.CurrentDayButton.UseVisualStyleBackColor = true;
             // 
             // DatePickerControl
             // 
@@ -158,6 +197,7 @@
             this.Size = new System.Drawing.Size(388, 365);
             this.TopPanel.ResumeLayout(false);
             this.TopPanel.PerformLayout();
+            this.BottomPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DaysDataGridView)).EndInit();
             this.ResumeLayout(false);
 
@@ -174,5 +214,8 @@
         private System.Windows.Forms.Button PreviousYearButton;
         private System.Windows.Forms.Panel BottomPanel;
         private System.Windows.Forms.DataGridView DaysDataGridView;
+        private System.Windows.Forms.Label SelectedDateLabel;
+        private System.Windows.Forms.Button CurrentDayButton;
+        private System.Windows.Forms.Button TodayButton;
     }
 }

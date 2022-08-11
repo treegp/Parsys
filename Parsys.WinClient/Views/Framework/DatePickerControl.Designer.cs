@@ -74,14 +74,14 @@
             this.TopPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.TopPanel.Location = new System.Drawing.Point(0, 0);
             this.TopPanel.Name = "TopPanel";
-            this.TopPanel.Size = new System.Drawing.Size(388, 74);
+            this.TopPanel.Size = new System.Drawing.Size(388, 56);
             this.TopPanel.TabIndex = 2;
             // 
             // MonthComboBox
             // 
             this.MonthComboBox.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.MonthComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.MonthComboBox.Font = new System.Drawing.Font("Tahoma", 17F);
+            this.MonthComboBox.Font = new System.Drawing.Font("Tahoma", 12F);
             this.MonthComboBox.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.MonthComboBox.FormattingEnabled = true;
             this.MonthComboBox.Items.AddRange(new object[] {
@@ -97,19 +97,19 @@
             "دی",
             "بهمن",
             "اسفند"});
-            this.MonthComboBox.Location = new System.Drawing.Point(102, 38);
+            this.MonthComboBox.Location = new System.Drawing.Point(102, 29);
             this.MonthComboBox.Name = "MonthComboBox";
-            this.MonthComboBox.Size = new System.Drawing.Size(184, 36);
+            this.MonthComboBox.Size = new System.Drawing.Size(184, 27);
             this.MonthComboBox.TabIndex = 3;
             // 
             // YearTextBox
             // 
             this.YearTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.YearTextBox.Font = new System.Drawing.Font("Tahoma", 17F);
+            this.YearTextBox.Font = new System.Drawing.Font("Tahoma", 12F);
             this.YearTextBox.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.YearTextBox.Location = new System.Drawing.Point(102, 0);
             this.YearTextBox.Name = "YearTextBox";
-            this.YearTextBox.Size = new System.Drawing.Size(184, 35);
+            this.YearTextBox.Size = new System.Drawing.Size(184, 27);
             this.YearTextBox.TabIndex = 2;
             this.YearTextBox.Text = "1401";
             this.YearTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -117,9 +117,10 @@
             // NextMonthButton
             // 
             this.NextMonthButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.NextMonthButton.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.NextMonthButton.Location = new System.Drawing.Point(286, 0);
             this.NextMonthButton.Name = "NextMonthButton";
-            this.NextMonthButton.Size = new System.Drawing.Size(51, 74);
+            this.NextMonthButton.Size = new System.Drawing.Size(51, 56);
             this.NextMonthButton.TabIndex = 1;
             this.NextMonthButton.Text = ">";
             this.NextMonthButton.UseVisualStyleBackColor = true;
@@ -127,9 +128,10 @@
             // NextYearButton
             // 
             this.NextYearButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.NextYearButton.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.NextYearButton.Location = new System.Drawing.Point(337, 0);
             this.NextYearButton.Name = "NextYearButton";
-            this.NextYearButton.Size = new System.Drawing.Size(51, 74);
+            this.NextYearButton.Size = new System.Drawing.Size(51, 56);
             this.NextYearButton.TabIndex = 1;
             this.NextYearButton.Text = ">>";
             this.NextYearButton.UseVisualStyleBackColor = true;
@@ -137,9 +139,10 @@
             // PreviousMonthButton
             // 
             this.PreviousMonthButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.PreviousMonthButton.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.PreviousMonthButton.Location = new System.Drawing.Point(51, 0);
             this.PreviousMonthButton.Name = "PreviousMonthButton";
-            this.PreviousMonthButton.Size = new System.Drawing.Size(51, 74);
+            this.PreviousMonthButton.Size = new System.Drawing.Size(51, 56);
             this.PreviousMonthButton.TabIndex = 1;
             this.PreviousMonthButton.Text = "<";
             this.PreviousMonthButton.UseVisualStyleBackColor = true;
@@ -147,9 +150,10 @@
             // PreviousYearButton
             // 
             this.PreviousYearButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.PreviousYearButton.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.PreviousYearButton.Location = new System.Drawing.Point(0, 0);
             this.PreviousYearButton.Name = "PreviousYearButton";
-            this.PreviousYearButton.Size = new System.Drawing.Size(51, 74);
+            this.PreviousYearButton.Size = new System.Drawing.Size(51, 56);
             this.PreviousYearButton.TabIndex = 1;
             this.PreviousYearButton.Text = "<<";
             this.PreviousYearButton.UseVisualStyleBackColor = true;
@@ -167,7 +171,7 @@
             // 
             // SelectedDateLabel
             // 
-            this.SelectedDateLabel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.SelectedDateLabel.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Bold);
             this.SelectedDateLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.SelectedDateLabel.Location = new System.Drawing.Point(102, 8);
             this.SelectedDateLabel.Name = "SelectedDateLabel";
@@ -181,6 +185,7 @@
             // 
             this.CurrentDayButton.BackColor = System.Drawing.Color.SteelBlue;
             this.CurrentDayButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.CurrentDayButton.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.CurrentDayButton.ForeColor = System.Drawing.Color.White;
             this.CurrentDayButton.Location = new System.Drawing.Point(0, 0);
             this.CurrentDayButton.Name = "CurrentDayButton";
@@ -191,8 +196,10 @@
             // 
             // TodayButton
             // 
-            this.TodayButton.BackColor = System.Drawing.Color.LightCyan;
+            this.TodayButton.BackColor = System.Drawing.Color.LightSeaGreen;
             this.TodayButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.TodayButton.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.TodayButton.ForeColor = System.Drawing.Color.White;
             this.TodayButton.Location = new System.Drawing.Point(296, 0);
             this.TodayButton.Name = "TodayButton";
             this.TodayButton.Size = new System.Drawing.Size(92, 42);
@@ -231,7 +238,7 @@
             this.FridayColumn});
             this.DaysDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DaysDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.DaysDataGridView.Location = new System.Drawing.Point(0, 74);
+            this.DaysDataGridView.Location = new System.Drawing.Point(0, 56);
             this.DaysDataGridView.MultiSelect = false;
             this.DaysDataGridView.Name = "DaysDataGridView";
             this.DaysDataGridView.ReadOnly = true;
@@ -254,7 +261,7 @@
             this.DaysDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.DaysDataGridView.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.SteelBlue;
             this.DaysDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DaysDataGridView.Size = new System.Drawing.Size(388, 249);
+            this.DaysDataGridView.Size = new System.Drawing.Size(388, 267);
             this.DaysDataGridView.TabIndex = 4;
             this.DaysDataGridView.TabStop = false;
             // 

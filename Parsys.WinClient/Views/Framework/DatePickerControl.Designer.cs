@@ -171,12 +171,13 @@
             // 
             // SelectedDateLabel
             // 
+            this.SelectedDateLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SelectedDateLabel.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Bold);
             this.SelectedDateLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.SelectedDateLabel.Location = new System.Drawing.Point(102, 8);
+            this.SelectedDateLabel.Location = new System.Drawing.Point(102, 0);
             this.SelectedDateLabel.Name = "SelectedDateLabel";
             this.SelectedDateLabel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.SelectedDateLabel.Size = new System.Drawing.Size(184, 27);
+            this.SelectedDateLabel.Size = new System.Drawing.Size(184, 42);
             this.SelectedDateLabel.TabIndex = 4;
             this.SelectedDateLabel.Text = "23 مرداد 1401";
             this.SelectedDateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -189,7 +190,7 @@
             this.CurrentDayButton.ForeColor = System.Drawing.Color.White;
             this.CurrentDayButton.Location = new System.Drawing.Point(0, 0);
             this.CurrentDayButton.Name = "CurrentDayButton";
-            this.CurrentDayButton.Size = new System.Drawing.Size(92, 42);
+            this.CurrentDayButton.Size = new System.Drawing.Size(102, 42);
             this.CurrentDayButton.TabIndex = 5;
             this.CurrentDayButton.Text = "روز انتخابی";
             this.CurrentDayButton.UseVisualStyleBackColor = false;
@@ -200,9 +201,9 @@
             this.TodayButton.Dock = System.Windows.Forms.DockStyle.Right;
             this.TodayButton.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.TodayButton.ForeColor = System.Drawing.Color.White;
-            this.TodayButton.Location = new System.Drawing.Point(296, 0);
+            this.TodayButton.Location = new System.Drawing.Point(286, 0);
             this.TodayButton.Name = "TodayButton";
-            this.TodayButton.Size = new System.Drawing.Size(92, 42);
+            this.TodayButton.Size = new System.Drawing.Size(102, 42);
             this.TodayButton.TabIndex = 5;
             this.TodayButton.Text = "امروز";
             this.TodayButton.UseVisualStyleBackColor = false;
@@ -220,7 +221,7 @@
             this.DaysDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 6F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;

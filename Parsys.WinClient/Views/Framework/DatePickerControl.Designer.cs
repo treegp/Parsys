@@ -120,6 +120,19 @@
             this.MonthTextBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MonthTextBox.Font = new System.Drawing.Font("Tahoma", 17F);
             this.MonthTextBox.FormattingEnabled = true;
+            this.MonthTextBox.Items.AddRange(new object[] {
+            "فروردین",
+            "اردیبهشت",
+            "خرداد",
+            "تیر",
+            "مرداد",
+            "شهریور",
+            "مهر",
+            "آبان",
+            "آذر",
+            "دی",
+            "بهمن",
+            "اسفند"});
             this.MonthTextBox.Location = new System.Drawing.Point(102, 38);
             this.MonthTextBox.Name = "MonthTextBox";
             this.MonthTextBox.Size = new System.Drawing.Size(184, 36);

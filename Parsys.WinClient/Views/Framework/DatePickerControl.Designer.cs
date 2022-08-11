@@ -35,7 +35,7 @@
             this.NextYearButton = new System.Windows.Forms.Button();
             this.NextMonthButton = new System.Windows.Forms.Button();
             this.YearTextBox = new System.Windows.Forms.TextBox();
-            this.MonthTextBox = new System.Windows.Forms.ComboBox();
+            this.MonthComboBox = new System.Windows.Forms.ComboBox();
             this.DaysDataGridView = new System.Windows.Forms.DataGridView();
             this.TopPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DaysDataGridView)).BeginInit();
@@ -43,7 +43,7 @@
             // 
             // TopPanel
             // 
-            this.TopPanel.Controls.Add(this.MonthTextBox);
+            this.TopPanel.Controls.Add(this.MonthComboBox);
             this.TopPanel.Controls.Add(this.YearTextBox);
             this.TopPanel.Controls.Add(this.NextMonthButton);
             this.TopPanel.Controls.Add(this.NextYearButton);
@@ -114,13 +114,13 @@
             this.YearTextBox.Text = "1401";
             this.YearTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // MonthTextBox
+            // MonthComboBox
             // 
-            this.MonthTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.MonthTextBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.MonthTextBox.Font = new System.Drawing.Font("Tahoma", 17F);
-            this.MonthTextBox.FormattingEnabled = true;
-            this.MonthTextBox.Items.AddRange(new object[] {
+            this.MonthComboBox.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.MonthComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.MonthComboBox.Font = new System.Drawing.Font("Tahoma", 17F);
+            this.MonthComboBox.FormattingEnabled = true;
+            this.MonthComboBox.Items.AddRange(new object[] {
             "فروردین",
             "اردیبهشت",
             "خرداد",
@@ -133,10 +133,10 @@
             "دی",
             "بهمن",
             "اسفند"});
-            this.MonthTextBox.Location = new System.Drawing.Point(102, 38);
-            this.MonthTextBox.Name = "MonthTextBox";
-            this.MonthTextBox.Size = new System.Drawing.Size(184, 36);
-            this.MonthTextBox.TabIndex = 3;
+            this.MonthComboBox.Location = new System.Drawing.Point(102, 38);
+            this.MonthComboBox.Name = "MonthComboBox";
+            this.MonthComboBox.Size = new System.Drawing.Size(184, 36);
+            this.MonthComboBox.TabIndex = 3;
             // 
             // DaysDataGridView
             // 
@@ -166,7 +166,7 @@
         #endregion
 
         private System.Windows.Forms.Panel TopPanel;
-        private System.Windows.Forms.ComboBox MonthTextBox;
+        private System.Windows.Forms.ComboBox MonthComboBox;
         private System.Windows.Forms.TextBox YearTextBox;
         private System.Windows.Forms.Button NextMonthButton;
         private System.Windows.Forms.Button NextYearButton;

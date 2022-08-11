@@ -96,6 +96,12 @@
     <Compile Include="Views\CorporationForms\List.Designer.cs">
       <DependentUpon>List.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Framework\DatePickerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Framework\DatePickerControl.Designer.cs">
+      <DependentUpon>DatePickerControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Framework\EntityEditorClass.cs">
       <SubType>UserControl</SubType>
     </Compile>

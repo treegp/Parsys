@@ -44,6 +44,8 @@
             this.CurrentDayButton = new System.Windows.Forms.Button();
             this.TodayButton = new System.Windows.Forms.Button();
             this.TopPanel = new System.Windows.Forms.Panel();
+            this.MonthLabel = new System.Windows.Forms.Label();
+            this.YearLabel = new System.Windows.Forms.Label();
             this.DaysDataGridView = new System.Windows.Forms.DataGridView();
             this.SaturdayColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SundayColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,8 +54,6 @@
             this.WednesdayColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ThursdayColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FridayColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.YearLabel = new System.Windows.Forms.Label();
-            this.MonthLabel = new System.Windows.Forms.Label();
             this.MonthListBox = new System.Windows.Forms.ListBox();
             this.YearListBox = new System.Windows.Forms.ListBox();
             this.BottomPanel.SuspendLayout();
@@ -97,6 +97,7 @@
             this.CurrentDayButton.TabIndex = 5;
             this.CurrentDayButton.Text = "روز انتخابی";
             this.CurrentDayButton.UseVisualStyleBackColor = false;
+            this.CurrentDayButton.Click += new System.EventHandler(this.CurrentDayButton_Click);
             // 
             // TodayButton
             // 
@@ -110,6 +111,7 @@
             this.TodayButton.TabIndex = 5;
             this.TodayButton.Text = "امروز";
             this.TodayButton.UseVisualStyleBackColor = false;
+            this.TodayButton.Click += new System.EventHandler(this.TodayButton_Click);
             // 
             // TopPanel
             // 
@@ -120,6 +122,30 @@
             this.TopPanel.Name = "TopPanel";
             this.TopPanel.Size = new System.Drawing.Size(298, 50);
             this.TopPanel.TabIndex = 9;
+            // 
+            // MonthLabel
+            // 
+            this.MonthLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MonthLabel.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.MonthLabel.Location = new System.Drawing.Point(0, 0);
+            this.MonthLabel.Name = "MonthLabel";
+            this.MonthLabel.Size = new System.Drawing.Size(298, 21);
+            this.MonthLabel.TabIndex = 0;
+            this.MonthLabel.Text = "فروردین";
+            this.MonthLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.MonthLabel.Click += new System.EventHandler(this.MonthLabel_Click);
+            // 
+            // YearLabel
+            // 
+            this.YearLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.YearLabel.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.YearLabel.Location = new System.Drawing.Point(0, 29);
+            this.YearLabel.Name = "YearLabel";
+            this.YearLabel.Size = new System.Drawing.Size(298, 21);
+            this.YearLabel.TabIndex = 0;
+            this.YearLabel.Text = "1401";
+            this.YearLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.YearLabel.Click += new System.EventHandler(this.YearLabel_Click);
             // 
             // DaysDataGridView
             // 
@@ -242,30 +268,6 @@
             this.FridayColumn.HeaderText = "جـ";
             this.FridayColumn.Name = "FridayColumn";
             this.FridayColumn.ReadOnly = true;
-            // 
-            // YearLabel
-            // 
-            this.YearLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.YearLabel.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.YearLabel.Location = new System.Drawing.Point(0, 29);
-            this.YearLabel.Name = "YearLabel";
-            this.YearLabel.Size = new System.Drawing.Size(298, 21);
-            this.YearLabel.TabIndex = 0;
-            this.YearLabel.Text = "1401";
-            this.YearLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.YearLabel.Click += new System.EventHandler(this.YearLabel_Click);
-            // 
-            // MonthLabel
-            // 
-            this.MonthLabel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.MonthLabel.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.MonthLabel.Location = new System.Drawing.Point(0, 0);
-            this.MonthLabel.Name = "MonthLabel";
-            this.MonthLabel.Size = new System.Drawing.Size(298, 21);
-            this.MonthLabel.TabIndex = 0;
-            this.MonthLabel.Text = "فروردین";
-            this.MonthLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.MonthLabel.Click += new System.EventHandler(this.MonthLabel_Click);
             // 
             // MonthListBox
             // 

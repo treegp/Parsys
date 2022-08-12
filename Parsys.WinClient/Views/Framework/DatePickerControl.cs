@@ -41,14 +41,14 @@ namespace Parsys.WinClient.Views.Framework
             ReturnDate = new DateTime(PerCalendar.GetYear(DateTime.Now), PerCalendar.GetMonth(DateTime.Now),
                 PerCalendar.GetDayOfMonth(DateTime.Now), PerCalendar);
 
-            RefreshCalendar(PerCalendar.GetMonth(DateTime.Now), PerCalendar.GetYear(DateTime.Now));
+            RefreshCalendar( PerCalendar.GetYear(DateTime.Now), PerCalendar.GetMonth(DateTime.Now));
             MonthListBox.SelectedItem = MonthLabel.Text;
             base.OnLoad(e);
         }
 
 
 
-        protected void RefreshCalendar(int m, int y)
+        protected void RefreshCalendar(int y, int m, int? d = null)
         {
             DaysDataGridView.Rows.Clear();
             MonthLabel.Text = MonthListBox.Items[m - 1].ToString();
@@ -188,7 +188,7 @@ namespace Parsys.WinClient.Views.Framework
         {
             MonthListBox.Visible = false;
             MonthLabel.Text = MonthListBox.SelectedItem.ToString();
-            RefreshCalendar(MonthListBox.SelectedIndex + 1, int.Parse(YearLabel.Text));
+            RefreshCalendar(int.Parse(YearLabel.Text), MonthListBox.SelectedIndex + 1);
             DaysDataGridView.CurrentCell = null;
         }
 
@@ -209,10 +209,20 @@ namespace Parsys.WinClient.Views.Framework
         {
             YearListBox.Visible = false;
             YearLabel.Text = YearListBox.SelectedItem.ToString();
-            RefreshCalendar(MonthListBox.SelectedIndex + 1, int.Parse(YearLabel.Text));
+            RefreshCalendar( int.Parse(YearLabel.Text), MonthListBox.SelectedIndex + 1);
             DaysDataGridView.CurrentCell = null;
         }
         #endregion
 
+        private void CurrentDayButton_Click(object sender, EventArgs e)
+        {
+            RefreshCalendar(PerCalendar.GetYear(ReturnDate), PerCalendar.GetMonth(ReturnDate));
+
+        }
+
+        private void TodayButton_Click(object sender, EventArgs e)
+        {
+            RefreshCalendar( PerCalendar.GetYear(DateTime.Now), PerCalendar.GetMonth(DateTime.Now));
+        }
     }
 }

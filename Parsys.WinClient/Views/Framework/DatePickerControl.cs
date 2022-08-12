@@ -13,14 +13,14 @@ namespace Parsys.WinClient.Views.Framework
 
         public DatePickerControl()
         {
-            
+
             InitializeComponent();
             MonthListBox.DrawMode = DrawMode.OwnerDrawFixed;
-            MonthListBox.DrawItem += new DrawItemEventHandler(listBox_DrawItem);
+            MonthListBox.DrawItem += new DrawItemEventHandler(ListBoxDrawItem);
             YearListBox.DrawMode = DrawMode.OwnerDrawFixed;
-            YearListBox.DrawItem += new DrawItemEventHandler(listBox_DrawItem);
+            YearListBox.DrawItem += new DrawItemEventHandler(ListBoxDrawItem);
 
-            void listBox_DrawItem(object sender, DrawItemEventArgs e)
+            void ListBoxDrawItem(object sender, DrawItemEventArgs e)
             {
                 ListBox list = (ListBox)sender;
                 if (e.Index > -1)
@@ -38,39 +38,51 @@ namespace Parsys.WinClient.Views.Framework
 
         protected override void OnLoad(EventArgs e)
         {
-            int d = PerCalendar.GetDayOfMonth(DateTime.Now);
-            int m = 4; //PerCalendar.GetMonth(DateTime.Now);
-            int y = PerCalendar.GetYear(DateTime.Now);
+            ReturnDate = new DateTime(PerCalendar.GetYear(DateTime.Now), PerCalendar.GetMonth(DateTime.Now),
+                PerCalendar.GetDayOfMonth(DateTime.Now), PerCalendar);
+
+            RefreshCalendar(PerCalendar.GetMonth(DateTime.Now), PerCalendar.GetYear(DateTime.Now));
+            MonthListBox.SelectedItem = MonthLabel.Text;
+            base.OnLoad(e);
+        }
+
+
+
+        protected void RefreshCalendar(int m, int y)
+        {
+            DaysDataGridView.Rows.Clear();
+            MonthLabel.Text = MonthListBox.Items[m - 1].ToString();
+            YearLabel.Text = y.ToString();
+
 
             int dINm = PerCalendar.GetDaysInMonth(y, m);
             int dINlastm = m == 1 ? PerCalendar.GetDaysInMonth(y - 1, 12) : PerCalendar.GetDaysInMonth(y, m - 1);
 
             DaysDataGridView.Rows.Add(6);
             int dayIndex;
-            int weekIndex;
             int rowIndex = 0;
 
 
-            weekIndex = 1 + (int)PerCalendar.GetDayOfWeek(new DateTime(y, m, 1, PerCalendar));
+            int weekIndex = 1 + (int)PerCalendar.GetDayOfWeek(new DateTime(y, m, 1, PerCalendar));
 
             if (weekIndex != 7)
             {
                 int lastMonthWeekIndex = 0;
-                for (dayIndex = dINlastm - weekIndex+1; dayIndex <= dINlastm; dayIndex++)
+                for (dayIndex = dINlastm - weekIndex + 1; dayIndex <= dINlastm; dayIndex++)
                 {
-                    
+
                     DaysDataGridView.Rows[rowIndex].Cells[lastMonthWeekIndex].Value = dayIndex;
                     DaysDataGridView.Rows[rowIndex].Cells[lastMonthWeekIndex].Style.ForeColor = Color.Gainsboro;
 
                     if (m == 1)
                     {
                         DaysDataGridView.Rows[rowIndex].Cells[lastMonthWeekIndex].Tag =
-                            new DateTime(y-1, 12, dayIndex, PerCalendar);
+                            new DateTime(y - 1, 12, dayIndex, PerCalendar);
                     }
                     else
                     {
                         DaysDataGridView.Rows[rowIndex].Cells[lastMonthWeekIndex].Tag =
-                            new DateTime(y, m-1, dayIndex, PerCalendar);
+                            new DateTime(y, m - 1, dayIndex, PerCalendar);
                     }
 
                     lastMonthWeekIndex++;
@@ -86,15 +98,50 @@ namespace Parsys.WinClient.Views.Framework
                     new DateTime(y, m, dayIndex, PerCalendar);
 
 
+
+                if ((DateTime)DaysDataGridView.Rows[rowIndex].Cells[weekIndex].Tag == new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day))
+                {
+                    DaysDataGridView.Rows[rowIndex].Cells[weekIndex].Style.ForeColor = Color.White;
+                    DaysDataGridView.Rows[rowIndex].Cells[weekIndex].Style.BackColor = Color.LightSeaGreen;
+                }
+
                 weekIndex++;
                 if (weekIndex == 7)
                 {
                     rowIndex++;
                     weekIndex = 0;
                 }
-
-
             }
+
+            //next month
+            if (rowIndex < 6)
+            {
+                for (dayIndex = 1; rowIndex < 6; dayIndex++)
+                {
+                    DaysDataGridView.Rows[rowIndex].Cells[weekIndex].Value = dayIndex;
+                    DaysDataGridView.Rows[rowIndex].Cells[weekIndex].Style.ForeColor = Color.Gainsboro;
+
+                    if (m == 12)
+                    {
+                        DaysDataGridView.Rows[rowIndex].Cells[weekIndex].Tag =
+                            new DateTime(y + 1, 1, dayIndex, PerCalendar);
+                    }
+                    else
+                    {
+                        DaysDataGridView.Rows[rowIndex].Cells[weekIndex].Tag =
+                            new DateTime(y, m + 1, dayIndex, PerCalendar);
+                    }
+
+                    weekIndex++;
+                    if (weekIndex == 7)
+                    {
+                        rowIndex++;
+                        weekIndex = 0;
+                    }
+                }
+            }
+
+
 
 
 
@@ -102,43 +149,70 @@ namespace Parsys.WinClient.Views.Framework
             {
                 row.Height = 30;
             }
-
-
-
-
-
-
-            base.OnLoad(e);
         }
+
+
+
+
+
+
 
         private void DaysDataGridView_SelectionChanged(object sender, EventArgs e)
         {
-            if (DaysDataGridView.SelectedCells[0].Tag != null)
-                SelectedDateLabel.Text = ((DateTime)DaysDataGridView.SelectedCells[0].Tag).ToString("d MMM yyyy");
+            if (DaysDataGridView.SelectedCells.Count != 0)
+                if (DaysDataGridView.SelectedCells[0].Tag != null)
+                {
+                    SelectedDateLabel.Text = ((DateTime)DaysDataGridView.SelectedCells[0].Tag).ToString("d MMM yyyy");
+                    ReturnDate = (DateTime)DaysDataGridView.SelectedCells[0].Tag;
+                }
         }
 
+
+
+        #region choose month and year
         private void MonthLabel_Click(object sender, EventArgs e)
         {
-            MonthListBox.Visible = true;
-            MonthListBox.SelectedItem = MonthLabel.Text;
+            if (MonthListBox.Visible)
+                MonthListBox.Visible = false;
+            else
+            {
+                YearListBox.Visible = false;
+                MonthListBox.Visible = true;
+                MonthListBox.SelectedItem = MonthLabel.Text;
+            }
+
+
         }
 
         private void MonthListBox_Click(object sender, EventArgs e)
         {
             MonthListBox.Visible = false;
             MonthLabel.Text = MonthListBox.SelectedItem.ToString();
+            RefreshCalendar(MonthListBox.SelectedIndex + 1, int.Parse(YearLabel.Text));
+            DaysDataGridView.CurrentCell = null;
         }
 
         private void YearLabel_Click(object sender, EventArgs e)
         {
-            YearListBox.Visible = true;
-            YearListBox.SelectedItem = YearLabel.Text;
+            if (YearListBox.Visible)
+                YearListBox.Visible = false;
+            else
+            {
+                MonthListBox.Visible = false;
+                YearListBox.Visible = true;
+                YearListBox.SelectedItem = YearLabel.Text;
+            }
+
         }
 
         private void YearListBox_Click(object sender, EventArgs e)
         {
             YearListBox.Visible = false;
             YearLabel.Text = YearListBox.SelectedItem.ToString();
+            RefreshCalendar(MonthListBox.SelectedIndex + 1, int.Parse(YearLabel.Text));
+            DaysDataGridView.CurrentCell = null;
         }
+        #endregion
+
     }
 }

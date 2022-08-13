@@ -35,8 +35,6 @@
             this.MainTabControl = new System.Windows.Forms.TabControl();
             this.DateTimeTimer = new System.Windows.Forms.Timer(this.components);
             this.CloseCurrentTabButton = new System.Windows.Forms.Button();
-            this.datePickerControl1 = new Parsys.WinClient.Views.Framework.DatePickerControl();
-            this.MainTabPage.SuspendLayout();
             this.MainTabControl.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,7 +61,6 @@
             // 
             // MainTabPage
             // 
-            this.MainTabPage.Controls.Add(this.datePickerControl1);
             this.MainTabPage.Location = new System.Drawing.Point(4, 23);
             this.MainTabPage.Name = "MainTabPage";
             this.MainTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -101,14 +98,6 @@
             this.CloseCurrentTabButton.UseVisualStyleBackColor = false;
             this.CloseCurrentTabButton.Click += new System.EventHandler(this.CloseCurrentTabButton_Click);
             // 
-            // datePickerControl1
-            // 
-            this.datePickerControl1.Location = new System.Drawing.Point(199, 71);
-            this.datePickerControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.datePickerControl1.Name = "datePickerControl1";
-            this.datePickerControl1.Size = new System.Drawing.Size(389, 350);
-            this.datePickerControl1.TabIndex = 1;
-            // 
             // MainBaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -124,7 +113,6 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "پارسیس";
-            this.MainTabPage.ResumeLayout(false);
             this.MainTabControl.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -139,6 +127,5 @@
         private System.Windows.Forms.Timer DateTimeTimer;
         private System.Windows.Forms.StatusStrip MainStatusStrip;
         private System.Windows.Forms.Button CloseCurrentTabButton;
-        private DatePickerControl datePickerControl1;
     }
 }

@@ -19,7 +19,15 @@ namespace Parsys.WinClient.Views.Framework
             viewManager = new ViewHandler(MainTabControl);
 
             var p = new System.Globalization.PersianCalendar();
-            MainTabPage.Controls.Add(new DatePickerControl(new DateTime(1354,4,11, p)));
+            //MainTabPage.Controls.Add(new DatePickerControl(new DateTime(1354,4,11, p)));
+
+            var drp = new DropDownObject();
+            MainTabPage.Controls.Add(drp);
+
+            drp.ControlObject = () =>
+            {
+                return new DatePickerControl();
+            };
 
 
             var dt = MainStatusStrip.Items.Add(DateTime.Now.ToString("dd MMM yyyy  |  HH:mm:ss"));

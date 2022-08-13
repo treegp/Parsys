@@ -35,8 +35,6 @@
             this.MainTabControl = new System.Windows.Forms.TabControl();
             this.DateTimeTimer = new System.Windows.Forms.Timer(this.components);
             this.CloseCurrentTabButton = new System.Windows.Forms.Button();
-            this.dropDownObject1 = new Parsys.WinClient.Views.Framework.DropDownObject();
-            this.MainTabPage.SuspendLayout();
             this.MainTabControl.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,7 +61,6 @@
             // 
             // MainTabPage
             // 
-            this.MainTabPage.Controls.Add(this.dropDownObject1);
             this.MainTabPage.Location = new System.Drawing.Point(4, 23);
             this.MainTabPage.Name = "MainTabPage";
             this.MainTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -101,16 +98,6 @@
             this.CloseCurrentTabButton.UseVisualStyleBackColor = false;
             this.CloseCurrentTabButton.Click += new System.EventHandler(this.CloseCurrentTabButton_Click);
             // 
-            // dropDownObject1
-            // 
-            this.dropDownObject1.Location = new System.Drawing.Point(579, 77);
-            this.dropDownObject1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.dropDownObject1.MaximumSize = new System.Drawing.Size(3500, 24);
-            this.dropDownObject1.MinimumSize = new System.Drawing.Size(144, 24);
-            this.dropDownObject1.Name = "dropDownObject1";
-            this.dropDownObject1.Size = new System.Drawing.Size(144, 24);
-            this.dropDownObject1.TabIndex = 0;
-            // 
             // MainBaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -126,7 +113,6 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "پارسیس";
-            this.MainTabPage.ResumeLayout(false);
             this.MainTabControl.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -141,6 +127,5 @@
         private System.Windows.Forms.Timer DateTimeTimer;
         private System.Windows.Forms.StatusStrip MainStatusStrip;
         private System.Windows.Forms.Button CloseCurrentTabButton;
-        private DropDownObject dropDownObject1;
     }
 }

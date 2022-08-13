@@ -18,8 +18,8 @@ namespace Parsys.WinClient.Views.Framework
             menuManager = new MenuStripHandler(MainMenuStrip.Items);
             viewManager = new ViewHandler(MainTabControl);
 
-
-
+            var p = new System.Globalization.PersianCalendar();
+            MainTabPage.Controls.Add(new DatePickerControl(new DateTime(1354,4,11, p)));
 
 
             var dt = MainStatusStrip.Items.Add(DateTime.Now.ToString("dd MMM yyyy  |  HH:mm:ss"));

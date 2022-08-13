@@ -34,9 +34,10 @@
             // 
             // DropDownButton
             // 
-            this.DropDownButton.Location = new System.Drawing.Point(1, 1);
+            this.DropDownButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.DropDownButton.Location = new System.Drawing.Point(0, 0);
             this.DropDownButton.Name = "DropDownButton";
-            this.DropDownButton.Size = new System.Drawing.Size(20, 20);
+            this.DropDownButton.Size = new System.Drawing.Size(20, 22);
             this.DropDownButton.TabIndex = 0;
             this.DropDownButton.Text = "▼";
             this.DropDownButton.UseVisualStyleBackColor = true;
@@ -44,11 +45,10 @@
             // 
             // ValueMaskedTextBox
             // 
-            this.ValueMaskedTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ValueMaskedTextBox.Location = new System.Drawing.Point(21, 1);
+            this.ValueMaskedTextBox.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ValueMaskedTextBox.Location = new System.Drawing.Point(36, 0);
             this.ValueMaskedTextBox.Name = "ValueMaskedTextBox";
-            this.ValueMaskedTextBox.Size = new System.Drawing.Size(99, 20);
+            this.ValueMaskedTextBox.Size = new System.Drawing.Size(227, 20);
             this.ValueMaskedTextBox.TabIndex = 1;
             // 
             // DropDownObject
@@ -60,7 +60,7 @@
             this.MaximumSize = new System.Drawing.Size(3000, 22);
             this.MinimumSize = new System.Drawing.Size(123, 22);
             this.Name = "DropDownObject";
-            this.Size = new System.Drawing.Size(123, 22);
+            this.Size = new System.Drawing.Size(263, 22);
             this.ResumeLayout(false);
             this.PerformLayout();
 

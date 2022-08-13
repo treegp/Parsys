@@ -7,42 +7,46 @@ namespace Parsys.WinClient.Views.Framework
 {
     public partial class DropDownObject : UserControl
     {
-        public Form Form;
         public Func<Control> ControlObject;
 
         public DropDownObject()
         {
             InitializeComponent();
-            Form = new Form();
-            Form.FormBorderStyle = FormBorderStyle.None;
-            Form.BackColor = Color.Gainsboro;
-            Form.Width = this.Width;
-            Form.Height = this.Width;
-            Form.ShowInTaskbar = false;
-            Form.TopMost = true;
-
-
-
-
 
         }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            
+        }
+
 
         private void DropDownButton_Click(object sender, EventArgs e)
         {
             var locationInScreen = this.PointToScreen(Point.Empty);
 
+            Form form = new Form();
 
-            if (Form.Visible)
-                Form.Hide();
-            else
-                Form.Show();
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.BackColor = Color.Gainsboro;
+            form.ShowInTaskbar = false;
+            form.TopMost = true;
+            form.Width = this.Width;
+            form.Height = this.Width;
 
+            form.Show();
+            var ctrl = ControlObject.Invoke();
+            form.Controls.Add(ctrl);
+            ctrl.Dock= DockStyle.Fill;
 
-
-
-
-            Form.Location = locationInScreen;
-            Form.Top += this.Height;
+            form.Deactivate += (s, a) =>
+            {
+                form.Close();
+                
+            };
+            form.Location = locationInScreen;
+            form.Top += this.Height;
 
 
         }

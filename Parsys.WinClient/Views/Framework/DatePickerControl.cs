@@ -23,8 +23,11 @@ namespace Parsys.WinClient.Views.Framework
             InitializeComponent();
             MonthListBox.DrawMode = DrawMode.OwnerDrawFixed;
             MonthListBox.DrawItem += new DrawItemEventHandler(ListBoxDrawItem);
+            MonthListBox.LostFocus += (s,e)=>MonthListBox.Visible = false;
             YearListBox.DrawMode = DrawMode.OwnerDrawFixed;
             YearListBox.DrawItem += new DrawItemEventHandler(ListBoxDrawItem);
+            YearListBox.LostFocus += (s, e) => YearListBox.Visible = false;
+
 
             void ListBoxDrawItem(object sender, DrawItemEventArgs e)
             {
@@ -49,14 +52,14 @@ namespace Parsys.WinClient.Views.Framework
                 ReturnDate = new DateTime(PerCalendar.GetYear(DateTime.Now), PerCalendar.GetMonth(DateTime.Now),
                     PerCalendar.GetDayOfMonth(DateTime.Now), PerCalendar);
 
-                MonthListBox.SelectedItem = PerCalendar.GetMonth(DateTime.Now).ToString("MMM");
+                MonthListBox.SelectedIndex = PerCalendar.GetMonth(DateTime.Now) - 1;
                 YearListBox.SelectedItem = PerCalendar.GetYear(DateTime.Now);
 
                 RefreshCalendar(PerCalendar.GetYear(DateTime.Now), PerCalendar.GetMonth(DateTime.Now));
             }
             else
             {
-                MonthListBox.SelectedItem = PerCalendar.GetMonth(ReturnDate).ToString("MMM");
+                MonthListBox.SelectedIndex = PerCalendar.GetMonth(ReturnDate) - 1;
                 YearListBox.SelectedItem = PerCalendar.GetYear(ReturnDate);
 
                 RefreshCalendar(PerCalendar.GetYear(ReturnDate), PerCalendar.GetMonth(ReturnDate));
@@ -206,12 +209,16 @@ namespace Parsys.WinClient.Views.Framework
         #region choose month and year
         private void MonthLabel_Click(object sender, EventArgs e)
         {
+
+
+
             if (MonthListBox.Visible)
                 MonthListBox.Visible = false;
             else
             {
                 YearListBox.Visible = false;
                 MonthListBox.Visible = true;
+                MonthListBox.Focus();
                 MonthListBox.SelectedItem = MonthLabel.Text;
             }
 
@@ -234,6 +241,7 @@ namespace Parsys.WinClient.Views.Framework
             {
                 MonthListBox.Visible = false;
                 YearListBox.Visible = true;
+                YearListBox.Focus();
                 YearListBox.SelectedItem = YearLabel.Text;
             }
 
@@ -250,6 +258,8 @@ namespace Parsys.WinClient.Views.Framework
 
         private void CurrentDayButton_Click(object sender, EventArgs e)
         {
+            //MonthListBox.SelectedIndex = PerCalendar.GetMonth(ReturnDate) - 1;
+            //YearListBox.SelectedItem = PerCalendar.GetYear(ReturnDate);
             ReturnDate = new DateTime(PerCalendar.GetYear(ReturnDate), PerCalendar.GetMonth(ReturnDate), PerCalendar.GetDayOfMonth(ReturnDate), PerCalendar);
             RefreshCalendar(PerCalendar.GetYear(ReturnDate), PerCalendar.GetMonth(ReturnDate));
 
@@ -257,6 +267,9 @@ namespace Parsys.WinClient.Views.Framework
 
         private void TodayButton_Click(object sender, EventArgs e)
         {
+            
+            //MonthListBox.SelectedIndex = PerCalendar.GetMonth(DateTime.Now) - 1;
+            //YearListBox.SelectedItem = PerCalendar.GetYear(DateTime.Now);
             ReturnDate = new DateTime(PerCalendar.GetYear(DateTime.Now), PerCalendar.GetMonth(DateTime.Now), PerCalendar.GetDayOfMonth(DateTime.Now), PerCalendar);
             RefreshCalendar( PerCalendar.GetYear(DateTime.Now), PerCalendar.GetMonth(DateTime.Now));
         }

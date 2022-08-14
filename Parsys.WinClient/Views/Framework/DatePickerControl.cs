@@ -77,7 +77,9 @@ namespace Parsys.WinClient.Views.Framework
             DaysDataGridView.CurrentCell = null;
             SelectedDateLabel.Text = ReturnDate.ToString("d MMM yyyy");
 
+            MonthListBox.SelectedIndex = m-1;
             MonthLabel.Text = MonthListBox.Items[m - 1].ToString();
+            YearListBox.SelectedIndex = YearListBox.Items.IndexOf(y);
             YearLabel.Text = y.ToString();
 
 

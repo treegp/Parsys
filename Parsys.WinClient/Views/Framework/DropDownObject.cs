@@ -7,6 +7,7 @@ namespace Parsys.WinClient.Views.Framework
     public partial class DropDownObject : UserControl
     {
         public Func<Control> ControlObject;
+        public object ReturnObject= null;
         public string ReturnString { get { return ValueMaskedTextBox.Text; } set { ValueMaskedTextBox.Text = value; } }
         public string ReturnMask { get { return ValueMaskedTextBox.Mask; } set { ValueMaskedTextBox.Mask = value; } }
 

@@ -198,6 +198,8 @@ namespace Parsys.WinClient.Views.Framework
 
 
 
+
+
         private void DaysDataGridView_SelectionChanged(object sender, EventArgs e)
         {
             if (DaysDataGridView.SelectedCells.Count != 0)

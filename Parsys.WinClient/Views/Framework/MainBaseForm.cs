@@ -28,19 +28,28 @@ namespace Parsys.WinClient.Views.Framework
             drp.ControlObject = () =>
             {
                 var datePicker = new DatePickerControl();
+
                 try
                 {
-                    datePicker.ReturnDate = new DateTime(int.Parse(drp.ReturnString.Substring(0, 4)), int.Parse(drp.ReturnString.Substring(5, 2)), int.Parse(drp.ReturnString.Substring(8, 2)), new System.Globalization.PersianCalendar());
+                    if (int.Parse(drp.ReturnString.Substring(0, 4)) > 1330 & int.Parse(drp.ReturnString.Substring(0, 4)) < 1430)
+
+                        datePicker.ReturnDate = new DateTime(int.Parse(drp.ReturnString.Substring(0, 4)), int.Parse(drp.ReturnString.Substring(5, 2)), int.Parse(drp.ReturnString.Substring(8, 2)), new System.Globalization.PersianCalendar());
+                    else
+                        datePicker.ReturnDate = (DateTime)drp.ReturnObject;
                 }
                 catch
                 {
-
+                    if (drp.ReturnObject != null)
+                        datePicker.ReturnDate = (DateTime)drp.ReturnObject;
                 }
-                finally
+
+
+                datePicker.OnChange += (e, a) =>
                 {
-                    datePicker.OnChange += (e, a) => drp.ReturnString = datePicker.ReturnDate.ToString("yyyyMMdd");
+                    drp.ReturnString = datePicker.ReturnDate.ToString("yyyyMMdd");
+                    drp.ReturnObject = datePicker.ReturnDate;
+                };
 
-                }
                 return datePicker;
             };
 

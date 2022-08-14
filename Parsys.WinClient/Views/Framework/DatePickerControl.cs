@@ -8,6 +8,8 @@ namespace Parsys.WinClient.Views.Framework
 {
     public partial class DatePickerControl : UserControl
     {
+
+        public event EventHandler OnChange;
         public Calendar PerCalendar = new PersianCalendar();
         public DateTime ReturnDate;
 
@@ -204,8 +206,13 @@ namespace Parsys.WinClient.Views.Framework
                     SelectedDateLabel.Text = ((DateTime)DaysDataGridView.SelectedCells[0].Tag).ToString("d MMM yyyy");
                     ReturnDate = (DateTime)DaysDataGridView.SelectedCells[0].Tag;
                 }
+
+            if (OnChange != null)
+                OnChange(this, e);
         }
 
+
+ 
 
 
         #region choose month and year

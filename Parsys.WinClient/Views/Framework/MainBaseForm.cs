@@ -44,12 +44,17 @@ namespace Parsys.WinClient.Views.Framework
                 }
 
 
+                datePicker.OnChoose += (obj,e) =>
+                {
+                    drp.CloseDropDown();
+                };
+
                 datePicker.OnChange += (e, a) =>
                 {
                     drp.ReturnString = datePicker.ReturnDate.ToString("yyyyMMdd");
                     drp.ReturnObject = datePicker.ReturnDate;
                 };
-
+                
                 return datePicker;
             };
 

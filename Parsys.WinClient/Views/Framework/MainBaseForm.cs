@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace Parsys.WinClient.Views.Framework
 {
     public partial class MainBaseForm : Form
     {
         private MenuStripHandler menuManager;
-        private ViewHandler viewManager; 
-        
+        private ViewHandler viewManager;
+
 
 
         public MainBaseForm()
@@ -23,10 +22,26 @@ namespace Parsys.WinClient.Views.Framework
 
             var drp = new DropDownObject();
             MainTabPage.Controls.Add(drp);
+            drp.ReturnMask = "0000/00/00";
+            drp.RightToLeft = RightToLeft.No;
 
             drp.ControlObject = () =>
             {
-                return new DatePickerControl();
+                var datePicker = new DatePickerControl();
+                try
+                {
+                    datePicker.ReturnDate = new DateTime(int.Parse(drp.ReturnString.Substring(0, 4)), int.Parse(drp.ReturnString.Substring(5, 2)), int.Parse(drp.ReturnString.Substring(8, 2)), new System.Globalization.PersianCalendar());
+                }
+                catch
+                {
+
+                }
+                finally
+                {
+                    datePicker.OnChange += (e, a) => drp.ReturnString = datePicker.ReturnDate.ToString("yyyyMMdd");
+
+                }
+                return datePicker;
             };
 
 
@@ -38,7 +53,12 @@ namespace Parsys.WinClient.Views.Framework
                 dt.Text = DateTime.Now.ToString("dd MMM yyyy  |  HH:mm:ss");
             };
 
-            
+
+        }
+
+        private void DatePicker_OnChange(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
 

@@ -10,22 +10,32 @@ namespace Parsys.WinClient.Views.Framework
     {
 
         public event EventHandler OnChange;
+        public event EventHandler OnChoose;
+
         public Calendar PerCalendar = new PersianCalendar();
         public DateTime ReturnDate;
 
 
         public DatePickerControl(DateTime openDate) : this()
         {
-            ReturnDate=openDate;
+            ReturnDate = openDate;
         }
 
 
         public DatePickerControl()
         {
             InitializeComponent();
+
+            DaysDataGridView.CellDoubleClick += (s, a) =>
+            {
+                if (OnChoose != null)
+                    OnChoose(s, a);
+            };
+
+
             MonthListBox.DrawMode = DrawMode.OwnerDrawFixed;
             MonthListBox.DrawItem += new DrawItemEventHandler(ListBoxDrawItem);
-            MonthListBox.LostFocus += (s,e)=>MonthListBox.Visible = false;
+            MonthListBox.LostFocus += (s, e) => MonthListBox.Visible = false;
             YearListBox.DrawMode = DrawMode.OwnerDrawFixed;
             YearListBox.DrawItem += new DrawItemEventHandler(ListBoxDrawItem);
             YearListBox.LostFocus += (s, e) => YearListBox.Visible = false;
@@ -79,7 +89,7 @@ namespace Parsys.WinClient.Views.Framework
             DaysDataGridView.CurrentCell = null;
             SelectedDateLabel.Text = ReturnDate.ToString("d MMM yyyy");
 
-            MonthListBox.SelectedIndex = m-1;
+            MonthListBox.SelectedIndex = m - 1;
             MonthLabel.Text = MonthListBox.Items[m - 1].ToString();
             YearListBox.SelectedIndex = YearListBox.Items.IndexOf(y);
             YearLabel.Text = y.ToString();
@@ -88,7 +98,7 @@ namespace Parsys.WinClient.Views.Framework
             int dINm = PerCalendar.GetDaysInMonth(y, m);
             int dINlastm = m == 1 ? PerCalendar.GetDaysInMonth(y - 1, 12) : PerCalendar.GetDaysInMonth(y, m - 1);
 
-            
+
             int dayIndex;
             int rowIndex = 0;
 
@@ -116,7 +126,7 @@ namespace Parsys.WinClient.Views.Framework
                     }
 
                     if ((DateTime)DaysDataGridView.Rows[rowIndex].Cells[lastMonthWeekIndex].Tag == ReturnDate)
-                        DaysDataGridView.Rows[rowIndex].Cells[lastMonthWeekIndex].Selected=true;
+                        DaysDataGridView.Rows[rowIndex].Cells[lastMonthWeekIndex].Selected = true;
 
                     lastMonthWeekIndex++;
                 }
@@ -182,21 +192,11 @@ namespace Parsys.WinClient.Views.Framework
                 }
             }
 
-
-
-
-
             foreach (var row in DaysDataGridView.Rows.OfType<DataGridViewRow>())
             {
                 row.Height = 30;
             }
         }
-
-
-
-
-
-
 
 
 
@@ -214,7 +214,7 @@ namespace Parsys.WinClient.Views.Framework
         }
 
 
- 
+
 
 
         #region choose month and year
@@ -241,7 +241,7 @@ namespace Parsys.WinClient.Views.Framework
             MonthListBox.Visible = false;
             MonthLabel.Text = MonthListBox.SelectedItem.ToString();
             RefreshCalendar(int.Parse(YearLabel.Text), MonthListBox.SelectedIndex + 1);
-            
+
         }
 
         private void YearLabel_Click(object sender, EventArgs e)
@@ -262,7 +262,7 @@ namespace Parsys.WinClient.Views.Framework
         {
             YearListBox.Visible = false;
             YearLabel.Text = YearListBox.SelectedItem.ToString();
-            RefreshCalendar( int.Parse(YearLabel.Text), MonthListBox.SelectedIndex + 1);
+            RefreshCalendar(int.Parse(YearLabel.Text), MonthListBox.SelectedIndex + 1);
 
         }
         #endregion
@@ -278,11 +278,11 @@ namespace Parsys.WinClient.Views.Framework
 
         private void TodayButton_Click(object sender, EventArgs e)
         {
-            
+
             //MonthListBox.SelectedIndex = PerCalendar.GetMonth(DateTime.Now) - 1;
             //YearListBox.SelectedItem = PerCalendar.GetYear(DateTime.Now);
             ReturnDate = new DateTime(PerCalendar.GetYear(DateTime.Now), PerCalendar.GetMonth(DateTime.Now), PerCalendar.GetDayOfMonth(DateTime.Now), PerCalendar);
-            RefreshCalendar( PerCalendar.GetYear(DateTime.Now), PerCalendar.GetMonth(DateTime.Now));
+            RefreshCalendar(PerCalendar.GetYear(DateTime.Now), PerCalendar.GetMonth(DateTime.Now));
         }
     }
 }

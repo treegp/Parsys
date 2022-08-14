@@ -34,8 +34,10 @@ namespace Parsys.WinClient.Views.Framework
             form.TopMost = true;
             form.Width = this.Width;
             form.Height = this.Width;
-
             form.Show();
+            form.Location = locationInScreen;
+            form.Top += this.Height;
+
             var ctrl = ControlObject.Invoke();
             form.Controls.Add(ctrl);
             ctrl.Dock= DockStyle.Fill;
@@ -45,8 +47,7 @@ namespace Parsys.WinClient.Views.Framework
                 form.Close();
                 
             };
-            form.Location = locationInScreen;
-            form.Top += this.Height;
+            
 
 
         }

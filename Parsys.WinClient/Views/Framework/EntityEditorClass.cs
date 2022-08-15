@@ -161,9 +161,54 @@ namespace Parsys.WinClient.Views.Framework
 
             DropDownObject drp = new DropDownObject();
             drp.ReturnMask = "0000/00/00";
-            drp.ReturnString = ((DateTime)Entity.GetType().GetProperty(exp.GetNameOfProperty(item)).GetValue(Entity)).ToString("yyyyMMdd");
+
+            var dte = (DateTime)Entity.GetType().GetProperty(exp.GetNameOfProperty(item)).GetValue(Entity);
+            if (dte != new DateTime())
+            {
+                drp.ReturnString = dte.ToString("yyyyMMdd");
+                drp.ReturnObject = dte;
+            }
+            else
+            {
+                drp.ReturnObject = DateTime.Now;
+            }
 
             drp.RightToLeft = RightToLeft.No;
+            drp.DropDownWidth = 300;
+            drp.DropDownHeight = 300;
+
+            drp.OnChangeText += (o, e) =>
+            {
+                try
+                {
+                    if (int.Parse(drp.ReturnString.Substring(0, 4)) > 1330 &
+                        int.Parse(drp.ReturnString.Substring(0, 4)) < 1430)
+                    {
+                        drp.ReturnObject = new DateTime(int.Parse(drp.ReturnString.Substring(0, 4)),
+                            int.Parse(drp.ReturnString.Substring(5, 2)), int.Parse(drp.ReturnString.Substring(8, 2)),
+                            new System.Globalization.PersianCalendar());
+                        Entity.GetType().GetProperty(exp.GetNameOfProperty(item)).SetValue(Entity, drp.ReturnObject);
+                    }
+                    else
+                    {
+                        MessageBox.Show("تاریخ انتخاب شده صحیح نمی باشد", "خطا", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                        drp.ReturnString = ((DateTime)drp.ReturnObject).ToString("yyyyMMdd");
+                    }
+
+                }
+                catch
+                {
+                    if (drp.ReturnObject != null)
+                    {
+                        MessageBox.Show("تاریخ انتخاب شده صحیح نمی باشد", "خطا", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                        drp.ReturnString = ((DateTime)drp.ReturnObject).ToString("yyyyMMdd");
+                    }
+                }
+
+
+            };
 
             drp.ControlObject = () =>
             {
@@ -171,9 +216,14 @@ namespace Parsys.WinClient.Views.Framework
 
                 try
                 {
-                    if (int.Parse(drp.ReturnString.Substring(0, 4)) > 1330 & int.Parse(drp.ReturnString.Substring(0, 4)) < 1430)
+                    if (int.Parse(drp.ReturnString.Substring(0, 4)) > 1330 &
+                        int.Parse(drp.ReturnString.Substring(0, 4)) < 1430)
+                    {
+                        datePicker.ReturnDate = new DateTime(int.Parse(drp.ReturnString.Substring(0, 4)),
+                            int.Parse(drp.ReturnString.Substring(5, 2)), int.Parse(drp.ReturnString.Substring(8, 2)),
+                            new System.Globalization.PersianCalendar());
+                    }
 
-                        datePicker.ReturnDate = new DateTime(int.Parse(drp.ReturnString.Substring(0, 4)), int.Parse(drp.ReturnString.Substring(5, 2)), int.Parse(drp.ReturnString.Substring(8, 2)), new System.Globalization.PersianCalendar());
                     else
                         datePicker.ReturnDate = (DateTime)drp.ReturnObject;
                 }
@@ -182,8 +232,6 @@ namespace Parsys.WinClient.Views.Framework
                     if (drp.ReturnObject != null)
                         datePicker.ReturnDate = (DateTime)drp.ReturnObject;
                 }
-
-
 
 
                 datePicker.OnChoose += (obj, e) =>

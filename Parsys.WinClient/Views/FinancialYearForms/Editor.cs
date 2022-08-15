@@ -30,6 +30,19 @@ namespace Parsys.WinClient.Views.FinancialYearForms
             yearRepo = new FinancialYearsRepository(con.GetConnection());
             corpRepo = new CorporationsRepository(con.GetConnection());
 
+
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            NewComboBox(c => c.CorporationId, "نام شرکت", corpRepo.GetAll(), c => c.Title, i => i.Id);
+            NewTextBox(c => c.Title, "عنوان سال مالی");
+            NewDatePicker(c => c.StartDate, "تاریخ شروع سال مالی");
+            NewDatePicker(c => c.FinishDate, "تاریخ پایان سال مالی");
+            ArrangementControls();  
+
+
         }
     }
 }

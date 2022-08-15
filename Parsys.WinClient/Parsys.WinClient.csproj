@@ -96,6 +96,18 @@
     <Compile Include="Views\CorporationForms\List.Designer.cs">
       <DependentUpon>List.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\FinancialYearForms\Editor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\FinancialYearForms\Editor.Designer.cs">
+      <DependentUpon>Editor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FinancialYearForms\List.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\FinancialYearForms\List.Designer.cs">
+      <DependentUpon>List.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Framework\DatePickerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

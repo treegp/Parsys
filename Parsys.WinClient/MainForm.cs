@@ -25,6 +25,11 @@ namespace Parsys.WinClient
                 MainViewHandler().OpenTab< Parsys.WinClient.Views.InventoryForms.List> ();
             });
 
+            opMenu.AddMenuItem("سال مالی", (o, e) =>
+            {
+                MainViewHandler().OpenTab<Views.FinancialYearForms.List>();
+            });
+
             opMenu.AddMenuItem("خروج", (o, e) =>
             {
                 if (MessageBox.Show("آیا مایل به خروج از برنامه هستید؟", "پیام سیستم", MessageBoxButtons.YesNo) == DialogResult.Yes)

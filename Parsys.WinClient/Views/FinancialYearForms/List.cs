@@ -27,7 +27,7 @@ namespace Parsys.WinClient.Views.FinancialYearForms
 
             AddButtun("جدید", b =>
             {
-                var form = ViewManagement.ShowForm<Editor>(edt => edt.Title = "تعریف سال مالی جدید", true);
+                var form = ViewManagement.ShowForm<Editor>(frm => frm.Title = "تعریف سال مالی جدید", true);
                 var t = new FinancialYears();
                 if (((Form)form.Parent).DialogResult == DialogResult.OK)
                 {
@@ -38,6 +38,27 @@ namespace Parsys.WinClient.Views.FinancialYearForms
 
             AddButtun("ویرایش", b =>
             {
+                if (grid.CurrentItem == null)
+                {
+                    MessageBox.Show("سطری انتخاب نشده است", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                var form = ViewManagement.ShowForm<Editor>(frm=>
+                {
+                    frm.Title = "ویرایش سال مالی";
+                    frm.Entity = grid.CurrentItem;
+                },true);
+
+                var t = new FinancialYears();
+                if (((Form)form.Parent).DialogResult == DialogResult.OK)
+                {
+                    t = yearRepo.Update(form.Entity);
+                    grid.UpdateItem(t);
+
+                }
+
+
 
             });
 

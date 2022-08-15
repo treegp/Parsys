@@ -7,22 +7,24 @@ namespace Parsys.WinClient.Views.Framework
     public partial class DropDownObject : UserControl
     {
         public Func<Control> ControlObject;
+        public event EventHandler OnChangeText = null;
         public object ReturnObject = null;
         public string ReturnString { get { return ValueMaskedTextBox.Text; } set { ValueMaskedTextBox.Text = value; } }
         public string ReturnMask { get { return ValueMaskedTextBox.Mask; } set { ValueMaskedTextBox.Mask = value; } }
         public Form DropDownForm;
 
+        public int DropDownWidth;
+        public int DropDownHeight;
+
         public DropDownObject()
         {
             InitializeComponent();
 
-        }
-
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
+            DropDownWidth = this.Height;
+            DropDownWidth = this.Width;
 
         }
+
 
 
         private void DropDownButton_Click(object sender, EventArgs e)
@@ -35,8 +37,8 @@ namespace Parsys.WinClient.Views.Framework
             DropDownForm.BackColor = Color.Gainsboro;
             DropDownForm.ShowInTaskbar = false;
             DropDownForm.TopMost = true;
-            DropDownForm.Width = this.Width;
-            DropDownForm.Height = this.Width;
+            DropDownForm.Width = DropDownWidth;
+            DropDownForm.Height = DropDownHeight;
             DropDownForm.Show();
             DropDownForm.Location = locationInScreen;
             DropDownForm.Top += this.Height;
@@ -56,10 +58,17 @@ namespace Parsys.WinClient.Views.Framework
 
         }
 
+
+
         public void CloseDropDown()
         {
             if (DropDownForm != null)
                 DropDownForm.Close();
+        }
+
+        private void ValueMaskedTextBox_Leave(object sender, EventArgs e)
+        {
+            OnChangeText.Invoke(this,EventArgs.Empty);
         }
     }
 }

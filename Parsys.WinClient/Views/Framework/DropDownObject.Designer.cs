@@ -50,6 +50,7 @@
             this.ValueMaskedTextBox.Name = "ValueMaskedTextBox";
             this.ValueMaskedTextBox.Size = new System.Drawing.Size(260, 20);
             this.ValueMaskedTextBox.TabIndex = 1;
+            this.ValueMaskedTextBox.Leave += new System.EventHandler(this.ValueMaskedTextBox_Leave);
             // 
             // DropDownObject
             // 

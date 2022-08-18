@@ -22,7 +22,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.Corporation
 
         public Editor()
         {
-
+            
             InitializeComponent();
 
             Repo = new CorporationsRepository(con.GetConnection());
@@ -30,6 +30,8 @@ namespace Parsys.WinClient.Views.EntityManagerForms.Corporation
             Title = "";
             Id = "CorporationsEditor";
             MultipleInstance = false;
+
+            
         }
 
 
@@ -38,10 +40,10 @@ namespace Parsys.WinClient.Views.EntityManagerForms.Corporation
             base.OnLoad(e);
 
             NewTextBox(i => i.Title, "عنوان");
-            NewTextBox(i => i.Title, "تلفن");
-            NewTextBox(i => i.Title, "فکس");
-            NewTextBox(i => i.Title, "آدرس",true);
-            NewTextBox(i => i.Title, "توضیحات",true);
+            NewTextBox(i => i.Telephone, "تلفن");
+            NewTextBox(i => i.Fax, "فکس");
+            NewTextBox(i => i.Address, "آدرس",true);
+            NewTextBox(i => i.Description, "توضیحات",true);
             ArrangementControls();
 
         }

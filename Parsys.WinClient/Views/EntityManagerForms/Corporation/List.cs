@@ -27,7 +27,19 @@ namespace Parsys.WinClient.Views.EntityManagerForms.Corporation
 
             AddButtun("جدید", b =>
             {
-                ViewManagement.ShowForm<Editor>();
+                var edtForm =ViewManagement.ShowForm<Editor>((edt) =>
+                {
+                    edt.Entity = new Corporations();
+                    edt.Title = "تعریف شرکت جدید";
+                });
+
+                if (((Form)edtForm.Parent).DialogResult == DialogResult.OK)
+                {
+                    repo.Insert(edtForm.Entity);
+                    grid.AddItem(edtForm.Entity);
+                }
+
+
             });
 
             AddButtun("ویرایش", b =>
@@ -54,7 +66,11 @@ namespace Parsys.WinClient.Views.EntityManagerForms.Corporation
 
         protected void onDoubleClick()
         {
-
+            if (grid.CurrentIndex == -1)
+            {
+                MessageBox.Show("سطری انتخاب نشده است", "پیام سیستم", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
         }
 

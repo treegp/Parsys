@@ -204,6 +204,7 @@ namespace Parsys.WinClient.Views.Framework
         private BindingSource bindingSource;
         public TModel CurrentItem { get => (TModel)bindingSource?.Current; }
         public int? CurrentIndex { get => bindingSource?.IndexOf(bindingSource?.Current); }
+        public event EventHandler OnDoubleClick;
 
         public GridHandler(Control container, IEnumerable<TModel> dataSource)
         {
@@ -222,6 +223,10 @@ namespace Parsys.WinClient.Views.Framework
             dataGrid.AllowUserToOrderColumns = true;
             dataGrid.Dock = DockStyle.Fill;
             dataGrid.DataSource = bindingSource;
+            dataGrid.CellDoubleClick+= (s,e)=>
+            {
+                OnDoubleClick(this, new EventArgs());
+            };
 
             container.Controls.Add(dataGrid);
         }

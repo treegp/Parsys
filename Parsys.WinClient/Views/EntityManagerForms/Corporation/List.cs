@@ -22,12 +22,12 @@ namespace Parsys.WinClient.Views.EntityManagerForms.Corporation
             grid = new GridHandler<Corporations>(this, repo.GetByIsDeleted(false));
 
             Title = "لیست شرکت ها";
-            Id = "ListOfCorporations";
+            Id = "CorporationsList";
             MultipleInstance = false;
 
             AddButtun("جدید", b =>
             {
-                //ViewManagement.ShowForm<>();
+                ViewManagement.ShowForm<Editor>();
             });
 
             AddButtun("ویرایش", b =>

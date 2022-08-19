@@ -7,7 +7,6 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using Parsys.WinClient.ApplicationMethods;
-using Parsys.WinClient.Views.CorporationForms;
 
 namespace Parsys.WinClient
 {

@@ -60,6 +60,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.FinancialYears
                 if (MessageBox.Show("آیا از حذف \"" + grid.CurrentItem.Title + "\" اطمینان دارید", "پیام سیستم", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     grid.CurrentItem.IsDeleted = true;
+                    grid.CurrentItem.DeleteDate = DateTime.Now;
                     repo.Update(grid.CurrentItem);
                     grid.RemoveItem(grid.CurrentIndex);
                 }

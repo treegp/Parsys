@@ -56,7 +56,7 @@ namespace Parsys.WinClient.Views.InventoryForms
                 if (((Form)form.Parent).DialogResult == DialogResult.OK)
                 {
                     t = invRepo.Update(form.Entity);
-                    grid.UpdateItem(t);
+                    //grid.UpdateItem(t);
                     //grid.RefreshDataSource(invRepo.GetAll());
                 }
             });

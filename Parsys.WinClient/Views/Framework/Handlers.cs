@@ -136,7 +136,7 @@ namespace Parsys.WinClient.Views.Framework
                 form.StartPosition = FormStartPosition.CenterParent;
                 form.RightToLeft = RightToLeft.Yes;
                 form.Font = new Font("Tahoma", 8);
-                form.FormClosing += (openedSingleViews, e) => CloseView(instance,  DialogResult.Abort);
+                form.FormClosing += (openedSingleViews, e) => CloseView(instance, DialogResult.Abort);
 
 
 
@@ -187,7 +187,7 @@ namespace Parsys.WinClient.Views.Framework
                         ((Form)openedSingleViews[id]).DialogResult = dresult.Value;
                     else
                     {
-                        dresult=null;
+                        dresult = null;
                         ((Form)openedSingleViews[id]).Close();
                     }
                 }
@@ -209,6 +209,7 @@ namespace Parsys.WinClient.Views.Framework
         private BindingSource bindingSource;
         public TModel CurrentItem { get => (TModel)bindingSource?.Current; }
         public int? CurrentIndex { get => bindingSource?.IndexOf(bindingSource?.Current); }
+        public List<string> GridColumns = new List<string>();
         public event EventHandler OnDoubleClick;
 
         public GridHandler(Control container, IEnumerable<TModel> dataSource)
@@ -249,6 +250,7 @@ namespace Parsys.WinClient.Views.Framework
                 DataPropertyName = columnName
             });
 
+            GridColumns.Add(columnName);
             return this;
         }
 
@@ -263,18 +265,20 @@ namespace Parsys.WinClient.Views.Framework
         }
 
 
-        public void UpdateItem(TModel entity)
+        public void UpdateItem(TModel entity, int? index)
         {
-            bindingSource[bindingSource.IndexOf(bindingSource.Current)] = entity;
-            RefreshDataSource();
+            if (index != null)
+            {
+                foreach (var colName in GridColumns)
+                {
+                    dataGrid.Rows[(int)index].Cells[GridColumns.IndexOf(colName)].Value = entity.GetType().GetProperty(colName).GetValue(entity);
+                }
+            }
         }
-
-
 
         public void AddItem(TModel entity)
         {
             bindingSource.Add(entity);
-            RefreshDataSource();
         }
 
 
@@ -282,10 +286,7 @@ namespace Parsys.WinClient.Views.Framework
         {
             if (index != null)
             {
-
-                bindingSource.Remove(dataGrid.Rows[(int)index]);
                 dataGrid.Rows.RemoveAt((int)index);
-                RefreshDataSource();
             }
         }
 

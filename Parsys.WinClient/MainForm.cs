@@ -22,6 +22,10 @@ namespace Parsys.WinClient
             {
                 MainViewHandler().OpenTab<Parsys.WinClient.Views.EntityManagerForms.FinancialYears.List>();
             });
+            baseMenu.AddMenuItem("مدیریت انبارها", (o, e) =>
+            {
+                MainViewHandler().OpenTab<Parsys.WinClient.Views.EntityManagerForms.Inventories.List>();
+            });
             baseMenu.AddMenuItem("مدیریت واحد های اندازه گری", (o, e) =>
             {
 

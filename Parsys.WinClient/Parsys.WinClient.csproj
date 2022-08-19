@@ -78,22 +78,16 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\CorporationForms\Add.cs">
+    <Compile Include="Views\EntityManagerForms\ProductUnits\Editor.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\CorporationForms\Add.Designer.cs">
-      <DependentUpon>Add.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CorporationForms\Editor.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\CorporationForms\Editor.Designer.cs">
+    <Compile Include="Views\EntityManagerForms\ProductUnits\Editor.Designer.cs">
       <DependentUpon>Editor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\CorporationForms\List.cs">
+    <Compile Include="Views\EntityManagerForms\ProductUnits\List.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\CorporationForms\List.Designer.cs">
+    <Compile Include="Views\EntityManagerForms\ProductUnits\List.Designer.cs">
       <DependentUpon>List.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\EntityManagerForms\Corporations\Editor.cs">
@@ -106,6 +100,18 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Views\EntityManagerForms\Corporations\List.Designer.cs">
+      <DependentUpon>List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EntityManagerForms\ProductCategories\Editor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\EntityManagerForms\ProductCategories\Editor.Designer.cs">
+      <DependentUpon>Editor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EntityManagerForms\ProductCategories\List.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\EntityManagerForms\ProductCategories\List.Designer.cs">
       <DependentUpon>List.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\EntityManagerForms\Inventories\Editor.cs">
@@ -130,18 +136,6 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Views\EntityManagerForms\FinancialYears\List.Designer.cs">
-      <DependentUpon>List.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\FinancialYearForms\Editor.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\FinancialYearForms\Editor.Designer.cs">
-      <DependentUpon>Editor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\FinancialYearForms\List.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\FinancialYearForms\List.Designer.cs">
       <DependentUpon>List.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Framework\DatePickerControl.cs">
@@ -171,15 +165,6 @@
     </Compile>
     <Compile Include="Views\Framework\ViewBaseControl.Designer.cs">
       <DependentUpon>ViewBaseControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\InventoryForms\Editor.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\InventoryForms\List.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\InventoryForms\List.Designer.cs">
-      <DependentUpon>List.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\WelcomeForms\AddFirstCorporation.cs">
       <SubType>Form</SubType>
@@ -216,12 +201,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Views\CorporationForms\Editor.resx">
-      <DependentUpon>Editor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\CorporationForms\List.resx">
-      <DependentUpon>List.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\Framework\DatePickerControl.resx">
       <DependentUpon>DatePickerControl.cs</DependentUpon>
       <SubType>Designer</SubType>

@@ -36,6 +36,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.Corporation
                 if (((Form)newForm.Parent).DialogResult == DialogResult.OK)
                 {
                     repo.Insert(newForm.Entity);
+                    //grid.RefreshDataSource(repo.GetByIsDeleted(false));
                     grid.AddItem(newForm.Entity);
                 }
 
@@ -57,7 +58,9 @@ namespace Parsys.WinClient.Views.EntityManagerForms.Corporation
 
                 if(MessageBox.Show("آیا از حذف \"" + grid.CurrentItem.Title + "\" اطمینان دارید" , "پیام سیستم",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    repo.Delete(grid.CurrentItem);
+                    grid.CurrentItem.IsDeleted = true;
+                    repo.Update(grid.CurrentItem);
+                    //grid.RefreshDataSource(repo.GetByIsDeleted(false));
                     grid.RemoveItem(grid.CurrentIndex);
                 }
 
@@ -83,10 +86,10 @@ namespace Parsys.WinClient.Views.EntityManagerForms.Corporation
             if (((Form)edtView.Parent).DialogResult == DialogResult.OK)
             {
                 repo.Update(edtView.Entity);
-                grid.UpdateItem(edtView.Entity);
+                grid.UpdateItem(edtView.Entity,grid.CurrentIndex);
             }
 
-            grid.RefreshDataSource();
+            //grid.RefreshDataSource(repo.GetByIsDeleted(false));
         }
 
 

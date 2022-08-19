@@ -78,7 +78,7 @@ namespace Parsys.WinClient.Views.FinancialYearForms
             if (((Form)form.Parent).DialogResult == DialogResult.OK)
             {
                 t = yearRepo.Update(form.Entity);
-                grid.UpdateItem(t);
+                //grid.UpdateItem(t);
             }
         }
 

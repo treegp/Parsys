@@ -16,11 +16,11 @@ namespace Parsys.WinClient
             var baseMenu = MainMenuStripHandler().AddMenuItem("اطلاعات پایه");
             baseMenu.AddMenuItem("مدیریت شرکت ها", (o,e) =>
             {
-                MainViewHandler().OpenTab<Parsys.WinClient.Views.EntityManagerForms.Corporation.List>();
+                MainViewHandler().OpenTab<Parsys.WinClient.Views.EntityManagerForms.Corporations.List>();
             });
             baseMenu.AddMenuItem("مدیریت سال های مالی", (o, e) =>
             {
-
+                MainViewHandler().OpenTab<Parsys.WinClient.Views.EntityManagerForms.FinancialYears.List>();
             });
             baseMenu.AddMenuItem("مدیریت واحد های اندازه گری", (o, e) =>
             {

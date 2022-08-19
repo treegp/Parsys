@@ -40,8 +40,10 @@ namespace Parsys.WinClient.Views.EntityManagerForms.Corporation
             base.OnLoad(e);
 
             NewTextBox(i => i.Title, "عنوان");
-            NewTextBox(i => i.Telephone, "تلفن");
-            NewTextBox(i => i.Fax, "فکس");
+            var telItem = NewTextBox(i => i.Telephone, "تلفن");
+            telItem.RightToLeft = RightToLeft.No;
+            var faxItem = NewTextBox(i => i.Fax, "فکس");
+            faxItem.RightToLeft = RightToLeft.No;
             NewTextBox(i => i.Address, "آدرس",true);
             NewTextBox(i => i.Description, "توضیحات",true);
             ArrangementControls();

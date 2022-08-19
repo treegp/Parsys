@@ -58,6 +58,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.Corporation
                 if(MessageBox.Show("آیا از حذف \"" + grid.CurrentItem.Title + "\" اطمینان دارید" , "پیام سیستم",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     repo.Delete(grid.CurrentItem);
+                    grid.RemoveItem(grid.CurrentIndex);
                 }
 
 

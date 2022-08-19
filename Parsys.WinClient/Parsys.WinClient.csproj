@@ -108,6 +108,18 @@
     <Compile Include="Views\EntityManagerForms\Corporations\List.Designer.cs">
       <DependentUpon>List.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\EntityManagerForms\Inventories\Editor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\EntityManagerForms\Inventories\Editor.Designer.cs">
+      <DependentUpon>Editor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EntityManagerForms\Inventories\List.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\EntityManagerForms\Inventories\List.Designer.cs">
+      <DependentUpon>List.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\EntityManagerForms\FinancialYears\Editor.cs">
       <SubType>UserControl</SubType>
     </Compile>

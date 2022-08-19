@@ -229,7 +229,7 @@ namespace Parsys.WinClient.Views.Framework
             dataGrid.AllowUserToOrderColumns = true;
             dataGrid.Dock = DockStyle.Fill;
             dataGrid.DataSource = bindingSource;
-            dataGrid.CellContentDoubleClick += (s, e) =>
+            dataGrid.CellDoubleClick += (s, e) =>
             {
                 OnDoubleClick(this, new EventArgs());
             };

@@ -136,7 +136,7 @@ namespace Parsys.WinClient.Views.Framework
                 form.StartPosition = FormStartPosition.CenterParent;
                 form.RightToLeft = RightToLeft.Yes;
                 form.Font = new Font("Tahoma", 8);
-                form.FormClosing += (openedSingleViews, e) => CloseView(instance, form.DialogResult);
+                form.FormClosing += (openedSingleViews, e) => CloseView(instance,  DialogResult.Abort);
 
 
 
@@ -181,11 +181,16 @@ namespace Parsys.WinClient.Views.Framework
             }
             else if (openedSingleViews[id].GetType().Name == "Form")
 
-                if (dresult != null & ((Form)openedSingleViews[id]).Modal == true)
-                    ((Form)openedSingleViews[id]).DialogResult = dresult.Value;
-                else
-                    ((Form)openedSingleViews[id]).Close();
-
+                if (dresult != DialogResult.Abort)
+                {
+                    if (((Form)openedSingleViews[id]).Modal)
+                        ((Form)openedSingleViews[id]).DialogResult = dresult.Value;
+                    else
+                    {
+                        dresult=null;
+                        ((Form)openedSingleViews[id]).Close();
+                    }
+                }
 
             openedSingleViews.Remove(id);
         }
@@ -223,7 +228,7 @@ namespace Parsys.WinClient.Views.Framework
             dataGrid.AllowUserToOrderColumns = true;
             dataGrid.Dock = DockStyle.Fill;
             dataGrid.DataSource = bindingSource;
-            dataGrid.CellDoubleClick+= (s,e)=>
+            dataGrid.CellDoubleClick += (s, e) =>
             {
                 OnDoubleClick(this, new EventArgs());
             };
@@ -277,7 +282,7 @@ namespace Parsys.WinClient.Views.Framework
         {
             if (index != null)
             {
-                
+
                 bindingSource.Remove(dataGrid.Rows[(int)index]);
                 dataGrid.Rows.RemoveAt((int)index);
                 RefreshDataSource();

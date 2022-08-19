@@ -1,0 +1,43 @@
+﻿using Parsys.DataLayer.Connections.ProviderMethods;
+using Parsys.DataLayer.Entities.EntityMethods;
+using Parsys.WinClient.Views.Framework;
+using System;
+using System.Windows.Forms;
+
+namespace Parsys.WinClient.Views.EntityManagerForms.Inventories
+{
+    public partial class Editor : EntityEditorClass<DataLayer.Entities.EntityModels.Inventories>
+    {
+        public Parsys.DataLayer.Connections.ProviderMethods.ConnectToSQL con = new ConnectToSQL();
+        public InventoriesRepository Repo;
+        public CorporationsRepository corpRepo;
+
+
+        public Editor()
+        {
+
+            InitializeComponent();
+
+            Repo = new InventoriesRepository(con.GetConnection());
+            corpRepo = new CorporationsRepository(con.GetConnection());
+
+            Title = "";
+            Id = "InventoriesEditor";
+            MultipleInstance = false;
+
+
+        }
+
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            NewComboBox(i => i.CorporationId, "عنوان شرکت", corpRepo.GetByIsDeleted(false), c => c.Title, c => c.Id);
+            NewTextBox(i => i.Title, "عنوان");
+            NewTextBox(i => i.Description, "توضیحات", true);
+            ArrangementControls();
+
+        }
+    }
+}

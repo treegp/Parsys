@@ -96,16 +96,28 @@
     <Compile Include="Views\CorporationForms\List.Designer.cs">
       <DependentUpon>List.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\EntityManagerForms\Corporation\Editor.cs">
+    <Compile Include="Views\EntityManagerForms\Corporations\Editor.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\EntityManagerForms\Corporation\Editor.Designer.cs">
+    <Compile Include="Views\EntityManagerForms\Corporations\Editor.Designer.cs">
       <DependentUpon>Editor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\EntityManagerForms\Corporation\List.cs">
+    <Compile Include="Views\EntityManagerForms\Corporations\List.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\EntityManagerForms\Corporation\List.Designer.cs">
+    <Compile Include="Views\EntityManagerForms\Corporations\List.Designer.cs">
+      <DependentUpon>List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EntityManagerForms\FinancialYears\Editor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\EntityManagerForms\FinancialYears\Editor.Designer.cs">
+      <DependentUpon>Editor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EntityManagerForms\FinancialYears\List.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\EntityManagerForms\FinancialYears\List.Designer.cs">
       <DependentUpon>List.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\FinancialYearForms\Editor.cs">

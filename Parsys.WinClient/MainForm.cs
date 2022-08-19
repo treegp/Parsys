@@ -1,7 +1,6 @@
 ﻿using Parsys.WinClient.Views.Framework;
 using System.Windows.Forms;
 using Parsys.WinClient.IoC;
-using Parsys.WinClient.Views.CorporationForms;
 
 namespace Parsys.WinClient
 {
@@ -28,11 +27,11 @@ namespace Parsys.WinClient
             });
             baseMenu.AddMenuItem("مدیریت واحد های اندازه گری", (o, e) =>
             {
-
+                MainViewHandler().OpenTab<Parsys.WinClient.Views.EntityManagerForms.ProductUnits.List>();
             });
             baseMenu.AddMenuItem("مدیریت دسته بندی محصولات", (o, e) =>
             {
-
+                MainViewHandler().OpenTab<Parsys.WinClient.Views.EntityManagerForms.ProductCategories.List>();
             });
 
 

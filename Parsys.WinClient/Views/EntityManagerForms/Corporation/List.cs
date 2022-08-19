@@ -31,7 +31,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.Corporation
                 {
                     edt.Entity = new Corporations();
                     edt.Title = "تعریف شرکت جدید";
-                });
+                },true);
 
                 if (((Form)edtForm.Parent).DialogResult == DialogResult.OK)
                 {

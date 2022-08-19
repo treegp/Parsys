@@ -42,15 +42,6 @@ namespace Parsys.WinClient.Views.EntityManagerForms.FinancialYears
             fdp.RightToLeft = RightToLeft.No;
             NewBinaryBox(i => i.IsClosed, "بسته شده");
 
-
-
-            //
-            //var telItem = NewTextBox(i => i.Telephone, "تلفن");
-            //telItem.RightToLeft = RightToLeft.No;
-            //var faxItem = NewTextBox(i => i.Fax, "فکس");
-            //faxItem.RightToLeft = RightToLeft.No;
-            //NewTextBox(i => i.Address, "آدرس",true);
-            //NewTextBox(i => i.Description, "توضیحات",true);
             ArrangementControls();
 
         }

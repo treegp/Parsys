@@ -160,6 +160,12 @@
     <Compile Include="Views\Framework\MainBaseForm.Designer.cs">
       <DependentUpon>MainBaseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Framework\TreeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Framework\TreeControl.Designer.cs">
+      <DependentUpon>TreeControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Framework\ViewBaseControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -7,7 +7,7 @@ namespace Parsys.WinClient.Views.Framework
     public partial class TreeControl : UserControl
     {
         private TreeView treeView;
-        public event Func<TreeNode, object, IEnumerable<TreeItem>> OnExpandTree;
+        public event Func<TreeNode, object, IEnumerable<TreeItem>> OnExpand;
 
         public TreeControl(Control container)
         {
@@ -21,7 +21,7 @@ namespace Parsys.WinClient.Views.Framework
 
         public void InitializeTree()
         {
-            var nodes = CreateTree(OnExpandTree(null, null));
+            var nodes = CreateChildNodes(ExpandNode(null, null));
             foreach (var node in nodes)
             {
                 treeView.Nodes.Add(node);
@@ -29,22 +29,42 @@ namespace Parsys.WinClient.Views.Framework
 
         }
 
-        private List<TreeNode> CreateTree(IEnumerable<TreeItem> items)
+
+        public IEnumerable<ClassNode> ExpandNode<TModel>(TreeNode parentNode,object objectNode,TModel model)
         {
-            List<TreeNode> nodes = new List<TreeNode>();
-            foreach (var item in items)
+            if (parentNode == null)
+            { 
+
+
+            }
+            else
             {
-                var newNode = new TreeNode() { Text = item.Text, Tag = item };
-                nodes.Add(newNode);
+
             }
 
-            return nodes;
+
+
+
+        }
+
+
+
+
+        private List<TreeNode> CreateChildNodes (IEnumerable<ClassNode> items)
+        {
+            List<TreeNode> childList = new List<TreeNode>();
+            foreach (var item in items)
+            {
+                var child = new TreeNode() { Text = item.Text, Tag = item };
+                childList.Add(child);
+            }
+            return childList;
         }
     }
 
-    public class TreeItem
+    public class ClassNode
     {
         public string Text { get; set; }
-        public object Object { get; set; }
+        public object Tag { get; set; }
     }
 }

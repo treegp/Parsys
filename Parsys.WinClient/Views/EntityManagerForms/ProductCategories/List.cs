@@ -33,7 +33,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
         {
             base.OnLoad(e);
             TreeControl treeControl = new TreeControl(this);
-            treeControl.OnExpandTree += (parentNode, parentObject) =>
+            treeControl.OnExpand += (parentNode, parentObject) =>
             {
                 List<TreeItem> roots = new List<TreeItem>();
                 if (parentNode == null)

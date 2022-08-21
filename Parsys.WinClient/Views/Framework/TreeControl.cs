@@ -32,16 +32,7 @@ namespace Parsys.WinClient.Views.Framework
 
         public IEnumerable<ClassNode> ExpandNode<TModel>(TreeNode parentNode,object objectNode,TModel model)
         {
-            if (parentNode == null)
-            { 
-
-
-            }
-            else
-            {
-
-            }
-
+            
 
 
 

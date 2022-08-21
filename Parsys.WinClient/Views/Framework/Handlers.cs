@@ -195,10 +195,6 @@ namespace Parsys.WinClient.Views.Framework
             openedSingleViews.Remove(id);
         }
 
-
-
-
-
     }
 
 

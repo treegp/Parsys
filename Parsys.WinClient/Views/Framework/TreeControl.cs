@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace Parsys.WinClient.Views.Framework
 {
     public partial class TreeControl : UserControl
     {
         private TreeView treeView;
-        public event Func<TreeNode, object, IEnumerable<TreeItem>> OnExpand;
+        public event Func<TreeNode, object, IEnumerable<ClassNode>> OnExpand;
 
         public TreeControl(Control container)
         {
@@ -30,16 +33,7 @@ namespace Parsys.WinClient.Views.Framework
         }
 
 
-        public IEnumerable<ClassNode> ExpandNode<TModel>(TreeNode parentNode,object objectNode,TModel model)
-        {
-            
-
-
-
-        }
-
-
-
+        
 
         private List<TreeNode> CreateChildNodes (IEnumerable<ClassNode> items)
         {

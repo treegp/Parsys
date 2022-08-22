@@ -2,8 +2,7 @@
 using Parsys.DataLayer.Entities.EntityMethods;
 using Parsys.WinClient.Views.Framework;
 using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
+using System.Linq;
 
 namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
 {
@@ -35,25 +34,18 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
             TreeControl treeControl = new TreeControl(this);
             treeControl.OnExpand += (parentNode, parentObject) =>
             {
-                List<TreeItem> roots = new List<TreeItem>();
                 if (parentNode == null)
                 {
-
-
-                    for (int i = 1; i <10; i++)
-                    {
-                        Items p = new Items() { Id= 20 + i, Name = "Item " + i };
-
-                        roots.Add(new TreeItem()
-                        {
-                            Text = p.Name,
-                            Object = p
-                        });
-                    }
+                    var rootNodes = repo.GetByParentCategoryId(null);
+                    return rootNodes.Select(n => { new ClassNode() { Text = n.Title, Tag = n }; });
+                }
+                else
+                {
 
                 }
 
-                return roots;
+
+
             };
 
             treeControl.InitializeTree();
@@ -62,10 +54,5 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
     }
 
 
-    public class Items
-    {
-        
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
+
 }

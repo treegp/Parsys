@@ -24,7 +24,7 @@ namespace Parsys.WinClient.Views.Framework
 
         public void InitializeTree()
         {
-            var nodes = CreateChildNodes(ExpandNode(null, null));
+            var nodes = ChildNodes(OnExpand(null, null));
             foreach (var node in nodes)
             {
                 treeView.Nodes.Add(node);
@@ -35,7 +35,7 @@ namespace Parsys.WinClient.Views.Framework
 
         
 
-        private List<TreeNode> CreateChildNodes (IEnumerable<ClassNode> items)
+        private List<TreeNode> ChildNodes (IEnumerable<ClassNode> items)
         {
             List<TreeNode> childList = new List<TreeNode>();
             foreach (var item in items)

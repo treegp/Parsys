@@ -20,10 +20,22 @@ namespace Parsys.WinClient.Views.Framework
             container.Controls.Add(treeView);
             treeView.Dock = DockStyle.Fill;
             treeView.RightToLeftLayout = true;
+            treeView.BeforeExpand += (o, e) =>
+            {
+                if (e.Node.Nodes.Count==1 & e.Node.Nodes[0].Tag is string & e.Node.Nodes[0].Tag == "not expanded" )
+                {
+                    e.Node.Nodes.Clear();
+                    var nodes = ChildNodes(OnExpand(e.Node, e.Node.Tag));
+                    foreach (var node in nodes)
+                    {
+                        e.Node.Nodes.Add(node);
+                    }
+                }
+            };
 
         }
 
-        private void InitializeTree()
+        public void InitializeTree()
         {
             var nodes = ChildNodes(OnExpand(null, null));
             foreach (var node in nodes)
@@ -33,13 +45,13 @@ namespace Parsys.WinClient.Views.Framework
         }
 
 
-
+   
         private List<TreeNode> ChildNodes (IEnumerable<ClassNode> items)
         {
             List<TreeNode> childList = new List<TreeNode>();
             foreach (var item in items)
             {
-                var child = new TreeNode() { Text = item.Text, Tag = item };
+                var child = new TreeNode() { Text = item.Text, Tag = item.Tag };
                 child.Nodes.Add(new TreeNode() { Text = "", Tag = "not expanded" });
                 childList.Add(child);
             }

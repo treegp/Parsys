@@ -26,9 +26,17 @@ namespace Parsys.DataLayer.Entities.EntityMethods
 
         public List<ProductCategories> GetByParentCategoryId(Nullable<int> value)
         {
-            SqlParameter param = new SqlParameter("param1", value);
-            string command = "select * from ProductCategories where [ParentCategoryId] = @param1";
-            return ExecutingReader(command, param);
+            if (value == null)
+            {
+                string command = "select * from ProductCategories where [ParentCategoryId] Is NULL";
+                return ExecutingReader(command);
+            }
+            else
+            {
+                SqlParameter param = new SqlParameter("param1", value);
+                string command = "select * from ProductCategories where [ParentCategoryId] = @param1";
+                return ExecutingReader(command, param);
+            }
         }
 
         public List<ProductCategories> GetByTitle(string value)

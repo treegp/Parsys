@@ -34,21 +34,10 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
             TreeControl treeControl = new TreeControl(this);
             treeControl.OnExpand += (parentNode, parentObject) =>
             {
-                if (parentNode == null)
-                {
-                    var rootNodes = repo.GetByParentCategoryId(null);
-                    return rootNodes.Select(n => { new ClassNode() { Text = n.Title, Tag = n }; });
-                }
-                else
-                {
-
-                }
-
-
-
+                int id = ((DataLayer.Entities.EntityModels.ProductCategories)parentObject).Id;
+                var rootNodes = repo.GetByParentCategoryId(id);
+                return rootNodes.Select(c => new ClassNode() { Text = c.Title, Tag = c });
             };
-
-            treeControl.InitializeTree();
 
         }
     }

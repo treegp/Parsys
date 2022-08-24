@@ -41,7 +41,6 @@ namespace Parsys.WinClient.Views.EntityManagerForms.Inventories
                     grid.AddItem(newForm.Entity);
                 }
 
-
             });
 
             AddButtun("ویرایش", b =>

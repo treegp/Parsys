@@ -11,7 +11,7 @@ namespace Parsys.WinClient.Views.Framework
     {
         private TreeView treeView;
         public event Func<TreeNode, object, IEnumerable<ClassNode>> OnExpand;
-
+        public TreeNode CurrentNode { get => treeView.SelectedNode; }
 
         public TreeControl(Control container)
         {
@@ -37,6 +37,7 @@ namespace Parsys.WinClient.Views.Framework
 
         public void InitializeTree()
         {
+            treeView.Nodes.Clear();
             var nodes = ChildNodes(OnExpand(null, null));
             foreach (var node in nodes)
             {
@@ -44,7 +45,7 @@ namespace Parsys.WinClient.Views.Framework
             }
         }
 
-
+       
    
         private List<TreeNode> ChildNodes (IEnumerable<ClassNode> items)
         {

@@ -109,6 +109,35 @@ namespace Parsys.WinClient.Views.Framework
             return textBox;
         }
 
+        protected TextBox NewTextBox(string caption, bool multiLine = false)
+        {
+            Label label = new Label();
+            label.Text = caption;
+            label.AutoSize = true;
+
+            TextBox textBox = new TextBox();
+
+            textBox.Multiline = multiLine;
+
+            if (multiLine)
+            {
+                textBox.Height = 90;
+                textBox.ScrollBars = ScrollBars.Vertical;
+            }
+
+            this.Controls.Add(label);
+            this.Controls.Add(textBox);
+
+            PriorityList.Add(new EntityEditorControl()
+            {
+                label = label,
+                control = textBox,
+                priority = PriorityList.Count + 1
+            });
+
+            return textBox;
+        }
+
 
         protected ComboBox NewComboBox<TReturn, TComboItem>(Expression<Func<TEntity, TReturn>> item, string caption, List<TComboItem> comboList, Expression<Func<TComboItem, string>> comboTitles, Expression<Func<TComboItem, TReturn>> comboItems)
         {

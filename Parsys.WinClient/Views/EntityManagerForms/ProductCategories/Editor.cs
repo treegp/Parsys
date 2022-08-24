@@ -2,6 +2,7 @@
 using Parsys.DataLayer.Entities.EntityMethods;
 using Parsys.WinClient.Views.Framework;
 using System;
+using System.Linq;
 
 namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
 {
@@ -10,6 +11,8 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
         public Parsys.DataLayer.Connections.ProviderMethods.ConnectToSQL con = new ConnectToSQL();
         public ProductCategoriesRepository Repo;
         public InventoriesRepository invRepo;
+
+        //public DataLayer.Entities.EntityModels.ProductCategories returnEntity;
 
 
         public Editor()
@@ -20,9 +23,15 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
             Repo = new ProductCategoriesRepository(con.GetConnection());
             invRepo = new InventoriesRepository(con.GetConnection());
 
+
             Title = "";
             Id = "ProductCategoriesEditor";
             MultipleInstance = false;
+
+
+
+
+
 
 
         }
@@ -30,14 +39,20 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
 
         protected override void OnLoad(EventArgs e)
         {
-            base.OnLoad(e);
-
-            NewComboBox(i => i.InventoryId, "عنوان انبار", invRepo.GetByIsDeleted(false), c => c.Title, c => c.Id);
+            if (Entity.ParentCategoryId == null)
+            {
+                NewComboBox(i => i.InventoryId, "عنوان انبار", invRepo.GetByIsDeleted(false), c => c.Title, c => c.Id);
+            }
+            else
+            {
+                var textbox = NewTextBox("دسته بندی والد");
+                textbox.Enabled = false;
+                textbox.Text = Repo.GetById((int)Entity.ParentCategoryId).FirstOrDefault().Title;
+            }
             NewTextBox(i => i.Title, "عنوان");
-            NewComboBox(i => i.ParentCategoryId, "عنوان دسته بندی والد", Repo.GetByIsDeleted(false), c => c.Title, c => c.Id);
             NewTextBox(i => i.Description, "توضیحات", true);
             ArrangementControls();
-
+            base.OnLoad(e);
         }
     }
 }

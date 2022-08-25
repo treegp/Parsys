@@ -7,10 +7,10 @@ using System.Linq;
 
 namespace Parsys.WinClient.Views.Framework
 {
-    public partial class TreeControl : UserControl
+    public partial class TreeControl<TType> : UserControl
     {
         private TreeView treeView;
-        public event Func<TreeNode, object, IEnumerable<ClassNode>> OnExpand;
+        public event Func<TreeNode, TType, IEnumerable<ClassNode<TType>>> OnExpand;
         public TreeNode CurrentNode { get => treeView.SelectedNode; }
 
         public TreeControl(Control container)
@@ -22,10 +22,10 @@ namespace Parsys.WinClient.Views.Framework
             treeView.RightToLeftLayout = true;
             treeView.BeforeExpand += (o, e) =>
             {
-                if (e.Node.Nodes.Count==1 & e.Node.Nodes[0].Tag is string & e.Node.Nodes[0].Tag == "not expanded" )
+                if (e.Node.Nodes.Count==1 & e.Node.Nodes[0].Tag is string & e.Node.Nodes[0].Tag.ToString() == "not expanded" )
                 {
                     e.Node.Nodes.Clear();
-                    var nodes = ChildNodes(OnExpand(e.Node, e.Node.Tag));
+                    var nodes = ChildNodes(OnExpand(e.Node, (TType)e.Node.Tag));
                     foreach (var node in nodes)
                     {
                         e.Node.Nodes.Add(node);
@@ -38,7 +38,7 @@ namespace Parsys.WinClient.Views.Framework
         public void InitializeTree()
         {
             treeView.Nodes.Clear();
-            var nodes = ChildNodes(OnExpand(null, null));
+            var nodes = ChildNodes(OnExpand(null, default(TType)));
             foreach (var node in nodes)
             {
                 treeView.Nodes.Add(node);
@@ -47,7 +47,7 @@ namespace Parsys.WinClient.Views.Framework
 
        
    
-        private List<TreeNode> ChildNodes (IEnumerable<ClassNode> items)
+        private List<TreeNode> ChildNodes (IEnumerable<ClassNode<TType>> items)
         {
             List<TreeNode> childList = new List<TreeNode>();
             foreach (var item in items)
@@ -60,9 +60,9 @@ namespace Parsys.WinClient.Views.Framework
         }
     }
 
-    public class ClassNode
+    public class ClassNode<TType>
     {
         public string Text { get; set; }
-        public object Tag { get; set; }
+        public TType Tag { get; set; }
     }
 }

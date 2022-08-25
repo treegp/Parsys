@@ -3,7 +3,9 @@ using Parsys.DataLayer.Entities.EntityMethods;
 using Parsys.WinClient.Views.Framework;
 using System;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Windows.Forms;
+using EntityModels = Parsys.DataLayer.Entities.EntityModels;
 
 namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
 {
@@ -15,14 +17,14 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
         private ProductCategoriesRepository repo;
         private InventoriesRepository invRepo;
 
-        public TreeControl treeControl;
+        public TreeControl<EntityModels.ProductCategories> treeControl;
 
         public List()
         {
             InitializeComponent();
             repo = new ProductCategoriesRepository(con.GetConnection());
             invRepo = new InventoriesRepository(con.GetConnection());
-            treeControl = new TreeControl(this);
+            treeControl = new TreeControl<EntityModels.ProductCategories>(this);
 
 
             Title = "لیست دسته بندی ها";
@@ -60,8 +62,8 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
                     {
                         s.Entity = new DataLayer.Entities.EntityModels.ProductCategories();
                         s.Entity.IsDeleted = false;
-                        s.Entity.ParentCategoryId = ((DataLayer.Entities.EntityModels.ProductCategories)treeControl.CurrentNode.Tag).Id;
-                        s.Entity.InventoryId = ((DataLayer.Entities.EntityModels.ProductCategories)treeControl.CurrentNode.Tag).InventoryId;
+                        s.Entity.ParentCategoryId = ((EntityModels.ProductCategories)treeControl.CurrentNode.Tag).Id;
+                        s.Entity.InventoryId = ((EntityModels.ProductCategories)treeControl.CurrentNode.Tag).InventoryId;
 
                     }, true);
 
@@ -84,7 +86,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
 
                 var newForm = ViewManagement.ShowForm<Editor>((s) =>
                     {
-                        s.Entity = (DataLayer.Entities.EntityModels.ProductCategories)treeControl.CurrentNode.Tag;
+                        s.Entity = (EntityModels.ProductCategories)treeControl.CurrentNode.Tag;
                     }, true);
 
 
@@ -128,13 +130,13 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
                 if (parentObject == null)
                 {
                     var rootNodes = repo.GetByParentCategoryId(null).Where(c => c.IsDeleted == false);
-                    return rootNodes.Select(c => new ClassNode() { Text = c.Title, Tag = c });
+                    return rootNodes.Select(c => new ClassNode<EntityModels.ProductCategories>() { Text = c.Title, Tag = c });
                 }
                 else
                 {
 
                     var rootNodes = repo.GetByParentCategoryId(((DataLayer.Entities.EntityModels.ProductCategories)parentObject).Id).Where(c=>c.IsDeleted==false);
-                    return rootNodes.Select(c => new ClassNode() { Text = c.Title, Tag = c });
+                    return rootNodes.Select(c => new ClassNode<EntityModels.ProductCategories>() { Text = c.Title, Tag = c });
                 }
             };
 

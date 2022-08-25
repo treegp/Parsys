@@ -62,8 +62,8 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
                     {
                         s.Entity = new DataLayer.Entities.EntityModels.ProductCategories();
                         s.Entity.IsDeleted = false;
-                        s.Entity.ParentCategoryId = ((EntityModels.ProductCategories)treeControl.CurrentNode.Tag).Id;
-                        s.Entity.InventoryId = ((EntityModels.ProductCategories)treeControl.CurrentNode.Tag).InventoryId;
+                        s.Entity.ParentCategoryId = treeControl.CurrentNode.Id;
+                        s.Entity.InventoryId = treeControl.CurrentNode.InventoryId;
 
                     }, true);
 
@@ -86,7 +86,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
 
                 var newForm = ViewManagement.ShowForm<Editor>((s) =>
                     {
-                        s.Entity = (EntityModels.ProductCategories)treeControl.CurrentNode.Tag;
+                        s.Entity = treeControl.CurrentNode;
                     }, true);
 
 
@@ -106,7 +106,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
                     return;
                 }
 
-                var item = (DataLayer.Entities.EntityModels.ProductCategories)treeControl.CurrentNode.Tag;
+                var item = treeControl.CurrentNode;
 
                 if (MessageBox.Show("آیا از حذف \"" + item.Title + "\" اطمینان دارید", "پیام سیستم", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {

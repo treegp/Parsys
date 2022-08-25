@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using System.Windows.Forms;
-using System.Linq;
 
 namespace Parsys.WinClient.Views.Framework
 {
@@ -11,7 +8,7 @@ namespace Parsys.WinClient.Views.Framework
     {
         private TreeView treeView;
         public event Func<TreeNode, TType, IEnumerable<ClassNode<TType>>> OnExpand;
-        public TreeNode CurrentNode { get => treeView.SelectedNode; }
+        public TType CurrentNode { get { return treeView.SelectedNode == null ? default(TType) : (TType)treeView.SelectedNode.Tag; } }
 
         public TreeControl(Control container)
         {
@@ -22,7 +19,7 @@ namespace Parsys.WinClient.Views.Framework
             treeView.RightToLeftLayout = true;
             treeView.BeforeExpand += (o, e) =>
             {
-                if (e.Node.Nodes.Count==1 & e.Node.Nodes[0].Tag is string & e.Node.Nodes[0].Tag.ToString() == "not expanded" )
+                if (e.Node.Nodes.Count == 1 & e.Node.Nodes[0].Tag is string & e.Node.Nodes[0].Tag.ToString() == "not expanded")
                 {
                     e.Node.Nodes.Clear();
                     var nodes = ChildNodes(OnExpand(e.Node, (TType)e.Node.Tag));
@@ -45,9 +42,9 @@ namespace Parsys.WinClient.Views.Framework
             }
         }
 
-       
-   
-        private List<TreeNode> ChildNodes (IEnumerable<ClassNode<TType>> items)
+
+
+        private List<TreeNode> ChildNodes(IEnumerable<ClassNode<TType>> items)
         {
             List<TreeNode> childList = new List<TreeNode>();
             foreach (var item in items)

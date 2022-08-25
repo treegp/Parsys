@@ -1,6 +1,6 @@
 ﻿namespace Parsys.WinClient.Views.Framework
 {
-    partial class TreeControl
+    partial class TreeControl<TType>
     {
         /// <summary> 
         /// Required designer variable.

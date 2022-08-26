@@ -9,11 +9,16 @@ namespace Parsys.WinClient.Views.Framework
         private TreeView treeView;
         public event Func<TreeNode, TType, IEnumerable<ClassNode<TType>>> OnExpand;
         public TType CurrentNode { get { return treeView.SelectedNode == null ? default(TType) : (TType)treeView.SelectedNode.Tag; } }
+        public List<TreeNode> PathNode;
 
         public TreeControl(Control container)
         {
             InitializeComponent();
             treeView = new TreeView();
+            var textbox = new TextBox();
+            container.Controls.Add(textbox);
+            textbox.Dock = DockStyle.Bottom;
+            textbox.Enabled=false;
             container.Controls.Add(treeView);
             treeView.Dock = DockStyle.Fill;
             treeView.RightToLeftLayout = true;
@@ -30,7 +35,38 @@ namespace Parsys.WinClient.Views.Framework
                 }
             };
 
+            treeView.AfterSelect += (o, e) =>
+            {
+                PathNode = new List<TreeNode>();
+                textbox.Text = "";
+                TreeNode node = e.Node;
+
+                treeView.PathSeparator = ">";
+                textbox.Text = node.FullPath;
+
+                while (node != null)
+                {
+                    //textbox.Text += node.Text + "\\";
+                    PathNode.Add(node);
+                    node = node.Parent;
+                }
+
+                PathNode.Reverse();
+            };
+
         }
+
+
+        public void GotoNode(List<TreeNode> pathNode)
+        {
+            foreach (var node in pathNode)
+            {
+                treeView.SelectedNode = node;
+                //treeView.SelectedNode.Expand();
+
+            }
+        }
+
 
         public void InitializeTree()
         {
@@ -55,6 +91,9 @@ namespace Parsys.WinClient.Views.Framework
             }
             return childList;
         }
+
+
+        
     }
 
     public class ClassNode<TType>

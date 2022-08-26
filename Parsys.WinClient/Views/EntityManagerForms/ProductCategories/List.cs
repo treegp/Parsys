@@ -51,7 +51,9 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
 
             AddButtun("زیرمجموعه جدید", btn =>
             {
-                treeControl.GetExpansion();
+                treeControl.GetExpansion(treeControl.GetRoots());
+                var i = treeControl.expansion;
+
                 if (treeControl.CurrentNode == null)
                 {
                     MessageBox.Show("دسته بندی انتخاب نشده است", "پیام سیستم", MessageBoxButtons.OK, MessageBoxIcon.Error);

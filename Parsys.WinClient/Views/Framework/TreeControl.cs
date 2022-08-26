@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Parsys.WinClient.Views.Framework
@@ -18,7 +19,7 @@ namespace Parsys.WinClient.Views.Framework
             var textbox = new TextBox();
             container.Controls.Add(textbox);
             textbox.Dock = DockStyle.Bottom;
-            textbox.Enabled=false;
+            textbox.Enabled = false;
             container.Controls.Add(treeView);
             treeView.Dock = DockStyle.Fill;
             treeView.RightToLeftLayout = true;
@@ -41,7 +42,7 @@ namespace Parsys.WinClient.Views.Framework
                 TreeNode node = e.Node;
                 treeView.PathSeparator = " › ";
                 textbox.Text = node.FullPath;
-         
+
                 while (node != null)
                 {
                     PathNode.Add(node);
@@ -57,7 +58,7 @@ namespace Parsys.WinClient.Views.Framework
         {
             get { return treeView.SelectedNode; }
         }
-      
+
 
 
         public void GotoNode(List<TreeNode> pathNode)
@@ -68,35 +69,57 @@ namespace Parsys.WinClient.Views.Framework
             }
 
 
-                
+
         }
 
 
-        public List<NodeExpansion> GetExpansion(TreeNodeCollection nodes)
+
+
+
+
+        public List<NodeExpansion> expansion = new List<NodeExpansion>();
+
+        public void GetExpansion(TreeNodeCollection parentList)
+        {
+            foreach (TreeNode node in parentList.OfType<TreeNode>())
+            {
+                expansion.Add(new NodeExpansion()
+                {
+                    Node = node,
+                    NodeExpanded = node.IsExpanded,
+                    NodeLevel = node.Level
+                });
+                GetExpansion(node.Nodes);
+            }
+        }
+
+
+
+
+        public TreeNodeCollection GetRoots()
+        {
+            return treeView.Nodes;
+        }
+
+
+        public List<NodeExpansion> GetRootss()
         {
             List<NodeExpansion> expansion = new List<NodeExpansion>();
 
-            foreach (TreeNode node in nodes)
+            foreach (TreeNode node in treeView.Nodes)
             {
-                foreach (NodeExpansion child in GetExpansion(node.Nodes))
+                expansion.Add(new NodeExpansion()
                 {
-                    
-                    expansion.Add(new NodeExpansion({Node = node,NodeExpanded = node.IsExpanded,NodeLevel = node.Level});
-
-                }
+                    Node = node,
+                    NodeExpanded = node.IsExpanded,
+                    NodeLevel = node.Level
+                });
             }
 
-           
-
-
-
-
             return expansion;
-
-
         }
 
-        
+
 
 
 
@@ -126,7 +149,7 @@ namespace Parsys.WinClient.Views.Framework
         }
 
 
-        
+
     }
 
     public class ClassNode<TType>

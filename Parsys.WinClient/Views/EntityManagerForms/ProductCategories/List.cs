@@ -3,7 +3,6 @@ using Parsys.DataLayer.Entities.EntityMethods;
 using Parsys.WinClient.Views.Framework;
 using System;
 using System.Linq;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Windows.Forms;
 using EntityModels = Parsys.DataLayer.Entities.EntityModels;
 

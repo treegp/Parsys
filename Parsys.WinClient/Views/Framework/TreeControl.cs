@@ -38,15 +38,12 @@ namespace Parsys.WinClient.Views.Framework
             treeView.AfterSelect += (o, e) =>
             {
                 PathNode = new List<TreeNode>();
-                textbox.Text = "";
                 TreeNode node = e.Node;
-
-                treeView.PathSeparator = ">";
+                treeView.PathSeparator = " › ";
                 textbox.Text = node.FullPath;
-
+         
                 while (node != null)
                 {
-                    //textbox.Text += node.Text + "\\";
                     PathNode.Add(node);
                     node = node.Parent;
                 }
@@ -56,16 +53,52 @@ namespace Parsys.WinClient.Views.Framework
 
         }
 
+        public TreeNode SelectedNode
+        {
+            get { return treeView.SelectedNode; }
+        }
+      
+
 
         public void GotoNode(List<TreeNode> pathNode)
         {
             foreach (var node in pathNode)
             {
-                treeView.SelectedNode = node;
-                //treeView.SelectedNode.Expand();
-
+                node.Expand();
             }
+
+
+                
         }
+
+
+        public List<NodeExpansion> GetExpansion(TreeNodeCollection nodes)
+        {
+            List<NodeExpansion> expansion = new List<NodeExpansion>();
+
+            foreach (TreeNode node in nodes)
+            {
+                foreach (NodeExpansion child in GetExpansion(node.Nodes))
+                {
+                    
+                    expansion.Add(new NodeExpansion({Node = node,NodeExpanded = node.IsExpanded,NodeLevel = node.Level});
+
+                }
+            }
+
+           
+
+
+
+
+            return expansion;
+
+
+        }
+
+        
+
+
 
 
         public void InitializeTree()
@@ -100,5 +133,12 @@ namespace Parsys.WinClient.Views.Framework
     {
         public string Text { get; set; }
         public TType Tag { get; set; }
+    }
+
+    public class NodeExpansion
+    {
+        public int NodeLevel { get; set; }
+        public TreeNode Node { get; set; }
+        public bool NodeExpanded { get; set; }
     }
 }

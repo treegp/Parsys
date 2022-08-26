@@ -51,12 +51,13 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
 
             AddButtun("زیرمجموعه جدید", btn =>
             {
-                
+                treeControl.GetExpansion();
                 if (treeControl.CurrentNode == null)
                 {
                     MessageBox.Show("دسته بندی انتخاب نشده است", "پیام سیستم", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+
                 var currentPath = treeControl.PathNode;
                 var newForm = ViewManagement.ShowForm<Editor>((s) =>
                     {
@@ -109,7 +110,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
                     return;
                 }
 
-                var currentPath = treeControl.PathNode;
+
                 var item = treeControl.CurrentNode;
 
                 if (MessageBox.Show("آیا از حذف \"" + item.Title + "\" اطمینان دارید", "پیام سیستم", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -117,7 +118,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
                     item.IsDeleted = true;
                     repo.Update(item);
                     treeControl.InitializeTree();
-                    treeControl.GotoNode(currentPath);
+  
                 }
             });
 

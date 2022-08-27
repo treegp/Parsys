@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Parsys.WinClient.Views.Framework
 {
     public partial class TreeControl<TType> : UserControl
     {
-        private TreeView treeView;
+        public TreeView treeView;
         public event Func<TreeNode, TType, IEnumerable<ClassNode<TType>>> OnExpand;
-        public TType CurrentNode { get { return treeView.SelectedNode == null ? default(TType) : (TType)treeView.SelectedNode.Tag; } }
+        public TType CurrentTagNode { get { return treeView.SelectedNode == null ? default(TType) : (TType)treeView.SelectedNode.Tag; } }
+        public TreeNode SelectedNode { get { return treeView.SelectedNode; } }
         public List<TreeNode> PathNode;
 
         public TreeControl(Control container)
@@ -54,70 +54,27 @@ namespace Parsys.WinClient.Views.Framework
 
         }
 
-        public TreeNode SelectedNode
+        protected List<NodeExpand> list = new List<NodeExpand>();
+        public List<NodeExpand> GetTreeState(TreeNodeCollection Nodes)
         {
-            get { return treeView.SelectedNode; }
-        }
 
-
-
-        public void GotoNode(List<TreeNode> pathNode)
-        {
-            foreach (var node in pathNode)
+            foreach (TreeNode checknode in Nodes)
             {
-                node.Expand();
-            }
-
-
-
-        }
-
-
-
-
-
-
-        public List<NodeExpansion> expansion = new List<NodeExpansion>();
-
-        public void GetExpansion(TreeNodeCollection parentList)
-        {
-            foreach (TreeNode node in parentList.OfType<TreeNode>())
-            {
-                expansion.Add(new NodeExpansion()
+                list.Add(new NodeExpand()
                 {
-                    Node = node,
-                    NodeExpanded = node.IsExpanded,
-                    NodeLevel = node.Level
+                    Node = checknode,
+                    Expanded = checknode.IsExpanded
                 });
-                GetExpansion(node.Nodes);
+                if (checknode.Nodes.Count > 0)
+                    if (checknode.Nodes[0].Tag is string)
+                        if (checknode.Nodes[0].Tag.ToString() != "not expanded")
+                            GetTreeState(checknode.Nodes);
             }
+            return list;
         }
 
 
 
-
-        public TreeNodeCollection GetRoots()
-        {
-            return treeView.Nodes;
-        }
-
-
-        public List<NodeExpansion> GetRootss()
-        {
-            List<NodeExpansion> expansion = new List<NodeExpansion>();
-
-            foreach (TreeNode node in treeView.Nodes)
-            {
-                expansion.Add(new NodeExpansion()
-                {
-                    Node = node,
-                    NodeExpanded = node.IsExpanded,
-                    NodeLevel = node.Level
-                });
-            }
-
-            return expansion;
-        }
 
 
 
@@ -158,10 +115,10 @@ namespace Parsys.WinClient.Views.Framework
         public TType Tag { get; set; }
     }
 
-    public class NodeExpansion
+    public class NodeExpand
     {
-        public int NodeLevel { get; set; }
         public TreeNode Node { get; set; }
-        public bool NodeExpanded { get; set; }
+        public bool Expanded { get; set; }
     }
+
 }

@@ -81,7 +81,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
 
                 }
 
-                treeControl.SetTreeState(expandedNodes);
+                treeControl.SetTreeState(treeControl.treeView.Nodes, expandedNodes);
 
             });
 

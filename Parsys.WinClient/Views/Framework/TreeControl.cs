@@ -62,13 +62,14 @@ namespace Parsys.WinClient.Views.Framework
 
             foreach (TreeNode checknode in Nodes)
             {
+                int? parentIndex = null;
+                if (checknode.Parent != null)
+                    parentIndex = checknode.Parent.Index;
 
                 ExpandedNodeList.Add(new NodeExpand()
                 {
                     Index = checknode.Index,
-
-
-                    ParentIndex = checknode.Parent != null ? checknode.Parent.Index :  null,
+                    ParentIndex = parentIndex,
                     IsExpanded = checknode.IsExpanded,
                     Level = checknode.Level
                 });
@@ -80,16 +81,28 @@ namespace Parsys.WinClient.Views.Framework
         }
 
 
-        public void SetTreeState(List<NodeExpand> state)
+
+        public void SetTreeState(TreeNodeCollection nodes, List<NodeExpand> state)
         {
-            int maxLevel = state.Max(n => n.Level);
-            for (int i = 0; i < maxLevel; i++)
+            foreach (TreeNode node in nodes)
             {
-                foreach (var node in state.Where(n => n.Level == i & n.IsExpanded == true))
+
+                NodeExpand nodeState = new NodeExpand();
+
+                nodeState.Index = node.Index;
+                nodeState.Level = node.Level;
+                if (node.Level != 0)
+                    nodeState.ParentIndex = node.Parent.Index;
+                nodeState.IsExpanded = node.IsExpanded;
+
+
+                if (state.Where(n => n.Index == nodeState.Index & n.ParentIndex == nodeState.ParentIndex & n.Level == nodeState.Level & n.IsExpanded).Any())
                 {
-                    node.Node.Expand();
+                    node.Expand();
+                    SetTreeState(node.Nodes, state);
                 }
             }
+
         }
 
 

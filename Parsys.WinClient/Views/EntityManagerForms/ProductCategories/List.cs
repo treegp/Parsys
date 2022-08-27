@@ -81,6 +81,8 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
 
                 }
 
+                treeControl.SetTreeState(expandedNodes);
+
             });
 
             AddButtun("ویرایش دسته بندی", btn =>

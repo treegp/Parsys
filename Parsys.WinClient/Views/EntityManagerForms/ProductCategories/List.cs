@@ -12,7 +12,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
 
     public partial class List : ViewBaseControl
     {
-        private Parsys.DataLayer.Connections.ProviderMethods.ConnectToSQL con = new ConnectToSQL();
+        private ConnectToSQL con = new ConnectToSQL();
         private ProductCategoriesRepository repo;
         private InventoriesRepository invRepo;
 
@@ -51,10 +51,10 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
 
             AddButtun("زیرمجموعه جدید", btn =>
             {
-                treeControl.GetExpansion(treeControl.GetRoots());
-                var i = treeControl.expansion;
+                var i = treeControl.GetTreeState(treeControl.treeView.Nodes);
 
-                if (treeControl.CurrentNode == null)
+
+                if (treeControl.CurrentTagNode == null)
                 {
                     MessageBox.Show("دسته بندی انتخاب نشده است", "پیام سیستم", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -65,8 +65,8 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
                     {
                         s.Entity = new DataLayer.Entities.EntityModels.ProductCategories();
                         s.Entity.IsDeleted = false;
-                        s.Entity.ParentCategoryId = treeControl.CurrentNode.Id;
-                        s.Entity.InventoryId = treeControl.CurrentNode.InventoryId;
+                        s.Entity.ParentCategoryId = treeControl.CurrentTagNode.Id;
+                        s.Entity.InventoryId = treeControl.CurrentTagNode.InventoryId;
 
                     }, true);
 
@@ -75,14 +75,14 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
                 {
                     repo.Insert(newForm.Entity);
                     treeControl.InitializeTree();
-                    treeControl.GotoNode(currentPath);
+
                 }
 
             });
 
             AddButtun("ویرایش دسته بندی", btn =>
             {
-                if (treeControl.CurrentNode == null)
+                if (treeControl.CurrentTagNode == null)
                 {
                     MessageBox.Show("دسته بندی انتخاب نشده است", "پیام سیستم", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -90,7 +90,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
                 var currentPath = treeControl.PathNode;
                 var newForm = ViewManagement.ShowForm<Editor>((s) =>
                     {
-                        s.Entity = treeControl.CurrentNode;
+                        s.Entity = treeControl.CurrentTagNode;
                     }, true);
 
 
@@ -98,22 +98,21 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
                 {
                     repo.Update(newForm.Entity);
                     treeControl.InitializeTree();
-                    
-                    //treeControl.GotoNode(currentPath);
+
                 }
 
             });
 
             AddButtun("حذف دسته بندی", btn =>
             {
-                if (treeControl.CurrentNode == null)
+                if (treeControl.CurrentTagNode == null)
                 {
                     MessageBox.Show("دسته بندی انتخاب نشده است", "پیام سیستم", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
 
-                var item = treeControl.CurrentNode;
+                var item = treeControl.CurrentTagNode;
 
                 if (MessageBox.Show("آیا از حذف \"" + item.Title + "\" اطمینان دارید", "پیام سیستم", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {

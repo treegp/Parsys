@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Parsys.WinClient.Views.Framework
@@ -55,26 +56,41 @@ namespace Parsys.WinClient.Views.Framework
 
         }
 
-        
+
         public List<NodeExpand> GetTreeState(TreeNodeCollection Nodes)
         {
 
             foreach (TreeNode checknode in Nodes)
             {
+
                 ExpandedNodeList.Add(new NodeExpand()
                 {
-                    Node = checknode,
-                    Expanded = checknode.IsExpanded
+                    Index = checknode.Index,
+
+
+                    ParentIndex = checknode.Parent != null ? checknode.Parent.Index :  null,
+                    IsExpanded = checknode.IsExpanded,
+                    Level = checknode.Level
                 });
                 if (checknode.Nodes.Count > 0)
-                        if (checknode.Nodes[0].Tag.ToString() != "not expanded")
-                            GetTreeState(checknode.Nodes);
+                    if (checknode.Nodes[0].Tag.ToString() != "not expanded")
+                        GetTreeState(checknode.Nodes);
             }
             return ExpandedNodeList;
         }
 
 
-
+        public void SetTreeState(List<NodeExpand> state)
+        {
+            int maxLevel = state.Max(n => n.Level);
+            for (int i = 0; i < maxLevel; i++)
+            {
+                foreach (var node in state.Where(n => n.Level == i & n.IsExpanded == true))
+                {
+                    node.Node.Expand();
+                }
+            }
+        }
 
 
 
@@ -117,8 +133,10 @@ namespace Parsys.WinClient.Views.Framework
 
     public class NodeExpand
     {
-        public TreeNode Node { get; set; }
-        public bool Expanded { get; set; }
+        public int Index { get; set; }
+        public int? ParentIndex { get; set; }
+        public bool IsExpanded { get; set; }
+        public int Level { get; set; }
     }
 
 }

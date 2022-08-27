@@ -11,6 +11,7 @@ namespace Parsys.WinClient.Views.Framework
         public TType CurrentTagNode { get { return treeView.SelectedNode == null ? default(TType) : (TType)treeView.SelectedNode.Tag; } }
         public TreeNode SelectedNode { get { return treeView.SelectedNode; } }
         public List<TreeNode> PathNode;
+        public List<NodeExpand> ExpandedNodeList;
 
         public TreeControl(Control container)
         {
@@ -54,23 +55,22 @@ namespace Parsys.WinClient.Views.Framework
 
         }
 
-        protected List<NodeExpand> list = new List<NodeExpand>();
+        
         public List<NodeExpand> GetTreeState(TreeNodeCollection Nodes)
         {
 
             foreach (TreeNode checknode in Nodes)
             {
-                list.Add(new NodeExpand()
+                ExpandedNodeList.Add(new NodeExpand()
                 {
                     Node = checknode,
                     Expanded = checknode.IsExpanded
                 });
                 if (checknode.Nodes.Count > 0)
-                    if (checknode.Nodes[0].Tag is string)
                         if (checknode.Nodes[0].Tag.ToString() != "not expanded")
                             GetTreeState(checknode.Nodes);
             }
-            return list;
+            return ExpandedNodeList;
         }
 
 

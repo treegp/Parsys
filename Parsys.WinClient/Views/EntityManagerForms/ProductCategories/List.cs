@@ -33,7 +33,8 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
 
             AddButtun("ریشه جدید", btn =>
             {
-
+                treeControl.ExpandedNodeList = new List<NodeExpand>();
+                var expandedNodes = treeControl.GetTreeState(treeControl.treeView.Nodes);
                 var newForm = ViewManagement.ShowForm<Editor>((s) =>
                 {
                     s.Entity = new DataLayer.Entities.EntityModels.ProductCategories();
@@ -47,6 +48,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
                     repo.Insert(newForm.Entity);
                     treeControl.InitializeTree();
                 }
+                treeControl.SetTreeState(treeControl.treeView.Nodes, expandedNodes);
 
             });
 
@@ -92,6 +94,9 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
                     MessageBox.Show("دسته بندی انتخاب نشده است", "پیام سیستم", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+
+                treeControl.ExpandedNodeList = new List<NodeExpand>();
+                var expandedNodes = treeControl.GetTreeState(treeControl.treeView.Nodes);
                 var currentPath = treeControl.PathNode;
                 var newForm = ViewManagement.ShowForm<Editor>((s) =>
                     {
@@ -105,6 +110,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
                     treeControl.InitializeTree();
 
                 }
+                treeControl.SetTreeState(treeControl.treeView.Nodes, expandedNodes);
 
             });
 
@@ -116,7 +122,8 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
                     return;
                 }
 
-
+                treeControl.ExpandedNodeList = new List<NodeExpand>();
+                var expandedNodes = treeControl.GetTreeState(treeControl.treeView.Nodes);
                 var item = treeControl.CurrentTagNode;
 
                 if (MessageBox.Show("آیا از حذف \"" + item.Title + "\" اطمینان دارید", "پیام سیستم", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -126,6 +133,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
                     treeControl.InitializeTree();
   
                 }
+                treeControl.SetTreeState(treeControl.treeView.Nodes, expandedNodes);
             });
 
 

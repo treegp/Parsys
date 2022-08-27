@@ -2,6 +2,7 @@
 using Parsys.DataLayer.Entities.EntityMethods;
 using Parsys.WinClient.Views.Framework;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using EntityModels = Parsys.DataLayer.Entities.EntityModels;
@@ -51,7 +52,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
 
             AddButtun("زیرمجموعه جدید", btn =>
             {
-                var i = treeControl.GetTreeState(treeControl.treeView.Nodes);
+                
 
 
                 if (treeControl.CurrentTagNode == null)
@@ -60,6 +61,8 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
                     return;
                 }
 
+                treeControl.ExpandedNodeList = new List<NodeExpand>();
+                var expandedNodes = treeControl.GetTreeState(treeControl.treeView.Nodes);
                 var currentPath = treeControl.PathNode;
                 var newForm = ViewManagement.ShowForm<Editor>((s) =>
                     {

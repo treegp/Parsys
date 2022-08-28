@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Parsys.WinClient.Views.Framework
@@ -12,7 +11,9 @@ namespace Parsys.WinClient.Views.Framework
         public TType CurrentTagNode { get { return treeView.SelectedNode == null ? default(TType) : (TType)treeView.SelectedNode.Tag; } }
         public TreeNode SelectedNode { get { return treeView.SelectedNode; } }
         public List<TreeNode> PathNode;
-        public List<NodeExpand> ExpandedNodeList;
+
+        public List<TraceNode> TraceNodeList;
+
 
         public TreeControl(Control container)
         {
@@ -57,53 +58,94 @@ namespace Parsys.WinClient.Views.Framework
         }
 
 
-        public List<NodeExpand> GetTreeState(TreeNodeCollection Nodes)
+
+
+        public List<TraceNode> GetState(TreeNode node)
         {
+            TraceNode traceNode = new TraceNode();
+            traceNode.IsExpanded = node.IsExpanded;
 
-            foreach (TreeNode checknode in Nodes)
+            TreeNode tempNode = node;
+            for (int i = node.Level; i >= 0; i--)
             {
-                int? parentIndex = null;
-                if (checknode.Parent != null)
-                    parentIndex = checknode.Parent.Index;
-
-                ExpandedNodeList.Add(new NodeExpand()
-                {
-                    Index = checknode.Index,
-                    ParentIndex = parentIndex,
-                    IsExpanded = checknode.IsExpanded,
-                    Level = checknode.Level
-                });
-                if (checknode.Nodes.Count > 0)
-                    if (checknode.Nodes[0].Tag.ToString() != "not expanded")
-                        GetTreeState(checknode.Nodes);
+                traceNode.IndexList.Add(tempNode.Index);
+                if (i != 0) tempNode = tempNode.Parent;
             }
-            return ExpandedNodeList;
+            return new List<TraceNode> { traceNode };
         }
 
 
 
-        public void SetTreeState(TreeNodeCollection nodes, List<NodeExpand> state)
+
+        public List<TraceNode> GetState(TreeNodeCollection nodes)
         {
             foreach (TreeNode node in nodes)
             {
+                TraceNode traceNode = new TraceNode();
+                traceNode.IsExpanded = node.IsExpanded;
 
-                NodeExpand nodeState = new NodeExpand();
-
-                nodeState.Index = node.Index;
-                nodeState.Level = node.Level;
-                if (node.Level != 0)
-                    nodeState.ParentIndex = node.Parent.Index;
-                nodeState.IsExpanded = node.IsExpanded;
-
-
-                if (state.Where(n => n.Index == nodeState.Index & n.ParentIndex == nodeState.ParentIndex & n.Level == nodeState.Level & n.IsExpanded).Any())
+                TreeNode tempNode = node;
+                for (int i = node.Level; i >= 0; i--)
                 {
-                    node.Expand();
-                    SetTreeState(node.Nodes, state);
+                    traceNode.IndexList.Add(tempNode.Index);
+                    if (i != 0) tempNode = tempNode.Parent;
+                }
+
+                traceNode.IndexList.Reverse();
+                TraceNodeList.Add(traceNode);
+
+                if (node.Nodes.Count > 0)
+                    if (node.Nodes[0].Tag.ToString() != "not expanded")
+                        GetState(node.Nodes);
+            }
+            return TraceNodeList;
+        }
+
+
+
+        public void SetState(TraceNode node, bool? expanding, bool selecting = false)
+        {
+            TreeNodeCollection tempNodes = treeView.Nodes;
+            for (int i = 0; i < node.IndexList.Count; i++)
+            {
+                tempNodes[node.IndexList[i]].Expand();
+                tempNodes = tempNodes[node.IndexList[i]].Nodes;
+            }
+
+            if (expanding == true & tempNodes[node.IndexList[node.IndexList.Count - 1]].Nodes.Count > 0)
+                tempNodes[node.IndexList[node.IndexList.Count - 1]].Expand();
+            else if (expanding == false & tempNodes[node.IndexList[node.IndexList.Count - 1]].Nodes.Count>0)
+                tempNodes[node.IndexList[node.IndexList.Count - 1]].Collapse();
+            else if (node.IsExpanded & tempNodes[node.IndexList[node.IndexList.Count - 1]].Nodes.Count > 0)
+                tempNodes[node.IndexList[node.IndexList.Count - 1]].Expand();
+
+            if (selecting)
+                treeView.SelectedNode = tempNodes[node.IndexList[node.IndexList.Count - 1]].Parent;
+
+        }
+
+
+        public void SetState(List<TraceNode> traceNode)
+        {
+
+            foreach (TraceNode node in traceNode)
+            {
+                if (node.IsExpanded)
+                {
+                    TreeNodeCollection tempNodes = treeView.Nodes;
+                    for (int i = 0; i < node.IndexList.Count; i++)
+                    {
+                        tempNodes[node.IndexList[i]].Expand();
+                        tempNodes = tempNodes[node.IndexList[i]].Nodes;
+                    }
                 }
             }
 
+
         }
+
+
+
 
 
 
@@ -144,12 +186,10 @@ namespace Parsys.WinClient.Views.Framework
         public TType Tag { get; set; }
     }
 
-    public class NodeExpand
+    public class TraceNode
     {
-        public int Index { get; set; }
-        public int? ParentIndex { get; set; }
+        public List<int> IndexList { get; set; } = new List<int>();
         public bool IsExpanded { get; set; }
-        public int Level { get; set; }
     }
 
 }

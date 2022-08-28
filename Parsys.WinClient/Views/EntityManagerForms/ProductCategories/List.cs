@@ -33,8 +33,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
 
             AddButtun("ریشه جدید", btn =>
             {
-                treeControl.ExpandedNodeList = new List<NodeExpand>();
-                var expandedNodes = treeControl.GetTreeState(treeControl.treeView.Nodes);
+
                 var newForm = ViewManagement.ShowForm<Editor>((s) =>
                 {
                     s.Entity = new DataLayer.Entities.EntityModels.ProductCategories();
@@ -48,13 +47,13 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
                     repo.Insert(newForm.Entity);
                     treeControl.InitializeTree();
                 }
-                treeControl.SetTreeState(treeControl.treeView.Nodes, expandedNodes);
+
 
             });
 
             AddButtun("زیرمجموعه جدید", btn =>
             {
-                
+
 
 
                 if (treeControl.CurrentTagNode == null)
@@ -63,8 +62,12 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
                     return;
                 }
 
-                treeControl.ExpandedNodeList = new List<NodeExpand>();
-                var expandedNodes = treeControl.GetTreeState(treeControl.treeView.Nodes);
+
+                treeControl.TraceNodeList = new List<TraceNode>();
+                var treestate = treeControl.GetState(treeControl.treeView.Nodes);
+
+                var nodestate = treeControl.GetState(treeControl.SelectedNode);
+
                 var currentPath = treeControl.PathNode;
                 var newForm = ViewManagement.ShowForm<Editor>((s) =>
                     {
@@ -83,7 +86,11 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
 
                 }
 
-                treeControl.SetTreeState(treeControl.treeView.Nodes, expandedNodes);
+
+                treeControl.SetState(treestate);
+                treeControl.SetState(nodestate[0],false,true);
+                treeControl.treeView.Focus();
+
 
             });
 
@@ -95,8 +102,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
                     return;
                 }
 
-                treeControl.ExpandedNodeList = new List<NodeExpand>();
-                var expandedNodes = treeControl.GetTreeState(treeControl.treeView.Nodes);
+
                 var currentPath = treeControl.PathNode;
                 var newForm = ViewManagement.ShowForm<Editor>((s) =>
                     {
@@ -110,7 +116,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
                     treeControl.InitializeTree();
 
                 }
-                treeControl.SetTreeState(treeControl.treeView.Nodes, expandedNodes);
+
 
             });
 
@@ -122,8 +128,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
                     return;
                 }
 
-                treeControl.ExpandedNodeList = new List<NodeExpand>();
-                var expandedNodes = treeControl.GetTreeState(treeControl.treeView.Nodes);
+
                 var item = treeControl.CurrentTagNode;
 
                 if (MessageBox.Show("آیا از حذف \"" + item.Title + "\" اطمینان دارید", "پیام سیستم", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -131,9 +136,9 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
                     item.IsDeleted = true;
                     repo.Update(item);
                     treeControl.InitializeTree();
-  
+
                 }
-                treeControl.SetTreeState(treeControl.treeView.Nodes, expandedNodes);
+
             });
 
 
@@ -155,7 +160,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
                 else
                 {
 
-                    var rootNodes = repo.GetByParentCategoryId(((DataLayer.Entities.EntityModels.ProductCategories)parentObject).Id).Where(c=>c.IsDeleted==false);
+                    var rootNodes = repo.GetByParentCategoryId(((DataLayer.Entities.EntityModels.ProductCategories)parentObject).Id).Where(c => c.IsDeleted == false);
                     return rootNodes.Select(c => new ClassNode<EntityModels.ProductCategories>() { Text = c.Title, Tag = c });
                 }
             };

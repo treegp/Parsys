@@ -16,6 +16,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
         private ConnectToSQL con = new ConnectToSQL();
         private ProductCategoriesRepository repo;
         private InventoriesRepository invRepo;
+        private ProductParametersRepository parRepo;
 
         public TreeControl<EntityModels.ProductCategories> treeControl;
 
@@ -24,6 +25,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
             InitializeComponent();
             repo = new ProductCategoriesRepository(con.GetConnection());
             invRepo = new InventoriesRepository(con.GetConnection());
+            parRepo = new ProductParametersRepository(con.GetConnection());
             treeControl = new TreeControl<EntityModels.ProductCategories>(this);
 
 
@@ -153,6 +155,23 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
 
                 treeControl.SetState(treestate);
                 treeControl.treeView.Focus();
+
+            });
+
+            AddButtun("مدیریت پارامترها", btn =>
+            {
+                if (treeControl.CurrentTagNode == null)
+                {
+                    MessageBox.Show("دسته بندی انتخاب نشده است", "پیام سیستم", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                ViewManagement.OpenTab<Parsys.WinClient.Views.EntityManagerForms.ProductParameters.List>((a) => {
+                    a.GetFromRepo = parRepo.GetByIsDeleted(false).Where(p => p.ProductCategoryId == treeControl.CurrentTagNode.Id);
+                });
+
+
+
 
             });
 

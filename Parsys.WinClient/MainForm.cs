@@ -29,16 +29,21 @@ namespace Parsys.WinClient
             {
                 MainViewHandler().OpenTab<Parsys.WinClient.Views.EntityManagerForms.ProductUnits.List>();
             });
-            baseMenu.AddMenuItem("مدیریت دسته بندی محصولات", (o, e) =>
-            {
-                MainViewHandler().OpenTab<Parsys.WinClient.Views.EntityManagerForms.ProductCategories.List>();
-            });
+            
 
 
             var productMenu = MainMenuStripHandler().AddMenuItem("اطلاعات محصولات");
             productMenu.AddMenuItem("مدیریت محصولات", (o, e) =>
             {
 
+            });
+            productMenu.AddMenuItem("مدیریت دسته بندی محصولات", (o, e) =>
+            {
+                MainViewHandler().OpenTab<Parsys.WinClient.Views.EntityManagerForms.ProductCategories.List>();
+            });
+            productMenu.AddMenuItem("مدیریت پارامترها", (o, e) =>
+            {
+                MainViewHandler().OpenTab<Parsys.WinClient.Views.EntityManagerForms.ProductParameters.List>();
             });
 
 

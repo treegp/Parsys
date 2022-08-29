@@ -78,6 +78,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\EntityManagerForms\ProductParameters\Editor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\EntityManagerForms\ProductParameters\Editor.Designer.cs">
+      <DependentUpon>Editor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EntityManagerForms\ProductParameters\List.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\EntityManagerForms\ProductParameters\List.Designer.cs">
+      <DependentUpon>List.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\EntityManagerForms\ProductUnits\Editor.cs">
       <SubType>UserControl</SubType>
     </Compile>

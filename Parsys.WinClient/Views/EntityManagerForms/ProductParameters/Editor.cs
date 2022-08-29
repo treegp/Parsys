@@ -14,10 +14,11 @@ using Parsys.WinClient.Views.Framework;
 
 namespace Parsys.WinClient.Views.EntityManagerForms.ProductParameters
 {
-    public partial class Editor : EntityEditorClass<DataLayer.Entities.EntityModels.ProductUnits>
+    public partial class Editor : EntityEditorClass<DataLayer.Entities.EntityModels.ProductParameters>
     {
         public Parsys.DataLayer.Connections.ProviderMethods.ConnectToSQL con = new ConnectToSQL();
-        public ProductUnitsRepository Repo;
+        public ProductParametersRepository Repo;
+        public ProductCategoriesRepository CatRepo;
         
 
         public Editor()
@@ -25,10 +26,11 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductParameters
             
             InitializeComponent();
 
-            Repo = new ProductUnitsRepository(con.GetConnection());
+            Repo = new ProductParametersRepository(con.GetConnection());
+            CatRepo = new ProductCategoriesRepository(con.GetConnection());
 
             Title = "";
-            Id = "ProductUnitsEditor";
+            Id = "ProductParametersEditor";
             MultipleInstance = false;
 
             
@@ -39,7 +41,9 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductParameters
         {
             base.OnLoad(e);
 
+            NewComboBox(i=>i.ProductCategoryId,"عنوان دسته بندی",CatRepo.GetByIsDeleted(false),i=>i.Title,i=>i.Id);
             NewTextBox(i => i.Title, "عنوان");
+            NewTextBox(i => i.Key, "کلید");
             NewTextBox(i => i.Description, "توضیحات",true);
             ArrangementControls();
 

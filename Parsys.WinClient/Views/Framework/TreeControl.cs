@@ -21,11 +21,15 @@ namespace Parsys.WinClient.Views.Framework
             treeView = new TreeView();
             var textbox = new TextBox();
             container.Controls.Add(textbox);
-            textbox.Dock = DockStyle.Bottom;
+            textbox.Dock = DockStyle.Top;
             textbox.Enabled = false;
             container.Controls.Add(treeView);
+            treeView.Scrollable = true;
             treeView.Dock = DockStyle.Fill;
+            treeView.BringToFront();
             treeView.RightToLeftLayout = true;
+            
+
             treeView.BeforeExpand += (o, e) =>
             {
                 if (e.Node.Nodes.Count == 1 & e.Node.Nodes[0].Tag is string & e.Node.Nodes[0].Tag.ToString() == "not expanded")
@@ -64,6 +68,7 @@ namespace Parsys.WinClient.Views.Framework
         {
             TraceNode traceNode = new TraceNode();
             traceNode.IsExpanded = node.IsExpanded;
+            traceNode.Text = node.Text;
 
             TreeNode tempNode = node;
             for (int i = node.Level; i >= 0; i--)
@@ -71,6 +76,7 @@ namespace Parsys.WinClient.Views.Framework
                 traceNode.IndexList.Add(tempNode.Index);
                 if (i != 0) tempNode = tempNode.Parent;
             }
+            traceNode.IndexList.Reverse();
             return new List<TraceNode> { traceNode };
         }
 
@@ -83,6 +89,7 @@ namespace Parsys.WinClient.Views.Framework
             {
                 TraceNode traceNode = new TraceNode();
                 traceNode.IsExpanded = node.IsExpanded;
+                traceNode.Text = node.Text;
 
                 TreeNode tempNode = node;
                 for (int i = node.Level; i >= 0; i--)
@@ -106,10 +113,14 @@ namespace Parsys.WinClient.Views.Framework
         public void SetState(TraceNode node, bool? expanding, bool selecting = false)
         {
             TreeNodeCollection tempNodes = treeView.Nodes;
-            for (int i = 0; i < node.IndexList.Count; i++)
+            if (node.IndexList.Count > 1)
             {
-                tempNodes[node.IndexList[i]].Expand();
-                tempNodes = tempNodes[node.IndexList[i]].Nodes;
+                for (int i = 0; i < node.IndexList.Count - 1; i++)
+                {
+                    tempNodes[node.IndexList[i]].Expand();
+                    tempNodes = tempNodes[node.IndexList[i]].Nodes;
+                }
+                
             }
 
             if (expanding == true & tempNodes[node.IndexList[node.IndexList.Count - 1]].Nodes.Count > 0)
@@ -120,7 +131,7 @@ namespace Parsys.WinClient.Views.Framework
                 tempNodes[node.IndexList[node.IndexList.Count - 1]].Expand();
 
             if (selecting)
-                treeView.SelectedNode = tempNodes[node.IndexList[node.IndexList.Count - 1]].Parent;
+                treeView.SelectedNode = tempNodes[node.IndexList[node.IndexList.Count - 1]];
 
         }
 
@@ -135,8 +146,12 @@ namespace Parsys.WinClient.Views.Framework
                     TreeNodeCollection tempNodes = treeView.Nodes;
                     for (int i = 0; i < node.IndexList.Count; i++)
                     {
-                        tempNodes[node.IndexList[i]].Expand();
-                        tempNodes = tempNodes[node.IndexList[i]].Nodes;
+                        try
+                        {
+                            tempNodes[node.IndexList[i]].Expand();
+                            tempNodes = tempNodes[node.IndexList[i]].Nodes;
+                        }
+                        catch { }
                     }
                 }
             }
@@ -189,6 +204,7 @@ namespace Parsys.WinClient.Views.Framework
     public class TraceNode
     {
         public List<int> IndexList { get; set; } = new List<int>();
+        public string Text { get; set; }
         public bool IsExpanded { get; set; }
     }
 

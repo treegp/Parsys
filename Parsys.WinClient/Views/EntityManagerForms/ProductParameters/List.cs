@@ -4,6 +4,7 @@ using Parsys.WinClient.Views.Framework;
 using System;
 using System.Windows.Forms;
 using Parsys.DataLayer.Entities.EntityModels;
+using System.Collections.Generic;
 
 namespace Parsys.WinClient.Views.EntityManagerForms.ProductParameters
 {
@@ -12,25 +13,31 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductParameters
     public partial class List : ViewBaseControl
     {
         private Parsys.DataLayer.Connections.ProviderMethods.ConnectToSQL con = new ConnectToSQL();
-        private ProductUnitsRepository repo;
-        private GridHandler<DataLayer.Entities.EntityModels.ProductUnits> grid;
+        private ProductParametersRepository repo;
+        private GridHandler<DataLayer.Entities.EntityModels.ProductParameters> grid;
+        public IEnumerable<DataLayer.Entities.EntityModels.ProductParameters> GetFromRepo;
+
 
         public List()
         {
             InitializeComponent();
-            repo = new ProductUnitsRepository(con.GetConnection());
-            grid = new GridHandler<DataLayer.Entities.EntityModels.ProductUnits>(this, repo.GetByIsDeleted(false));
+            repo = new ProductParametersRepository(con.GetConnection());
 
-            Title = "لیست واحدهای اندازه گیری";
-            Id = "ProductUnitsList";
+            if (GetFromRepo == null)
+                GetFromRepo = repo.GetByIsDeleted(false); 
+
+            grid = new GridHandler<DataLayer.Entities.EntityModels.ProductParameters>(this, GetFromRepo);
+
+            Title = "لیست پارامترها";
+            Id = "ProductParametersList";
             MultipleInstance = false;
 
             AddButtun("جدید", b =>
             {
                 var newForm =ViewManagement.ShowForm<Editor>((nw) =>
                 {
-                    nw.Entity = new DataLayer.Entities.EntityModels.ProductUnits();
-                    nw.Title = "تعریف واحد اندازه گیری جدید";
+                    nw.Entity = new DataLayer.Entities.EntityModels.ProductParameters();
+                    nw.Title = "تعریف پارامتر جدید";
                 },true);
 
                 if (((Form)newForm.Parent).DialogResult == DialogResult.OK)
@@ -78,7 +85,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductParameters
             var edtView = ViewManagement.ShowForm<Editor>(edt =>
             {
                 edt.Entity = grid.CurrentItem;
-                edt.Title = "ویرایش واحد اندازه گیری";
+                edt.Title = "ویرایش پارامتر";
             }, true);
 
 
@@ -97,8 +104,9 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductParameters
 
             grid.OnDoubleClick += (s, a) => { onDoubleClick(); };
 
-
+            grid.AddStringColumn(i => i.ProductCategoryId, "دسته بندی");
             grid.AddStringColumn(i => i.Title, "عنوان");
+            grid.AddStringColumn(i => i.Key, "کید");
             grid.AddStringColumn(i => i.Description, "توضیحات");
 
 

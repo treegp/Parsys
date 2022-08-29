@@ -33,6 +33,8 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
 
             AddButtun("ریشه جدید", btn =>
             {
+                treeControl.TraceNodeList = new List<TraceNode>();
+                var treestate = treeControl.GetState(treeControl.treeView.Nodes);
 
                 var newForm = ViewManagement.ShowForm<Editor>((s) =>
                 {
@@ -48,13 +50,14 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
                     treeControl.InitializeTree();
                 }
 
+                treeControl.SetState(treestate);
+                treeControl.SetState(treeControl.GetState(treeControl.treeView.Nodes[treeControl.treeView.Nodes.Count - 1])[0], false, true);
+                treeControl.treeView.Focus();
 
             });
 
             AddButtun("زیرمجموعه جدید", btn =>
             {
-
-
 
                 if (treeControl.CurrentTagNode == null)
                 {
@@ -88,7 +91,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
 
 
                 treeControl.SetState(treestate);
-                treeControl.SetState(nodestate[0],false,true);
+                treeControl.SetState(nodestate[0],true,true);
                 treeControl.treeView.Focus();
 
 
@@ -102,6 +105,10 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
                     return;
                 }
 
+                treeControl.TraceNodeList = new List<TraceNode>();
+                var treestate = treeControl.GetState(treeControl.treeView.Nodes);
+
+                var nodestate = treeControl.GetState(treeControl.SelectedNode);
 
                 var currentPath = treeControl.PathNode;
                 var newForm = ViewManagement.ShowForm<Editor>((s) =>
@@ -117,6 +124,9 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
 
                 }
 
+                treeControl.SetState(treestate);
+                treeControl.SetState(nodestate[0], true, true);
+                treeControl.treeView.Focus();
 
             });
 
@@ -128,6 +138,8 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
                     return;
                 }
 
+                treeControl.TraceNodeList = new List<TraceNode>();
+                var treestate = treeControl.GetState(treeControl.treeView.Nodes);
 
                 var item = treeControl.CurrentTagNode;
 
@@ -139,6 +151,9 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
 
                 }
 
+                treeControl.SetState(treestate);
+                treeControl.treeView.Focus();
+
             });
 
 
@@ -147,6 +162,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
 
         protected override void OnLoad(EventArgs e)
         {
+
             base.OnLoad(e);
 
             treeControl.OnExpand += (parentNode, parentObject) =>

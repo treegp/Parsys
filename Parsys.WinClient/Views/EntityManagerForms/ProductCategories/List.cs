@@ -166,8 +166,10 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductCategories
                     return;
                 }
 
-                ViewManagement.OpenTab<Parsys.WinClient.Views.EntityManagerForms.ProductParameters.List>((a) => {
+                var view = ViewManagement.OpenTab<Parsys.WinClient.Views.EntityManagerForms.ProductParameters.List>((a) => {
                     a.GetFromRepo = parRepo.GetByIsDeleted(false).Where(p => p.ProductCategoryId == treeControl.CurrentTagNode.Id);
+                    a.Title = "لیست پارامترهای " + treeControl.CurrentTagNode.Title;
+                    a.CatId = treeControl.CurrentTagNode.Id;
                 });
 
 

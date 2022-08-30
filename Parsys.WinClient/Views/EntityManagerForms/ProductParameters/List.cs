@@ -2,9 +2,9 @@
 using Parsys.DataLayer.Entities.EntityMethods;
 using Parsys.WinClient.Views.Framework;
 using System;
-using System.Windows.Forms;
-using Parsys.DataLayer.Entities.EntityModels;
 using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Parsys.WinClient.Views.EntityManagerForms.ProductParameters
 {
@@ -14,40 +14,55 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductParameters
     {
         private Parsys.DataLayer.Connections.ProviderMethods.ConnectToSQL con = new ConnectToSQL();
         private ProductParametersRepository repo;
+        private ProductCategoriesRepository catRepo;
         private GridHandler<DataLayer.Entities.EntityModels.ProductParameters> grid;
         public IEnumerable<DataLayer.Entities.EntityModels.ProductParameters> GetFromRepo;
-
+        public int CatId = 0; 
 
         public List()
         {
             InitializeComponent();
             repo = new ProductParametersRepository(con.GetConnection());
+            catRepo = new ProductCategoriesRepository(con.GetConnection());
 
-            if (GetFromRepo == null)
-                GetFromRepo = repo.GetByIsDeleted(false); 
-
-            grid = new GridHandler<DataLayer.Entities.EntityModels.ProductParameters>(this, GetFromRepo);
-
-            Title = "لیست پارامترها";
+            
             Id = "ProductParametersList";
-            MultipleInstance = false;
+            MultipleInstance = true;
 
-            AddButtun("جدید", b =>
+
+            if (CatId != 0)
             {
-                var newForm =ViewManagement.ShowForm<Editor>((nw) =>
+                GetFromRepo = repo.GetByIsDeleted(false).Where(c => c.Id == CatId);
+                Title = "لیست پارامترهای " + catRepo.GetById(CatId).First().Title;
+            }
+            else
+            {
+                Title = "لیست پارامترها";
+            }
+
+
+            //if (GetFromRepo == null)
+                //GetFromRepo = repo.GetByIsDeleted(false);
+
+
+                AddButtun("جدید", b =>
                 {
-                    nw.Entity = new DataLayer.Entities.EntityModels.ProductParameters();
-                    nw.Title = "تعریف پارامتر جدید";
-                },true);
+                    var newForm = ViewManagement.ShowForm<Editor>((nw) =>
+                    {
+                        if (CatId != 0)
+                            nw.CatId = CatId;
+                        nw.Entity = new DataLayer.Entities.EntityModels.ProductParameters();
+                        nw.Title = "تعریف پارامتر جدید";
+                    }, true);
 
-                if (((Form)newForm.Parent).DialogResult == DialogResult.OK)
-                {
-                    repo.Insert(newForm.Entity);
-                    grid.AddItem(newForm.Entity);
-                }
+                    if (((Form)newForm.Parent).DialogResult == DialogResult.OK)
+                    {
+                        repo.Insert(newForm.Entity);
+                        grid.AddItem(newForm.Entity);
+                    }
 
 
-            });
+                });
 
             AddButtun("ویرایش", b =>
             {
@@ -58,11 +73,11 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductParameters
             {
                 if (grid.CurrentIndex == -1)
                 {
-                    MessageBox.Show("سطری انتخاب نشده است","پیام سیستم",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    MessageBox.Show("سطری انتخاب نشده است", "پیام سیستم", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                if(MessageBox.Show("آیا از حذف \"" + grid.CurrentItem.Title + "\" اطمینان دارید" , "پیام سیستم",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("آیا از حذف \"" + grid.CurrentItem.Title + "\" اطمینان دارید", "پیام سیستم", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     grid.CurrentItem.IsDeleted = true;
                     grid.CurrentItem.DeleteDate = DateTime.Now;
@@ -92,7 +107,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductParameters
             if (((Form)edtView.Parent).DialogResult == DialogResult.OK)
             {
                 repo.Update(edtView.Entity);
-                grid.UpdateItem(edtView.Entity,grid.CurrentIndex);
+                grid.UpdateItem(edtView.Entity, grid.CurrentIndex);
             }
 
         }
@@ -101,7 +116,7 @@ namespace Parsys.WinClient.Views.EntityManagerForms.ProductParameters
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-
+            grid = new GridHandler<DataLayer.Entities.EntityModels.ProductParameters>(this, GetFromRepo);
             grid.OnDoubleClick += (s, a) => { onDoubleClick(); };
 
             grid.AddStringColumn(i => i.ProductCategoryId, "دسته بندی");
